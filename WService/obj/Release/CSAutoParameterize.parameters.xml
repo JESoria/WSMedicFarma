@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="MedicFarmaEntities-Web.config Connection String" description="MedicFarmaEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=serviciosweb2500632013.database.windows.net;initial catalog=FARMACIAS;persist security info=True;user id=soria;password=Utec1234;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\soria\\Downloads\\WService\\WService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MedicFarmaEntities']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\soria\\Documents\\GitHub\\WSMedicFarma\\WService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MedicFarmaEntities']/@connectionString" />
   </parameter>
 </parameters>
