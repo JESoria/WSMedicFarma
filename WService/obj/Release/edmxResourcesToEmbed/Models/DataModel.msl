@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataServiceModelStoreContainer" CdmEntityContainer="DataServiceEntities">
+    <EntitySetMapping Name="t_oauthtoken">
+      <EntityTypeMapping TypeName="DataServiceModel.t_oauthtoken">
+        <MappingFragment StoreEntitySet="t_oauthtoken">
+          <ScalarProperty Name="authtoken_id" ColumnName="authtoken_id" />
+          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+          <ScalarProperty Name="outh_name" ColumnName="outh_name" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MedicFarmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="ID_CATEGORIA" />
+    </Key>
+    <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATEGORIA1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_CATEGORIA" FromRole="CATEGORIA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="CREDENCIAL_USUARIO">
+    <Key>
+      <PropertyRef Name="ID_CREDENCIAL_USUARIO" />
+    </Key>
+    <Property Name="ID_CREDENCIAL_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+    <Property Name="USUARIO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="USUARIO1" Relationship="Self.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="DESCUENTO">
+    <Key>
+      <PropertyRef Name="ID_DESCUENTO" />
+    </Key>
+    <Property Name="ID_DESCUENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_SUCURSAL_PRODUCTO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_DESDE" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FECHA_HASTA" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DESCUENTO1" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SUCURSAL_PRODUCTO" Relationship="Self.FK_SUCURSAL_PRODUCTO_DESCUENTO" FromRole="DESCUENTO" ToRole="SUCURSAL_PRODUCTO" />
+  </EntityType>
+  <EntityType Name="DETALLE_FACTURA">
+    <Key>
+      <PropertyRef Name="ID_DETALLE_FACTURA" />
+    </Key>
+    <Property Name="ID_DETALLE_FACTURA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_FACTURA" Type="Int32" Nullable="false" />
+    <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
+    <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+    <Property Name="PRECIO_VENTA" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <NavigationProperty Name="TRANSACCION_PAGO" Relationship="Self.FK_DETALLE_FACTURA_TRANSACCION_PAGO" FromRole="DETALLE_FACTURA" ToRole="TRANSACCION_PAGO" />
+    <NavigationProperty Name="FACTURA" Relationship="Self.FK_FACTURA_DETALLE_FACTURA" FromRole="DETALLE_FACTURA" ToRole="FACTURA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_DETALLE_FACTURA" FromRole="DETALLE_FACTURA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="FACTURA">
+    <Key>
+      <PropertyRef Name="ID_FACTURA" />
+    </Key>
+    <Property Name="ID_FACTURA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TOTAL_COMPRA" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="TOTAL_PAGAR" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <NavigationProperty Name="DETALLE_FACTURA" Relationship="Self.FK_FACTURA_DETALLE_FACTURA" FromRole="FACTURA" ToRole="DETALLE_FACTURA" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_FACTURA_USUARIO" FromRole="FACTURA" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="FARMACIA">
+    <Key>
+      <PropertyRef Name="ID_FARMACIA" />
+    </Key>
+    <Property Name="ID_FARMACIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FARMACIA1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_FARMACIA_SUCURSAL" FromRole="FARMACIA" ToRole="SUCURSAL" />
+  </EntityType>
+  <EntityType Name="LABORATORIO">
+    <Key>
+      <PropertyRef Name="ID_LABORATORIO" />
+    </Key>
+    <Property Name="ID_LABORATORIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LABORATORIO1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_LABORATORIO" FromRole="LABORATORIO" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="PRESENTACION">
+    <Key>
+      <PropertyRef Name="ID_PRESENTACION" />
+    </Key>
+    <Property Name="ID_PRESENTACION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRESENTACION1" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_PRESENTACION" FromRole="PRESENTACION" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="ID_PRODUCTO" />
+    </Key>
+    <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_PRESENTACION" Type="Int32" Nullable="false" />
+    <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" />
+    <Property Name="ID_LABORATORIO" Type="Int32" Nullable="false" />
+    <Property Name="PRODUCTO1" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="PRECIO" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_PRODUCTO_CATEGORIA" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+    <NavigationProperty Name="DETALLE_FACTURA" Relationship="Self.FK_PRODUCTO_DETALLE_FACTURA" FromRole="PRODUCTO" ToRole="DETALLE_FACTURA" />
+    <NavigationProperty Name="LABORATORIO" Relationship="Self.FK_PRODUCTO_LABORATORIO" FromRole="PRODUCTO" ToRole="LABORATORIO" />
+    <NavigationProperty Name="PRESENTACION" Relationship="Self.FK_PRODUCTO_PRESENTACION" FromRole="PRODUCTO" ToRole="PRESENTACION" />
+    <NavigationProperty Name="SUCURSAL_PRODUCTO" Relationship="Self.FK_PRODUCTO_SUCURSAL_PRODUCTO" FromRole="PRODUCTO" ToRole="SUCURSAL_PRODUCTO" />
+  </EntityType>
+  <EntityType Name="SUCURSAL">
+    <Key>
+      <PropertyRef Name="ID_SUCURSAL" />
+    </Key>
+    <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_FARMACIA" Type="Int32" Nullable="false" />
+    <Property Name="SUCURSAL1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LONGITUD" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LATITUD" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="FARMACIA" Relationship="Self.FK_FARMACIA_SUCURSAL" FromRole="SUCURSAL" ToRole="FARMACIA" />
+    <NavigationProperty Name="SUCURSAL_PRODUCTO" Relationship="Self.FK_SUCURSAL_SUCURSAL_PRODUCTO" FromRole="SUCURSAL" ToRole="SUCURSAL_PRODUCTO" />
+  </EntityType>
+  <EntityType Name="SUCURSAL_PRODUCTO">
+    <Key>
+      <PropertyRef Name="ID_SUCURSAL_PRODUCTO" />
+    </Key>
+    <Property Name="ID_SUCURSAL_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+    <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_VENCIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EXISTENCIA" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DESCUENTO" Relationship="Self.FK_SUCURSAL_PRODUCTO_DESCUENTO" FromRole="SUCURSAL_PRODUCTO" ToRole="DESCUENTO" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_SUCURSAL_PRODUCTO" FromRole="SUCURSAL_PRODUCTO" ToRole="PRODUCTO" />
+    <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_SUCURSAL_SUCURSAL_PRODUCTO" FromRole="SUCURSAL_PRODUCTO" ToRole="SUCURSAL" />
+  </EntityType>
+  <EntityType Name="t_oauthtoken">
+    <Key>
+      <PropertyRef Name="authtoken_id" />
+    </Key>
+    <Property Name="authtoken_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="outh_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="token" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TIPO_PAGO">
+    <Key>
+      <PropertyRef Name="ID_TIPO_PAGO" />
+    </Key>
+    <Property Name="ID_TIPO_PAGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TIPO_PAGO1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TRANSACCION_PAGO" Relationship="Self.FK_TIPO_PAGO_TRANSACCION_PAGO" FromRole="TIPO_PAGO" ToRole="TRANSACCION_PAGO" />
+  </EntityType>
+  <EntityType Name="TRANSACCION_PAGO">
+    <Key>
+      <PropertyRef Name="ID_TRANSACCION_PAGO" />
+    </Key>
+    <Property Name="ID_TRANSACCION_PAGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_DETALLE_FACTURA" Type="Int32" Nullable="false" />
+    <Property Name="ID_TIPO_PAGO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_TRANSACCION" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DETALLE_FACTURA" Relationship="Self.FK_DETALLE_FACTURA_TRANSACCION_PAGO" FromRole="TRANSACCION_PAGO" ToRole="DETALLE_FACTURA" />
+    <NavigationProperty Name="TIPO_PAGO" Relationship="Self.FK_TIPO_PAGO_TRANSACCION_PAGO" FromRole="TRANSACCION_PAGO" ToRole="TIPO_PAGO" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APELLIDOS" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GENERO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CORREO" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="FACEBOOK_ID" Type="Int32" />
+    <NavigationProperty Name="CREDENCIAL_USUARIO" Relationship="Self.FK_CREDENCIAL_USUARIO" FromRole="USUARIO" ToRole="CREDENCIAL_USUARIO" />
+    <NavigationProperty Name="FACTURA" Relationship="Self.FK_FACTURA_USUARIO" FromRole="USUARIO" ToRole="FACTURA" />
+  </EntityType>
+  <Association Name="FK_PRODUCTO_CATEGORIA">
+    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CREDENCIAL_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="CREDENCIAL_USUARIO" Type="Self.CREDENCIAL_USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="CREDENCIAL_USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUCURSAL_PRODUCTO_DESCUENTO">
+    <End Role="SUCURSAL_PRODUCTO" Type="Self.SUCURSAL_PRODUCTO" Multiplicity="1" />
+    <End Role="DESCUENTO" Type="Self.DESCUENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUCURSAL_PRODUCTO">
+        <PropertyRef Name="ID_SUCURSAL_PRODUCTO" />
+      </Principal>
+      <Dependent Role="DESCUENTO">
+        <PropertyRef Name="ID_SUCURSAL_PRODUCTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_FACTURA_TRANSACCION_PAGO">
+    <End Role="DETALLE_FACTURA" Type="Self.DETALLE_FACTURA" Multiplicity="1" />
+    <End Role="TRANSACCION_PAGO" Type="Self.TRANSACCION_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DETALLE_FACTURA">
+        <PropertyRef Name="ID_DETALLE_FACTURA" />
+      </Principal>
+      <Dependent Role="TRANSACCION_PAGO">
+        <PropertyRef Name="ID_DETALLE_FACTURA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FACTURA_DETALLE_FACTURA">
+    <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="1" />
+    <End Role="DETALLE_FACTURA" Type="Self.DETALLE_FACTURA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FACTURA">
+        <PropertyRef Name="ID_FACTURA" />
+      </Principal>
+      <Dependent Role="DETALLE_FACTURA">
+        <PropertyRef Name="ID_FACTURA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTO_DETALLE_FACTURA">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="DETALLE_FACTURA" Type="Self.DETALLE_FACTURA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Principal>
+      <Dependent Role="DETALLE_FACTURA">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FACTURA_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="FACTURA">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FARMACIA_SUCURSAL">
+    <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="1" />
+    <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FARMACIA">
+        <PropertyRef Name="ID_FARMACIA" />
+      </Principal>
+      <Dependent Role="SUCURSAL">
+        <PropertyRef Name="ID_FARMACIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTO_LABORATORIO">
+    <End Role="LABORATORIO" Type="Self.LABORATORIO" Multiplicity="1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LABORATORIO">
+        <PropertyRef Name="ID_LABORATORIO" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="ID_LABORATORIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTO_PRESENTACION">
+    <End Role="PRESENTACION" Type="Self.PRESENTACION" Multiplicity="1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRESENTACION">
+        <PropertyRef Name="ID_PRESENTACION" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="ID_PRESENTACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTO_SUCURSAL_PRODUCTO">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="SUCURSAL_PRODUCTO" Type="Self.SUCURSAL_PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Principal>
+      <Dependent Role="SUCURSAL_PRODUCTO">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUCURSAL_SUCURSAL_PRODUCTO">
+    <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+    <End Role="SUCURSAL_PRODUCTO" Type="Self.SUCURSAL_PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUCURSAL">
+        <PropertyRef Name="ID_SUCURSAL" />
+      </Principal>
+      <Dependent Role="SUCURSAL_PRODUCTO">
+        <PropertyRef Name="ID_SUCURSAL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPO_PAGO_TRANSACCION_PAGO">
+    <End Role="TIPO_PAGO" Type="Self.TIPO_PAGO" Multiplicity="1" />
+    <End Role="TRANSACCION_PAGO" Type="Self.TRANSACCION_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_PAGO">
+        <PropertyRef Name="ID_TIPO_PAGO" />
+      </Principal>
+      <Dependent Role="TRANSACCION_PAGO">
+        <PropertyRef Name="ID_TIPO_PAGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MedicFarmaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
+    <EntitySet Name="CREDENCIAL_USUARIO" EntityType="Self.CREDENCIAL_USUARIO" />
+    <EntitySet Name="DESCUENTO" EntityType="Self.DESCUENTO" />
+    <EntitySet Name="DETALLE_FACTURA" EntityType="Self.DETALLE_FACTURA" />
+    <EntitySet Name="FACTURA" EntityType="Self.FACTURA" />
+    <EntitySet Name="FARMACIA" EntityType="Self.FARMACIA" />
+    <EntitySet Name="LABORATORIO" EntityType="Self.LABORATORIO" />
+    <EntitySet Name="PRESENTACION" EntityType="Self.PRESENTACION" />
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+    <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" />
+    <EntitySet Name="SUCURSAL_PRODUCTO" EntityType="Self.SUCURSAL_PRODUCTO" />
+    <EntitySet Name="t_oauthtoken" EntityType="Self.t_oauthtoken" />
+    <EntitySet Name="TIPO_PAGO" EntityType="Self.TIPO_PAGO" />
+    <EntitySet Name="TRANSACCION_PAGO" EntityType="Self.TRANSACCION_PAGO" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="FK_PRODUCTO_CATEGORIA" Association="Self.FK_PRODUCTO_CATEGORIA">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CREDENCIAL_USUARIO" Association="Self.FK_CREDENCIAL_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="CREDENCIAL_USUARIO" EntitySet="CREDENCIAL_USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUCURSAL_PRODUCTO_DESCUENTO" Association="Self.FK_SUCURSAL_PRODUCTO_DESCUENTO">
+      <End Role="SUCURSAL_PRODUCTO" EntitySet="SUCURSAL_PRODUCTO" />
+      <End Role="DESCUENTO" EntitySet="DESCUENTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_FACTURA_TRANSACCION_PAGO" Association="Self.FK_DETALLE_FACTURA_TRANSACCION_PAGO">
+      <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+      <End Role="TRANSACCION_PAGO" EntitySet="TRANSACCION_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FACTURA_DETALLE_FACTURA" Association="Self.FK_FACTURA_DETALLE_FACTURA">
+      <End Role="FACTURA" EntitySet="FACTURA" />
+      <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTO_DETALLE_FACTURA" Association="Self.FK_PRODUCTO_DETALLE_FACTURA">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="DETALLE_FACTURA" EntitySet="DETALLE_FACTURA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FACTURA_USUARIO" Association="Self.FK_FACTURA_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="FACTURA" EntitySet="FACTURA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FARMACIA_SUCURSAL" Association="Self.FK_FARMACIA_SUCURSAL">
+      <End Role="FARMACIA" EntitySet="FARMACIA" />
+      <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTO_LABORATORIO" Association="Self.FK_PRODUCTO_LABORATORIO">
+      <End Role="LABORATORIO" EntitySet="LABORATORIO" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTO_PRESENTACION" Association="Self.FK_PRODUCTO_PRESENTACION">
+      <End Role="PRESENTACION" EntitySet="PRESENTACION" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTO_SUCURSAL_PRODUCTO" Association="Self.FK_PRODUCTO_SUCURSAL_PRODUCTO">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="SUCURSAL_PRODUCTO" EntitySet="SUCURSAL_PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUCURSAL_SUCURSAL_PRODUCTO" Association="Self.FK_SUCURSAL_SUCURSAL_PRODUCTO">
+      <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+      <End Role="SUCURSAL_PRODUCTO" EntitySet="SUCURSAL_PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPO_PAGO_TRANSACCION_PAGO" Association="Self.FK_TIPO_PAGO_TRANSACCION_PAGO">
+      <End Role="TIPO_PAGO" EntitySet="TIPO_PAGO" />
+      <End Role="TRANSACCION_PAGO" EntitySet="TRANSACCION_PAGO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
