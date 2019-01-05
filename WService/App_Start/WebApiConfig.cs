@@ -23,9 +23,9 @@ namespace WService
             );
             
             config.Routes.MapHttpRoute(
-               name: "Prueba",
-               routeTemplate: "Prueba",
-               defaults: new { Controller = "Login", Action = "Prueba" }
+               name: "Login",
+               routeTemplate: "v1/Entrando-al-sistema",
+               defaults: new { Controller = "Login", Action = "Index" }
                );
             
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();

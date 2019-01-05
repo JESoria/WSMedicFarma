@@ -26,7 +26,6 @@ namespace WService.Models
         }
     
         public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
-        public virtual DbSet<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
         public virtual DbSet<DESCUENTO> DESCUENTO { get; set; }
         public virtual DbSet<DETALLE_FACTURA> DETALLE_FACTURA { get; set; }
         public virtual DbSet<FACTURA> FACTURA { get; set; }
@@ -40,5 +39,6 @@ namespace WService.Models
         public virtual DbSet<TIPO_PAGO> TIPO_PAGO { get; set; }
         public virtual DbSet<TRANSACCION_PAGO> TRANSACCION_PAGO { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
     }
 }

@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="de44856d247b4b05be444a11b289972a" Name="Diagram1">
         <EntityTypeShape EntityType="MedicFarmaModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicFarmaModel.CREDENCIAL_USUARIO" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicFarmaModel.DESCUENTO" Width="1.5" PointX="10.5" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicFarmaModel.DETALLE_FACTURA" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicFarmaModel.FACTURA" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
@@ -21,7 +20,6 @@
         <EntityTypeShape EntityType="MedicFarmaModel.TRANSACCION_PAGO" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicFarmaModel.USUARIO" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
         <AssociationConnector Association="MedicFarmaModel.FK_PRODUCTO_CATEGORIA" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicFarmaModel.FK_CREDENCIAL_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_SUCURSAL_PRODUCTO_DESCUENTO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_DETALLE_FACTURA_TRANSACCION_PAGO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_FACTURA_DETALLE_FACTURA" ManuallyRouted="false" />
@@ -33,6 +31,8 @@
         <AssociationConnector Association="MedicFarmaModel.FK_PRODUCTO_SUCURSAL_PRODUCTO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_SUCURSAL_SUCURSAL_PRODUCTO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_TIPO_PAGO_TRANSACCION_PAGO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MedicFarmaModel.CREDENCIAL_USUARIO" Width="1.5" PointX="3" PointY="18.75" />
+        <AssociationConnector Association="MedicFarmaModel.FK_CREDENCIAL_USUARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
