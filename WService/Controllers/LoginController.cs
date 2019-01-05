@@ -13,7 +13,7 @@ using WService.Models.Response;
 
 namespace WService.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class LoginController : ApiController
     {
         private DataAccess da = new DataAccess();
@@ -21,12 +21,11 @@ namespace WService.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Index(LoginModel model)
         {
-            //IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
-            //string header = headerValues.FirstOrDefault();
-            //t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
+            IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
+            string header = headerValues.FirstOrDefault();
+            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
 
-            //if (token == null)
-            if(false)
+            if (token == null)
             {
                 return BadRequest();
             }
