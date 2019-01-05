@@ -190,3 +190,7 @@ C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Release\WService.cspro
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Release\WService.csproj.CopyComplete
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Release\WService.dll
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Release\WService.pdb
+C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\bin\AngleSharp.dll
+C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\bin\HtmlSanitizer.dll
+C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\bin\AngleSharp.xml
+C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\bin\HtmlSanitizer.xml

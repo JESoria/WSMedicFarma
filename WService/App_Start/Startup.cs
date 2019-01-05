@@ -29,7 +29,7 @@ namespace WService
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/WService"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
                 Provider = new SimpleAuthorizationServerProvider(),    
                 RefreshTokenProvider = new ApplicationOAuthRefreshTokenProvider()
             };

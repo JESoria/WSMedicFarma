@@ -10,17 +10,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CREDENCIAL_USUARIO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.CREDENCIAL_USUARIO">
-        <MappingFragment StoreEntitySet="CREDENCIAL_USUARIO">
-          <ScalarProperty Name="ID_CREDENCIAL_USUARIO" ColumnName="ID_CREDENCIAL_USUARIO" />
-          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
-          <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
-          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DESCUENTO">
       <EntityTypeMapping TypeName="MedicFarmaModel.DESCUENTO">
         <MappingFragment StoreEntitySet="DESCUENTO">
@@ -160,6 +149,17 @@
           <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
           <ScalarProperty Name="CORREO" ColumnName="CORREO" />
           <ScalarProperty Name="FACEBOOK_ID" ColumnName="FACEBOOK_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CREDENCIAL_USUARIO">
+      <EntityTypeMapping TypeName="MedicFarmaModel.CREDENCIAL_USUARIO">
+        <MappingFragment StoreEntitySet="CREDENCIAL_USUARIO">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="ID_CREDENCIAL_USUARIO" ColumnName="ID_CREDENCIAL_USUARIO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

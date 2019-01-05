@@ -9,17 +9,6 @@
     <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_CATEGORIA" FromRole="CATEGORIA" ToRole="PRODUCTO" />
   </EntityType>
-  <EntityType Name="CREDENCIAL_USUARIO">
-    <Key>
-      <PropertyRef Name="ID_CREDENCIAL_USUARIO" />
-    </Key>
-    <Property Name="ID_CREDENCIAL_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
-    <Property Name="USUARIO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PASSWORD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="USUARIO1" Relationship="Self.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
-  </EntityType>
   <EntityType Name="DESCUENTO">
     <Key>
       <PropertyRef Name="ID_DESCUENTO" />
@@ -170,8 +159,8 @@
     <Property Name="FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="CORREO" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
     <Property Name="FACEBOOK_ID" Type="Int32" />
-    <NavigationProperty Name="CREDENCIAL_USUARIO" Relationship="Self.FK_CREDENCIAL_USUARIO" FromRole="USUARIO" ToRole="CREDENCIAL_USUARIO" />
     <NavigationProperty Name="FACTURA" Relationship="Self.FK_FACTURA_USUARIO" FromRole="USUARIO" ToRole="FACTURA" />
+    <NavigationProperty Name="CREDENCIAL_USUARIO" Relationship="MedicFarmaModel.FK_CREDENCIAL_USUARIO" FromRole="USUARIO" ToRole="CREDENCIAL_USUARIO" />
   </EntityType>
   <Association Name="FK_PRODUCTO_CATEGORIA">
     <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
@@ -182,18 +171,6 @@
       </Principal>
       <Dependent Role="PRODUCTO">
         <PropertyRef Name="ID_CATEGORIA" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CREDENCIAL_USUARIO">
-    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
-    <End Role="CREDENCIAL_USUARIO" Type="Self.CREDENCIAL_USUARIO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="USUARIO">
-        <PropertyRef Name="ID_USUARIO" />
-      </Principal>
-      <Dependent Role="CREDENCIAL_USUARIO">
-        <PropertyRef Name="ID_USUARIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -331,7 +308,6 @@
   </Association>
   <EntityContainer Name="MedicFarmaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
-    <EntitySet Name="CREDENCIAL_USUARIO" EntityType="Self.CREDENCIAL_USUARIO" />
     <EntitySet Name="DESCUENTO" EntityType="Self.DESCUENTO" />
     <EntitySet Name="DETALLE_FACTURA" EntityType="Self.DETALLE_FACTURA" />
     <EntitySet Name="FACTURA" EntityType="Self.FACTURA" />
@@ -348,10 +324,6 @@
     <AssociationSet Name="FK_PRODUCTO_CATEGORIA" Association="Self.FK_PRODUCTO_CATEGORIA">
       <End Role="CATEGORIA" EntitySet="CATEGORIA" />
       <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CREDENCIAL_USUARIO" Association="Self.FK_CREDENCIAL_USUARIO">
-      <End Role="USUARIO" EntitySet="USUARIO" />
-      <End Role="CREDENCIAL_USUARIO" EntitySet="CREDENCIAL_USUARIO" />
     </AssociationSet>
     <AssociationSet Name="FK_SUCURSAL_PRODUCTO_DESCUENTO" Association="Self.FK_SUCURSAL_PRODUCTO_DESCUENTO">
       <End Role="SUCURSAL_PRODUCTO" EntitySet="SUCURSAL_PRODUCTO" />
@@ -397,5 +369,33 @@
       <End Role="TIPO_PAGO" EntitySet="TIPO_PAGO" />
       <End Role="TRANSACCION_PAGO" EntitySet="TRANSACCION_PAGO" />
     </AssociationSet>
+    <EntitySet Name="CREDENCIAL_USUARIO" EntityType="MedicFarmaModel.CREDENCIAL_USUARIO" />
+    <AssociationSet Name="FK_CREDENCIAL_USUARIO" Association="MedicFarmaModel.FK_CREDENCIAL_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="CREDENCIAL_USUARIO" EntitySet="CREDENCIAL_USUARIO" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="CREDENCIAL_USUARIO">
+    <Key>
+      <PropertyRef Name="ID_CREDENCIAL_USUARIO" />
+    </Key>
+    <Property Name="ID_CREDENCIAL_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+    <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="USUARIO1" Relationship="MedicFarmaModel.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
+  </EntityType>
+  <Association Name="FK_CREDENCIAL_USUARIO">
+    <End Type="MedicFarmaModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+    <End Type="MedicFarmaModel.CREDENCIAL_USUARIO" Role="CREDENCIAL_USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="CREDENCIAL_USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
