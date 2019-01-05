@@ -24,7 +24,7 @@ namespace WService
             
             config.Routes.MapHttpRoute(
                name: "Login",
-               routeTemplate: "v1/Entrando-al-sistema",
+               routeTemplate: "v1/Login",
                defaults: new { Controller = "Login", Action = "Index" }
                );
             
