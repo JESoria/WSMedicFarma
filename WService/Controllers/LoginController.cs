@@ -29,19 +29,19 @@ namespace WService.Controllers
             {
                 return BadRequest();
             }
-            else if (model == null)
+            if (model == null)
             {
                 return BadRequest();
             }
             else {
                 var sanitizer = new HtmlSanitizer();
-                model.username = sanitizer.Sanitize(model.username);
+                model.correo = sanitizer.Sanitize(model.correo);
                 model.passworld = sanitizer.Sanitize(model.passworld);
                 using (MedicFarmaEntities db = new MedicFarmaEntities()) {
                     model.passworld = Encoder.Encodig(model.passworld);
 
                     var userX = db.CREDENCIAL_USUARIO.FirstOrDefault(x => x.PASSWORD == model.passworld
-                            && x.USUARIO1.CORREO == model.username);
+                            && x.USUARIO1.CORREO == model.correo);
 
                     if (userX != null) {
                         return Ok(new ProfileModel() {

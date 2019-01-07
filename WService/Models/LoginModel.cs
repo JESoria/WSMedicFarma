@@ -7,7 +7,7 @@ namespace WService.Models
 {
     public class LoginModel
     {
-        public string username { get; set; }
+        public string correo { get; set; }
         public string passworld { get; set; }
     }
 }
