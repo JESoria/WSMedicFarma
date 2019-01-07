@@ -23,7 +23,7 @@ namespace WService
             );
             
             config.Routes.MapHttpRoute(
-               name: "Login",
+               name: "LoginApp",
                routeTemplate: "v1/Login",
                defaults: new { Controller = "Login", Action = "Index" }
                );
