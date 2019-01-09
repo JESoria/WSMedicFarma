@@ -31,7 +31,7 @@
         <AssociationConnector Association="MedicFarmaModel.FK_PRODUCTO_SUCURSAL_PRODUCTO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_SUCURSAL_SUCURSAL_PRODUCTO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_TIPO_PAGO_TRANSACCION_PAGO" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MedicFarmaModel.CREDENCIAL_USUARIO" Width="1.5" PointX="3" PointY="18.75" />
+        <EntityTypeShape EntityType="MedicFarmaModel.CREDENCIAL_USUARIO" Width="1.5" PointX="3" PointY="18.875" />
         <AssociationConnector Association="MedicFarmaModel.FK_CREDENCIAL_USUARIO" />
       </Diagram>
     </edmx:Diagrams>

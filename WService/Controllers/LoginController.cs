@@ -41,17 +41,17 @@ namespace WService.Controllers
                     model.passworld = Encoder.Encodig(model.passworld);
 
                     var userX = db.CREDENCIAL_USUARIO.FirstOrDefault(x => x.PASSWORD == model.passworld
-                            && x.USUARIO1.CORREO == model.correo);
+                            && x.USUARIO.CORREO == model.correo);
 
                     if (userX != null) {
                         return Ok(new ProfileModel() {
-                            APELLIDOS = userX.USUARIO1.APELLIDOS,
-                            CORREO = userX.USUARIO1.CORREO,
-                            FACEBOOK_ID = userX.USUARIO1.FACEBOOK_ID,
-                            FECHA_NACIMIENTO = userX.USUARIO1.FECHA_NACIMIENTO,
-                            GENERO = userX.USUARIO1.GENERO,
-                            ID_USUARIO = userX.USUARIO1.ID_USUARIO,
-                            NOMBRES = userX.USUARIO1.NOMBRES
+                            APELLIDOS = userX.USUARIO.APELLIDOS,
+                            CORREO = userX.USUARIO.CORREO,
+                            FACEBOOK_ID = userX.USUARIO.FACEBOOK_ID,
+                            FECHA_NACIMIENTO = userX.USUARIO.FECHA_NACIMIENTO,
+                            GENERO = userX.USUARIO.GENERO,
+                            ID_USUARIO = userX.USUARIO.ID_USUARIO,
+                            NOMBRES = userX.USUARIO.NOMBRES
                         });
                     }
                     else

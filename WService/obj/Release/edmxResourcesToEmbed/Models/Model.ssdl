@@ -14,8 +14,7 @@
     </Key>
     <Property Name="ID_CREDENCIAL_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_USUARIO" Type="int" Nullable="false" />
-    <Property Name="USUARIO" Type="varchar" MaxLength="64" Nullable="false" />
-    <Property Name="PASSWORD" Type="varchar" MaxLength="500" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="ESTADO" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="DESCUENTO">

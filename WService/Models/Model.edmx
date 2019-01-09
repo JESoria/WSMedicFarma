@@ -19,8 +19,7 @@
           </Key>
           <Property Name="ID_CREDENCIAL_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_USUARIO" Type="int" Nullable="false" />
-          <Property Name="USUARIO" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="PASSWORD" Type="varchar" MaxLength="500" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="ESTADO" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DESCUENTO">
@@ -762,10 +761,9 @@
           </Key>
           <Property Name="ID_CREDENCIAL_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
-          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="PASSWORD" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="USUARIO1" Relationship="MedicFarmaModel.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
+          <NavigationProperty Name="USUARIO" Relationship="MedicFarmaModel.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
         </EntityType>
         <Association Name="FK_CREDENCIAL_USUARIO">
           <End Type="MedicFarmaModel.USUARIO" Role="USUARIO" Multiplicity="1" />
@@ -941,7 +939,6 @@
               <MappingFragment StoreEntitySet="CREDENCIAL_USUARIO">
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="ID_CREDENCIAL_USUARIO" ColumnName="ID_CREDENCIAL_USUARIO" />
               </MappingFragment>
