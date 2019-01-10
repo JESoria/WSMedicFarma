@@ -117,16 +117,6 @@
     <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_SUCURSAL_PRODUCTO" FromRole="SUCURSAL_PRODUCTO" ToRole="PRODUCTO" />
     <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_SUCURSAL_SUCURSAL_PRODUCTO" FromRole="SUCURSAL_PRODUCTO" ToRole="SUCURSAL" />
   </EntityType>
-  <EntityType Name="t_oauthtoken">
-    <Key>
-      <PropertyRef Name="authtoken_id" />
-    </Key>
-    <Property Name="authtoken_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="sender_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="outh_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="token" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
   <EntityType Name="TIPO_PAGO">
     <Key>
       <PropertyRef Name="ID_TIPO_PAGO" />
@@ -317,7 +307,6 @@
     <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
     <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" />
     <EntitySet Name="SUCURSAL_PRODUCTO" EntityType="Self.SUCURSAL_PRODUCTO" />
-    <EntitySet Name="t_oauthtoken" EntityType="Self.t_oauthtoken" />
     <EntitySet Name="TIPO_PAGO" EntityType="Self.TIPO_PAGO" />
     <EntitySet Name="TRANSACCION_PAGO" EntityType="Self.TRANSACCION_PAGO" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
@@ -374,6 +363,7 @@
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="CREDENCIAL_USUARIO" EntitySet="CREDENCIAL_USUARIO" />
     </AssociationSet>
+    <EntitySet Name="t_oauthtoken" EntityType="MedicFarmaModel.t_oauthtoken" />
   </EntityContainer>
   <EntityType Name="CREDENCIAL_USUARIO">
     <Key>
@@ -381,7 +371,7 @@
     </Key>
     <Property Name="ID_CREDENCIAL_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
-    <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="ESTADO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="USUARIO" Relationship="MedicFarmaModel.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
   </EntityType>
@@ -397,4 +387,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="t_oauthtoken">
+    <Key>
+      <PropertyRef Name="authtoken_id" />
+    </Key>
+    <Property Name="authtoken_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender_id" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="outh_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>

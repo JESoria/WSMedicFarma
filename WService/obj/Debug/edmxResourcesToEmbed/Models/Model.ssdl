@@ -14,7 +14,7 @@
     </Key>
     <Property Name="ID_CREDENCIAL_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_USUARIO" Type="int" Nullable="false" />
-    <Property Name="PASSWORD" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="150" />
     <Property Name="ESTADO" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="DESCUENTO">
@@ -113,7 +113,7 @@
     <Property Name="authtoken_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="sender_id" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="outh_name" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="token" Type="varchar" MaxLength="300" />
+    <Property Name="token" Type="varchar(max)" />
     <Property Name="date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="TIPO_PAGO">

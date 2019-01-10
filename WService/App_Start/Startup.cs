@@ -28,7 +28,7 @@ namespace WService
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/v1/WService"),
+                TokenEndpointPath = new PathString("/WService"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
                 Provider = new SimpleAuthorizationServerProvider(),    
                 RefreshTokenProvider = new ApplicationOAuthRefreshTokenProvider()
