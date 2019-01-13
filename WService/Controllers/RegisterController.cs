@@ -46,23 +46,34 @@ namespace WService.Controllers
 
                 using (MedicFarmaEntities db = new MedicFarmaEntities())
                 {
-                    //USUARIO usuario = new USUARIO();
-                    //usuario.CORREO = model.apellidos;
-                    //usuario.NOMBRES = model.nombres;
-                    //usuario.APELLIDOS = model.apellidos;
-                    //usuario.GENERO = model.genero;
-                    //usuario.FECHA_NACIMIENTO = DateTime.Parse(model.fecha_nacimiento);
-                    //usuario.FACEBOOK_ID = int.Parse(model.fecha_nacimiento);
+                    USUARIO usuario = new USUARIO();
+                    usuario.CORREO = model.apellidos;
+                    usuario.NOMBRES = model.nombres;
+                    usuario.APELLIDOS = model.apellidos;
+                    usuario.GENERO = model.genero;
+                    usuario.FECHA_NACIMIENTO = DateTime.Parse(model.fecha_nacimiento);
+                    usuario.FACEBOOK_ID = int.Parse(model.fecha_nacimiento);
 
-                    ////Insert
-                    //db.USUARIO.Add(usuario);
-                    //db.SaveChanges();
+                    db.USUARIO.Add(usuario);
+                    db.SaveChanges();
 
-                    if (true) {
-                        return Ok();
+                    CREDENCIAL_USUARIO credencial_usuario = new CREDENCIAL_USUARIO();
+
+                    ////var sqlUser = db.USUARIO.FirstOrDefault(x => x.CORREO == model.correo
+                    //        && x.NOMBRES == model.nombres);
+
+                    credencial_usuario.ID_USUARIO = usuario.ID_USUARIO;
+                    credencial_usuario.PASSWORD = model.password;
+                    db.CREDENCIAL_USUARIO.Add(credencial_usuario);
+                    db.SaveChanges();
+
+                    var sqlCompleted = db.CREDENCIAL_USUARIO.FirstOrDefault(x => x.ID_USUARIO == credencial_usuario.ID_USUARIO);
+
+                    if (sqlCompleted != null) {
+                        return Ok("Usuario Agregado Satisfactoriamente");
                     }
                     else {
-                        return BadRequest();
+                        return BadRequest("Ocurrio un error");
                     }
                 }
             }

@@ -27,7 +27,13 @@ namespace WService
                routeTemplate: "v1/Login",
                defaults: new { Controller = "Login", Action = "Index" }
                );
-            
+
+            config.Routes.MapHttpRoute(
+               name: "Register",
+               routeTemplate: "v1/Register",
+               defaults: new { Controller = "Register", Action = "Index" }
+               );
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
