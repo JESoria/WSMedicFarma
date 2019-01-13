@@ -59,9 +59,6 @@ namespace WService.Controllers
 
                     CREDENCIAL_USUARIO credencial_usuario = new CREDENCIAL_USUARIO();
 
-                    ////var sqlUser = db.USUARIO.FirstOrDefault(x => x.CORREO == model.correo
-                    //        && x.NOMBRES == model.nombres);
-
                     credencial_usuario.ID_USUARIO = usuario.ID_USUARIO;
                     credencial_usuario.PASSWORD = model.password;
                     db.CREDENCIAL_USUARIO.Add(credencial_usuario);
