@@ -17,13 +17,11 @@
         <EntityTypeShape EntityType="MedicFarmaModel.SUCURSAL_PRODUCTO" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicFarmaModel.TIPO_PAGO" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicFarmaModel.TRANSACCION_PAGO" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicFarmaModel.USUARIO" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
         <AssociationConnector Association="MedicFarmaModel.FK_PRODUCTO_CATEGORIA" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_SUCURSAL_PRODUCTO_DESCUENTO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_DETALLE_FACTURA_TRANSACCION_PAGO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_FACTURA_DETALLE_FACTURA" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_PRODUCTO_DETALLE_FACTURA" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicFarmaModel.FK_FACTURA_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_FARMACIA_SUCURSAL" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_PRODUCTO_LABORATORIO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_PRODUCTO_PRESENTACION" ManuallyRouted="false" />
@@ -31,8 +29,10 @@
         <AssociationConnector Association="MedicFarmaModel.FK_SUCURSAL_SUCURSAL_PRODUCTO" ManuallyRouted="false" />
         <AssociationConnector Association="MedicFarmaModel.FK_TIPO_PAGO_TRANSACCION_PAGO" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MedicFarmaModel.CREDENCIAL_USUARIO" Width="1.5" PointX="3" PointY="18.875" />
-        <AssociationConnector Association="MedicFarmaModel.FK_CREDENCIAL_USUARIO" />
         <EntityTypeShape EntityType="MedicFarmaModel.t_oauthtoken" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MedicFarmaModel.USUARIO" Width="1.5" PointX="0.75" PointY="14.875" />
+        <AssociationConnector Association="MedicFarmaModel.FK_CREDENCIAL_USUARIO" />
+        <AssociationConnector Association="MedicFarmaModel.FK_FACTURA_USUARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

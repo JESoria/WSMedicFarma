@@ -144,7 +144,7 @@
     <Property Name="GENERO" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="FECHA_NACIMIENTO" Type="date" Nullable="false" />
     <Property Name="CORREO" Type="varchar" MaxLength="256" />
-    <Property Name="FACEBOOK_ID" Type="int" />
+    <Property Name="FACEBOOK_ID" Type="varchar" MaxLength="200" />
   </EntityType>
   <Association Name="FK_CREDENCIAL_USUARIO">
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
