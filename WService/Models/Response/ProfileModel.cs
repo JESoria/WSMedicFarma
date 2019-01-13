@@ -13,7 +13,7 @@ namespace WService.Models.Response
         public string GENERO { get; set; }
         public System.DateTime FECHA_NACIMIENTO { get; set; }
         public string CORREO { get; set; }
-        public Nullable<int> FACEBOOK_ID { get; set; }
+        public string FACEBOOK_ID { get; set; }
 
     }
 }

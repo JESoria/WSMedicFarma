@@ -17,8 +17,8 @@ namespace WService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public USUARIO()
         {
-            this.FACTURA = new HashSet<FACTURA>();
             this.CREDENCIAL_USUARIO = new HashSet<CREDENCIAL_USUARIO>();
+            this.FACTURA = new HashSet<FACTURA>();
         }
     
         public int ID_USUARIO { get; set; }
@@ -27,11 +27,11 @@ namespace WService.Models
         public string GENERO { get; set; }
         public System.DateTime FECHA_NACIMIENTO { get; set; }
         public string CORREO { get; set; }
-        public Nullable<int> FACEBOOK_ID { get; set; }
+        public string FACEBOOK_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FACTURA> FACTURA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FACTURA> FACTURA { get; set; }
     }
 }

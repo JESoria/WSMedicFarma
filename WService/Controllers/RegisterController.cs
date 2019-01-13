@@ -43,35 +43,51 @@ namespace WService.Controllers
                 model.genero = sanitizer.Sanitize(model.genero);
                 model.fecha_nacimiento = sanitizer.Sanitize(model.fecha_nacimiento);
                 model.facebook_id = sanitizer.Sanitize(model.facebook_id);
+                model.estado = Convert.ToInt32(sanitizer.Sanitize(model.estado.ToString()));
 
                 using (MedicFarmaEntities db = new MedicFarmaEntities())
                 {
-                    USUARIO usuario = new USUARIO();
-                    usuario.CORREO = model.apellidos;
-                    usuario.NOMBRES = model.nombres;
-                    usuario.APELLIDOS = model.apellidos;
-                    usuario.GENERO = model.genero;
-                    usuario.FECHA_NACIMIENTO = DateTime.Parse(model.fecha_nacimiento);
-                    usuario.FACEBOOK_ID = int.Parse(model.fecha_nacimiento);
+                    try
+                    {
+                        var exist = db.USUARIO.FirstOrDefault(x => x.CORREO == model.correo);
 
-                    db.USUARIO.Add(usuario);
-                    db.SaveChanges();
+                        if (exist != null)
+                        {
+                            USUARIO usuario = new USUARIO();
+                            usuario.CORREO = model.apellidos;
+                            usuario.NOMBRES = model.nombres;
+                            usuario.APELLIDOS = model.apellidos;
+                            usuario.GENERO = model.genero;
+                            usuario.FECHA_NACIMIENTO = DateTime.Parse(model.fecha_nacimiento);
+                            usuario.FACEBOOK_ID = model.facebook_id;
 
-                    CREDENCIAL_USUARIO credencial_usuario = new CREDENCIAL_USUARIO();
+                            db.USUARIO.Add(usuario);
+                            db.SaveChanges();
 
-                    credencial_usuario.ID_USUARIO = usuario.ID_USUARIO;
-                    credencial_usuario.PASSWORD = model.password;
-                    db.CREDENCIAL_USUARIO.Add(credencial_usuario);
-                    db.SaveChanges();
+                            CREDENCIAL_USUARIO credencial_usuario = new CREDENCIAL_USUARIO();
 
-                    var sqlCompleted = db.CREDENCIAL_USUARIO.FirstOrDefault(x => x.ID_USUARIO == credencial_usuario.ID_USUARIO);
+                            credencial_usuario.ID_USUARIO = usuario.ID_USUARIO;
+                            credencial_usuario.PASSWORD = model.password;
+                            credencial_usuario.ESTADO = bool.Parse(model.estado.ToString());
 
-                    if (sqlCompleted != null) {
-                        return Ok("Usuario Agregado Satisfactoriamente");
+                            db.CREDENCIAL_USUARIO.Add(credencial_usuario);
+                            db.SaveChanges();
+
+                            return Ok(new RespuestaGenerica() { mensaje = 1 });
+                        }
+                        else {
+                            return Ok(new RespuestaGenerica() { mensaje = 2 });
+                        }
+
+                       
+
                     }
-                    else {
-                        return BadRequest("Ocurrio un error");
+                    catch (Exception ex) {
+                        return BadRequest("no se inserto el usuario");
+                        throw;
                     }
+                
+                    
                 }
             }
 

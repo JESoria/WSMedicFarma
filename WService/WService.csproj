@@ -305,6 +305,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Response\ProfileModel.cs" />
+    <Compile Include="Models\RespuestaGenerica.cs" />
     <Compile Include="Models\SUCURSAL.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

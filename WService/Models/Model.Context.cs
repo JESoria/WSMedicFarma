@@ -37,8 +37,8 @@ namespace WService.Models
         public virtual DbSet<SUCURSAL_PRODUCTO> SUCURSAL_PRODUCTO { get; set; }
         public virtual DbSet<TIPO_PAGO> TIPO_PAGO { get; set; }
         public virtual DbSet<TRANSACCION_PAGO> TRANSACCION_PAGO { get; set; }
-        public virtual DbSet<USUARIO> USUARIO { get; set; }
         public virtual DbSet<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
         public virtual DbSet<t_oauthtoken> t_oauthtoken { get; set; }
+        public virtual DbSet<USUARIO> USUARIO { get; set; }
     }
 }

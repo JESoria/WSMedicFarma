@@ -7,7 +7,7 @@ namespace WService.Models
 {
     public class UsuarioModel
     {
-        public string id_usuario { get; set; }
+        public int id_usuario { get; set; }
         public string correo { get; set; }
         public string password { get; set; }
         public string nombres { get; set; }
@@ -15,5 +15,6 @@ namespace WService.Models
         public string genero { get; set; }
         public string fecha_nacimiento { get; set; }
         public string facebook_id { get; set; }
+        public int estado { get; set; }
     }
 }
