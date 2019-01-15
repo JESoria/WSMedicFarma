@@ -43,7 +43,7 @@ namespace WService.Controllers
                 model.genero = sanitizer.Sanitize(model.genero);
                 model.fecha_nacimiento = sanitizer.Sanitize(model.fecha_nacimiento);
                 model.facebook_id = sanitizer.Sanitize(model.facebook_id);
-                model.estado = Convert.ToInt32(sanitizer.Sanitize(model.estado.ToString()));
+                model.estado = bool.Parse(sanitizer.Sanitize(model.estado.ToString()));
 
                 using (MedicFarmaEntities db = new MedicFarmaEntities())
                 {
@@ -51,27 +51,27 @@ namespace WService.Controllers
                     {
                         var exist = db.USUARIO.FirstOrDefault(x => x.CORREO == model.correo);
 
-                        if (exist != null)
+                        if (exist == null)
                         {
                             USUARIO usuario = new USUARIO();
                             usuario.CORREO = model.apellidos;
                             usuario.NOMBRES = model.nombres;
                             usuario.APELLIDOS = model.apellidos;
                             usuario.GENERO = model.genero;
-                            usuario.FECHA_NACIMIENTO = DateTime.Parse(model.fecha_nacimiento);
+                            usuario.FECHA_NACIMIENTO = DateTime.ParseExact(model.fecha_nacimiento, "yyyy-MM-dd", System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);
                             usuario.FACEBOOK_ID = model.facebook_id;
 
                             db.USUARIO.Add(usuario);
-                            db.SaveChanges();
+                            await db.SaveChangesAsync();
 
                             CREDENCIAL_USUARIO credencial_usuario = new CREDENCIAL_USUARIO();
 
                             credencial_usuario.ID_USUARIO = usuario.ID_USUARIO;
                             credencial_usuario.PASSWORD = model.password;
-                            credencial_usuario.ESTADO = bool.Parse(model.estado.ToString());
+                            credencial_usuario.ESTADO = model.estado;
 
                             db.CREDENCIAL_USUARIO.Add(credencial_usuario);
-                            db.SaveChanges();
+                            await db.SaveChangesAsync();
 
                             return Ok(new RespuestaGenerica() { mensaje = 1 });
                         }

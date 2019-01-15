@@ -387,4 +387,3 @@ C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csproj.
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csproj.CopyComplete
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.dll
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.pdb
-C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csprojAssemblyReference.cache
