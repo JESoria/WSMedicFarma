@@ -54,7 +54,7 @@ namespace WService.Controllers
                         if (exist == null)
                         {
                             USUARIO usuario = new USUARIO();
-                            usuario.CORREO = model.apellidos;
+                            usuario.CORREO = model.correo;
                             usuario.NOMBRES = model.nombres;
                             usuario.APELLIDOS = model.apellidos;
                             usuario.GENERO = model.genero;
