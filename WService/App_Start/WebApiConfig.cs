@@ -34,6 +34,12 @@ namespace WService
                defaults: new { Controller = "Register", Action = "Index" }
                );
 
+            config.Routes.MapHttpRoute(
+              name: "Search",
+              routeTemplate: "Search",
+              defaults: new { Controller = "Search", Action = "NearbyDrugstore" }
+              );
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
