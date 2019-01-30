@@ -35,11 +35,16 @@ namespace WService
                );
 
             config.Routes.MapHttpRoute(
-              name: "Search",
-              routeTemplate: "Search",
-              defaults: new { Controller = "Search", Action = "NearbyDrugstore" }
+              name: "DrugstoresList",
+              routeTemplate: "v1/DrugstoresList",
+              defaults: new { Controller = "Search", Action = "DrugstoresList" }
               );
 
+            config.Routes.MapHttpRoute(
+              name: "NearbyBranchOffices",
+              routeTemplate: "v1/NearbyBranchOffices",
+              defaults: new { Controller = "Search", Action = "NearbyBranchOffices" }
+              );
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }

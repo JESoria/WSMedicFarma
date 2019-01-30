@@ -262,6 +262,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BranchOfficesModel.cs" />
     <Compile Include="Models\CATEGORIA.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -274,6 +275,7 @@
     <Compile Include="Models\DETALLE_FACTURA.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DrugstoresModel.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\FACTURA.cs">
       <DependentUpon>Model.tt</DependentUpon>
