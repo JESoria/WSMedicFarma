@@ -106,5 +106,88 @@ namespace WService.Controllers
 
             }
         }
+
+
+        [HttpPost]
+        public async Task<IHttpActionResult> ProductSearch(ProductSearchModel data) {
+
+            IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
+            string header = headerValues.FirstOrDefault();
+            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
+
+            if (token == null)
+            {
+                return BadRequest();
+            }
+            else {
+
+                List<ProductSearchModel> productos = new List<ProductSearchModel>();
+
+                using (MedicFarmaEntities db = new MedicFarmaEntities()) {
+
+                    db.SUCURSAL_PRODUCTO.OrderBy(x => x.ID_SUCURSAL_PRODUCTO).ToList().ForEach(x =>
+                    {
+                        db.PRODUCTO.Where(y => y.ID_PRODUCTO == x.ID_PRODUCTO && y.PRODUCTO1.Contains(data.producto) && x.ID_SUCURSAL == data.idSucursal).ToList().ForEach(z =>
+                        {
+                            productos.Add(new ProductSearchModel {
+                                idSucursalProducto = x.ID_SUCURSAL_PRODUCTO,
+                                idSucursal = x.ID_SUCURSAL,
+                                producto = z.PRODUCTO1,
+                                precio = z.PRECIO
+                            });
+                        });
+                    });
+                    return Ok(productos);
+                }
+            }
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> ProductDetail(SearchModel data)
+        {
+
+            IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
+            string header = headerValues.FirstOrDefault();
+            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
+
+
+
+            if (token == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                List<DetailModel> detalle = new List<DetailModel>();
+
+                using (MedicFarmaEntities db = new MedicFarmaEntities())
+                {
+                    db.SUCURSAL_PRODUCTO.Where(x => x.ID_SUCURSAL_PRODUCTO == data.idSucursalProducto).ToList().ForEach(x => {
+                        db.PRODUCTO.Where(y => y.ID_PRODUCTO == x.ID_PRODUCTO).ToList().ForEach(y => {
+                            db.PRESENTACION.Where(z => z.ID_PRESENTACION == y.ID_PRESENTACION).ToList().ForEach(z => {
+                                db.CATEGORIA.Where(c => c.ID_CATEGORIA == y.ID_CATEGORIA).ToList().ForEach(c => {
+                                    db.LABORATORIO.Where(l => l.ID_LABORATORIO == y.ID_LABORATORIO).ToList().ForEach(l =>
+                                    {
+                                        detalle.Add(new DetailModel()
+                                        {
+                                            producto = y.PRODUCTO1,
+                                            presentacion = z.PRESENTACION1,
+                                            fechaVencimiento = x.FECHA_VENCIMIENTO,
+                                            laboratorio = l.LABORATORIO1,
+                                            principiosActivos = y.DESCRIPCION,
+                                            categoria = c.CATEGORIA1,
+                                            //precio = Convert.ToDouble(x.PRECIO)
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+
+                    return Ok(detalle);
+                }
+
+            }
+        }
     }
 }

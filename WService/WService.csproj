@@ -272,6 +272,7 @@
     <Compile Include="Models\DESCUENTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\DETALLE_FACTURA.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -309,7 +310,7 @@
     <Compile Include="Models\PRODUCTO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductsModel.cs" />
+    <Compile Include="Models\ProductSearchModel.cs" />
     <Compile Include="Models\Response\ProfileModel.cs" />
     <Compile Include="Models\RespuestaGenerica.cs" />
     <Compile Include="Models\SearchModel.cs" />

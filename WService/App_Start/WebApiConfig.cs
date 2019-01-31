@@ -45,6 +45,19 @@ namespace WService
               routeTemplate: "v1/NearbyBranchOffices",
               defaults: new { Controller = "Search", Action = "NearbyBranchOffices" }
               );
+
+            config.Routes.MapHttpRoute(
+              name: "ProductSearch",
+              routeTemplate: "v1/ProductSearch",
+              defaults: new { Controller = "Search", Action = "ProductSearch" }
+              );
+
+            config.Routes.MapHttpRoute(
+               name: "ProductDetail",
+               routeTemplate: "v1/ProductDetail",
+               defaults: new { Controller = "Search", Action = "ProductDetail" }
+               );
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }

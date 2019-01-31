@@ -7,10 +7,7 @@ namespace WService.Models
 {
     public class SearchModel
     {
-        public string producto { get; set; }
-        public string presentacion { get; set; }
-        public int idProducto { get; set; }
-        public int idSucursalProdcuto { get; set; }
+        public int idSucursalProducto { get; set; }
 
         public static double Distance(double lat1, double lon1, double lat2, double lon2)
         {
