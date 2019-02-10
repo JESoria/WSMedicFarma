@@ -41,9 +41,9 @@ namespace WService
               );
 
             config.Routes.MapHttpRoute(
-              name: "NearbyBranchOffices",
-              routeTemplate: "v1/NearbyBranchOffices",
-              defaults: new { Controller = "Search", Action = "NearbyBranchOffices" }
+              name: "NearbyDrugstore",
+              routeTemplate: "v1/NearbyDrugstore",
+              defaults: new { Controller = "Search", Action = "NearbyDrugstore" }
               );
 
             config.Routes.MapHttpRoute(

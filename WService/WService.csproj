@@ -262,7 +262,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BranchOfficesModel.cs" />
     <Compile Include="Models\CATEGORIA.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -303,7 +302,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\NearbyDrugstoreModel.cs" />
     <Compile Include="Models\PRESENTACION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -314,10 +312,19 @@
     <Compile Include="Models\Response\ProfileModel.cs" />
     <Compile Include="Models\RespuestaGenerica.cs" />
     <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SUCURSAL.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SUCURSAL_PRODUCTO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_PAGO.cs">

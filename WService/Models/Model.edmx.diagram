@@ -33,6 +33,7 @@
         <EntityTypeShape EntityType="MedicFarmaModel.USUARIO" Width="1.5" PointX="0.75" PointY="14.875" />
         <AssociationConnector Association="MedicFarmaModel.FK_CREDENCIAL_USUARIO" />
         <AssociationConnector Association="MedicFarmaModel.FK_FACTURA_USUARIO" />
+        <EntityTypeShape EntityType="MedicFarmaModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
