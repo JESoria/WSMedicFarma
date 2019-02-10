@@ -81,7 +81,7 @@ namespace WService.Controllers
                                 db.PRODUCTO.Where(p => p.ID_PRODUCTO == x.ID_PRODUCTO && p.PRODUCTO1.Contains(producto) && y.ID_FARMACIA == idFarmacia).ToList().ForEach(w =>
                                 {
 
-                                    lista.Add(new ProductSearchModel() {  sucursal = y.SUCURSAL1, idSucursal = y.ID_SUCURSAL, latitud = y.LATITUD, longitud = y.LONGITUD, idSucursalProducto = x.ID_SUCURSAL_PRODUCTO});
+                                    lista.Add(new ProductSearchModel() { sucursal = y.SUCURSAL1, idSucursal = y.ID_SUCURSAL, latitud = y.LATITUD, longitud = y.LONGITUD, direccion = y.DIRECCION, idSucursalProducto = x.ID_SUCURSAL_PRODUCTO, producto = w.PRODUCTO1 });
 
                                 });
                             });
@@ -94,9 +94,10 @@ namespace WService.Controllers
                         double lat = Convert.ToDouble(x.latitud, CultureInfo.CreateSpecificCulture("en-US"));
                         double lon = Convert.ToDouble(x.longitud, CultureInfo.CreateSpecificCulture("en-US"));
                         double distance = SearchModel.Distance(data.latitud, data.longitud, lat, lon);
-                        if (distance < 2)         
+                        if (distance < 2)
                         {
                             ProductSearchModel products = new ProductSearchModel();
+                            products.producto = x.producto;
                             products.idSucursalProducto = x.idSucursalProducto;
                             products.idSucursal = x.idSucursal;
                             products.sucursal = x.sucursal;
