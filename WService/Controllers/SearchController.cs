@@ -52,7 +52,7 @@ namespace WService.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> NearbyDrugstore(SearchModel data)
+        public async Task<IHttpActionResult> Cerca(SearchModel data)
         {
             string producto = data.producto;
             int idFarmacia = data.idFarmacia;
