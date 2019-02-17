@@ -52,7 +52,7 @@ namespace WService.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Cerca(SearchModel data)
+        public async Task<IHttpActionResult> NearbyDrugstore(SearchModel data)
         {
             string producto = data.producto;
             int idFarmacia = data.idFarmacia;
@@ -65,7 +65,7 @@ namespace WService.Controllers
                 return BadRequest();
             }
             else
-            {/*
+            {
                 using (MedicFarmaEntities db = new MedicFarmaEntities())
                 {
                     var coord = new GeoCoordinate(data.latitud, data.longitud);
@@ -111,7 +111,7 @@ namespace WService.Controllers
                     return Ok(lista2.OrderBy(x => x.distancia));
                 }
 
-                */
+                /*
                 switch (idFarmacia) {
                     case 2:
                             
@@ -123,7 +123,7 @@ namespace WService.Controllers
                     case 1014:
                         return Ok();
                         
-                }
+                }*/
 
             }
         }
