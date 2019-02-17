@@ -65,7 +65,7 @@ namespace WService.Controllers
                 return BadRequest();
             }
             else
-            {
+            {/*
                 using (MedicFarmaEntities db = new MedicFarmaEntities())
                 {
                     var coord = new GeoCoordinate(data.latitud, data.longitud);
@@ -111,7 +111,19 @@ namespace WService.Controllers
                     return Ok(lista2.OrderBy(x => x.distancia));
                 }
 
-
+                */
+                switch (idFarmacia) {
+                    case 2:
+                            
+                        return Ok();
+                        
+                    case 1013:
+                        return Ok();
+                       
+                    case 1014:
+                        return Ok();
+                        
+                }
 
             }
         }
