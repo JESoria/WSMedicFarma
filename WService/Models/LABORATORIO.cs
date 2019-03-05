@@ -22,7 +22,7 @@ namespace WService.Models
     
         public int ID_LABORATORIO { get; set; }
         public string LABORATORIO1 { get; set; }
-        public string DIRECCION { get; set; }
+        public string TITULAR { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCTO> PRODUCTO { get; set; }

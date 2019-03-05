@@ -22,19 +22,18 @@ namespace WService.Models
         }
     
         public int ID_PRODUCTO { get; set; }
-        public int ID_PRESENTACION { get; set; }
-        public int ID_CATEGORIA { get; set; }
-        public int ID_LABORATORIO { get; set; }
+        public Nullable<int> ID_PRESENTACION { get; set; }
+        public Nullable<int> ID_CATEGORIA { get; set; }
+        public Nullable<int> ID_LABORATORIO { get; set; }
         public string PRODUCTO1 { get; set; }
         public string DESCRIPCION { get; set; }
-        public decimal PRECIO { get; set; }
     
-        public virtual CATEGORIA CATEGORIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DETALLE_FACTURA> DETALLE_FACTURA { get; set; }
-        public virtual LABORATORIO LABORATORIO { get; set; }
-        public virtual PRESENTACION PRESENTACION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUCURSAL_PRODUCTO> SUCURSAL_PRODUCTO { get; set; }
+        public virtual CATEGORIA CATEGORIA { get; set; }
+        public virtual LABORATORIO LABORATORIO { get; set; }
+        public virtual PRESENTACION PRESENTACION { get; set; }
     }
 }

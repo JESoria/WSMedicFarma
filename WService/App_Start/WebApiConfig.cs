@@ -41,21 +41,15 @@ namespace WService
               );
 
             config.Routes.MapHttpRoute(
-              name: "NearbyDrugstore",
-              routeTemplate: "v1/NearbyDrugstore",
-              defaults: new { Controller = "Search", Action = "NearbyDrugstore" }
-              );
+               name: "Nearby",
+               routeTemplate: "v1/Nearby",
+               defaults: new { Controller = "SearchAllDrugstores", Action = "SearchNearby" }
+               );
 
             config.Routes.MapHttpRoute(
-              name: "ProductSearch",
-              routeTemplate: "v1/ProductSearch",
-              defaults: new { Controller = "Search", Action = "ProductSearch" }
-              );
-
-            config.Routes.MapHttpRoute(
-               name: "ProductDetail",
-               routeTemplate: "v1/ProductDetail",
-               defaults: new { Controller = "Search", Action = "ProductDetail" }
+               name: "Detail",
+               routeTemplate: "v1/Detail",
+               defaults: new { Controller = "Detail", Action = "ProductDetail" }
                );
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();

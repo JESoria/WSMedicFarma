@@ -14,5 +14,6 @@ namespace WService.Models
         public string principiosActivos { get; set; }
         public string categoria { get; set; }
         public double precio { get; set; }
+        public int existencia { get; set; }
     }
 }

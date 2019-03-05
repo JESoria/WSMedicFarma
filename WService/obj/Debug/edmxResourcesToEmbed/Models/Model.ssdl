@@ -8,13 +8,28 @@
     <Property Name="CATEGORIA" Type="varchar" MaxLength="64" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="256" />
   </EntityType>
+  <EntityType Name="consultas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="producto" Type="varchar(max)" />
+    <Property Name="precio" Type="decimal" Precision="7" Scale="2" />
+    <Property Name="idSucursalProducto" Type="int" />
+    <Property Name="idSucursal" Type="int" />
+    <Property Name="sucursal" Type="varchar(max)" />
+    <Property Name="latitud" Type="varchar(max)" />
+    <Property Name="longitud" Type="varchar(max)" />
+    <Property Name="direccion" Type="varchar(max)" />
+    <Property Name="distancia" Type="decimal" Precision="7" Scale="2" />
+  </EntityType>
   <EntityType Name="CREDENCIAL_USUARIO">
     <Key>
       <PropertyRef Name="ID_CREDENCIAL_USUARIO" />
     </Key>
     <Property Name="ID_CREDENCIAL_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_USUARIO" Type="int" Nullable="false" />
-    <Property Name="PASSWORD" Type="varchar" MaxLength="150" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="ESTADO" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="DESCUENTO">
@@ -55,14 +70,15 @@
     <Property Name="ID_FARMACIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FARMACIA" Type="varchar" MaxLength="64" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="256" />
+    <Property Name="IMAGEN" Type="image" />
   </EntityType>
   <EntityType Name="LABORATORIO">
     <Key>
       <PropertyRef Name="ID_LABORATORIO" />
     </Key>
     <Property Name="ID_LABORATORIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LABORATORIO" Type="varchar" MaxLength="64" Nullable="false" />
-    <Property Name="DIRECCION" Type="varchar" MaxLength="256" />
+    <Property Name="LABORATORIO" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TITULAR" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="PRESENTACION">
     <Key>
@@ -77,12 +93,11 @@
       <PropertyRef Name="ID_PRODUCTO" />
     </Key>
     <Property Name="ID_PRODUCTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_PRESENTACION" Type="int" Nullable="false" />
-    <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
-    <Property Name="ID_LABORATORIO" Type="int" Nullable="false" />
-    <Property Name="PRODUCTO" Type="varchar" MaxLength="128" Nullable="false" />
-    <Property Name="DESCRIPCION" Type="varchar" MaxLength="256" />
-    <Property Name="PRECIO" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="ID_PRESENTACION" Type="int" />
+    <Property Name="ID_CATEGORIA" Type="int" />
+    <Property Name="ID_LABORATORIO" Type="int" />
+    <Property Name="PRODUCTO" Type="nvarchar(max)" />
+    <Property Name="DESCRIPCION" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="SUCURSAL">
     <Key>
@@ -105,6 +120,7 @@
     <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
     <Property Name="FECHA_VENCIMIENTO" Type="date" Nullable="false" />
     <Property Name="EXISTENCIA" Type="int" Nullable="false" />
+    <Property Name="PRECIO" Type="decimal" Precision="7" Scale="2" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -121,10 +137,10 @@
       <PropertyRef Name="authtoken_id" />
     </Key>
     <Property Name="authtoken_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="sender_id" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="outh_name" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="sender_id" Type="varchar" MaxLength="450" />
+    <Property Name="outh_name" Type="varchar(max)" />
     <Property Name="token" Type="varchar(max)" />
-    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="date" Type="datetime" />
   </EntityType>
   <EntityType Name="TIPO_PAGO">
     <Key>
@@ -217,7 +233,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PRODUCTO_CATEGORIA">
-    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
     <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CATEGORIA">
@@ -241,7 +257,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PRODUCTO_LABORATORIO">
-    <End Role="LABORATORIO" Type="Self.LABORATORIO" Multiplicity="1" />
+    <End Role="LABORATORIO" Type="Self.LABORATORIO" Multiplicity="0..1" />
     <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LABORATORIO">
@@ -253,7 +269,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PRODUCTO_PRESENTACION">
-    <End Role="PRESENTACION" Type="Self.PRESENTACION" Multiplicity="1" />
+    <End Role="PRESENTACION" Type="Self.PRESENTACION" Multiplicity="0..1" />
     <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PRESENTACION">
@@ -345,6 +361,7 @@
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="MedicFarmaModelStoreContainer">
     <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="consultas" EntityType="Self.consultas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CREDENCIAL_USUARIO" EntityType="Self.CREDENCIAL_USUARIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DESCUENTO" EntityType="Self.DESCUENTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DETALLE_FACTURA" EntityType="Self.DETALLE_FACTURA" Schema="dbo" store:Type="Tables" />

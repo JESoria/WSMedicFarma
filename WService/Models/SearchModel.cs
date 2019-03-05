@@ -11,6 +11,7 @@ namespace WService.Models
         public string producto { get; set; }
         public double latitud { get; set; }
         public double longitud { get; set; }
+        public int idSucursalProducto { get; set; }
 
 
         public static double Distance(double lat1, double lon1, double lat2, double lon2)

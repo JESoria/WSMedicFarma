@@ -12,12 +12,17 @@ namespace WService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class t_oauthtoken
+    public partial class consultas
     {
-        public int authtoken_id { get; set; }
-        public string sender_id { get; set; }
-        public string outh_name { get; set; }
-        public string token { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
+        public int id { get; set; }
+        public string producto { get; set; }
+        public Nullable<decimal> precio { get; set; }
+        public Nullable<int> idSucursalProducto { get; set; }
+        public Nullable<int> idSucursal { get; set; }
+        public string sucursal { get; set; }
+        public string latitud { get; set; }
+        public string longitud { get; set; }
+        public string direccion { get; set; }
+        public Nullable<decimal> distancia { get; set; }
     }
 }

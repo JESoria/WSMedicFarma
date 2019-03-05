@@ -7,7 +7,7 @@
     <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CATEGORIA1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_CATEGORIA" FromRole="CATEGORIA" ToRole="PRODUCTO" />
+    <NavigationProperty Name="PRODUCTO" Relationship="MedicFarmaModel.FK_PRODUCTO_CATEGORIA" FromRole="CATEGORIA" ToRole="PRODUCTO" />
   </EntityType>
   <EntityType Name="DESCUENTO">
     <Key>
@@ -54,15 +54,16 @@
     <Property Name="FARMACIA1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_FARMACIA_SUCURSAL" FromRole="FARMACIA" ToRole="SUCURSAL" />
+    <Property Name="IMAGEN" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="LABORATORIO">
     <Key>
       <PropertyRef Name="ID_LABORATORIO" />
     </Key>
     <Property Name="ID_LABORATORIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="LABORATORIO1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_LABORATORIO" FromRole="LABORATORIO" ToRole="PRODUCTO" />
+    <Property Name="LABORATORIO1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TITULAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PRODUCTO" Relationship="MedicFarmaModel.FK_PRODUCTO_LABORATORIO" FromRole="LABORATORIO" ToRole="PRODUCTO" />
   </EntityType>
   <EntityType Name="PRESENTACION">
     <Key>
@@ -71,24 +72,23 @@
     <Property Name="ID_PRESENTACION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PRESENTACION1" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_PRESENTACION" FromRole="PRESENTACION" ToRole="PRODUCTO" />
+    <NavigationProperty Name="PRODUCTO" Relationship="MedicFarmaModel.FK_PRODUCTO_PRESENTACION" FromRole="PRESENTACION" ToRole="PRODUCTO" />
   </EntityType>
   <EntityType Name="PRODUCTO">
     <Key>
       <PropertyRef Name="ID_PRODUCTO" />
     </Key>
     <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ID_PRESENTACION" Type="Int32" Nullable="false" />
-    <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" />
-    <Property Name="ID_LABORATORIO" Type="Int32" Nullable="false" />
-    <Property Name="PRODUCTO1" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-    <Property Name="PRECIO" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
-    <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_PRODUCTO_CATEGORIA" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+    <Property Name="ID_PRESENTACION" Type="Int32" />
+    <Property Name="ID_CATEGORIA" Type="Int32" />
+    <Property Name="ID_LABORATORIO" Type="Int32" />
+    <Property Name="PRODUCTO1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DETALLE_FACTURA" Relationship="Self.FK_PRODUCTO_DETALLE_FACTURA" FromRole="PRODUCTO" ToRole="DETALLE_FACTURA" />
-    <NavigationProperty Name="LABORATORIO" Relationship="Self.FK_PRODUCTO_LABORATORIO" FromRole="PRODUCTO" ToRole="LABORATORIO" />
-    <NavigationProperty Name="PRESENTACION" Relationship="Self.FK_PRODUCTO_PRESENTACION" FromRole="PRODUCTO" ToRole="PRESENTACION" />
     <NavigationProperty Name="SUCURSAL_PRODUCTO" Relationship="Self.FK_PRODUCTO_SUCURSAL_PRODUCTO" FromRole="PRODUCTO" ToRole="SUCURSAL_PRODUCTO" />
+    <NavigationProperty Name="CATEGORIA" Relationship="MedicFarmaModel.FK_PRODUCTO_CATEGORIA" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+    <NavigationProperty Name="LABORATORIO" Relationship="MedicFarmaModel.FK_PRODUCTO_LABORATORIO" FromRole="PRODUCTO" ToRole="LABORATORIO" />
+    <NavigationProperty Name="PRESENTACION" Relationship="MedicFarmaModel.FK_PRODUCTO_PRESENTACION" FromRole="PRODUCTO" ToRole="PRESENTACION" />
   </EntityType>
   <EntityType Name="SUCURSAL">
     <Key>
@@ -116,6 +116,7 @@
     <NavigationProperty Name="DESCUENTO" Relationship="Self.FK_SUCURSAL_PRODUCTO_DESCUENTO" FromRole="SUCURSAL_PRODUCTO" ToRole="DESCUENTO" />
     <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_SUCURSAL_PRODUCTO" FromRole="SUCURSAL_PRODUCTO" ToRole="PRODUCTO" />
     <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_SUCURSAL_SUCURSAL_PRODUCTO" FromRole="SUCURSAL_PRODUCTO" ToRole="SUCURSAL" />
+    <Property Name="PRECIO" Type="Decimal" Precision="7" Scale="2" />
   </EntityType>
   <EntityType Name="TIPO_PAGO">
     <Key>
@@ -138,18 +139,6 @@
     <NavigationProperty Name="DETALLE_FACTURA" Relationship="Self.FK_DETALLE_FACTURA_TRANSACCION_PAGO" FromRole="TRANSACCION_PAGO" ToRole="DETALLE_FACTURA" />
     <NavigationProperty Name="TIPO_PAGO" Relationship="Self.FK_TIPO_PAGO_TRANSACCION_PAGO" FromRole="TRANSACCION_PAGO" ToRole="TIPO_PAGO" />
   </EntityType>
-  <Association Name="FK_PRODUCTO_CATEGORIA">
-    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
-    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CATEGORIA">
-        <PropertyRef Name="ID_CATEGORIA" />
-      </Principal>
-      <Dependent Role="PRODUCTO">
-        <PropertyRef Name="ID_CATEGORIA" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SUCURSAL_PRODUCTO_DESCUENTO">
     <End Role="SUCURSAL_PRODUCTO" Type="Self.SUCURSAL_PRODUCTO" Multiplicity="1" />
     <End Role="DESCUENTO" Type="Self.DESCUENTO" Multiplicity="*" />
@@ -210,30 +199,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PRODUCTO_LABORATORIO">
-    <End Role="LABORATORIO" Type="Self.LABORATORIO" Multiplicity="1" />
-    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LABORATORIO">
-        <PropertyRef Name="ID_LABORATORIO" />
-      </Principal>
-      <Dependent Role="PRODUCTO">
-        <PropertyRef Name="ID_LABORATORIO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PRODUCTO_PRESENTACION">
-    <End Role="PRESENTACION" Type="Self.PRESENTACION" Multiplicity="1" />
-    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PRESENTACION">
-        <PropertyRef Name="ID_PRESENTACION" />
-      </Principal>
-      <Dependent Role="PRODUCTO">
-        <PropertyRef Name="ID_PRESENTACION" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PRODUCTO_SUCURSAL_PRODUCTO">
     <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
     <End Role="SUCURSAL_PRODUCTO" Type="Self.SUCURSAL_PRODUCTO" Multiplicity="*" />
@@ -283,10 +248,6 @@
     <EntitySet Name="SUCURSAL_PRODUCTO" EntityType="Self.SUCURSAL_PRODUCTO" />
     <EntitySet Name="TIPO_PAGO" EntityType="Self.TIPO_PAGO" />
     <EntitySet Name="TRANSACCION_PAGO" EntityType="Self.TRANSACCION_PAGO" />
-    <AssociationSet Name="FK_PRODUCTO_CATEGORIA" Association="Self.FK_PRODUCTO_CATEGORIA">
-      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-    </AssociationSet>
     <AssociationSet Name="FK_SUCURSAL_PRODUCTO_DESCUENTO" Association="Self.FK_SUCURSAL_PRODUCTO_DESCUENTO">
       <End Role="SUCURSAL_PRODUCTO" EntitySet="SUCURSAL_PRODUCTO" />
       <End Role="DESCUENTO" EntitySet="DESCUENTO" />
@@ -306,14 +267,6 @@
     <AssociationSet Name="FK_FARMACIA_SUCURSAL" Association="Self.FK_FARMACIA_SUCURSAL">
       <End Role="FARMACIA" EntitySet="FARMACIA" />
       <End Role="SUCURSAL" EntitySet="SUCURSAL" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PRODUCTO_LABORATORIO" Association="Self.FK_PRODUCTO_LABORATORIO">
-      <End Role="LABORATORIO" EntitySet="LABORATORIO" />
-      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PRODUCTO_PRESENTACION" Association="Self.FK_PRODUCTO_PRESENTACION">
-      <End Role="PRESENTACION" EntitySet="PRESENTACION" />
-      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
     </AssociationSet>
     <AssociationSet Name="FK_PRODUCTO_SUCURSAL_PRODUCTO" Association="Self.FK_PRODUCTO_SUCURSAL_PRODUCTO">
       <End Role="PRODUCTO" EntitySet="PRODUCTO" />
@@ -369,6 +322,19 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="consultas" EntityType="MedicFarmaModel.consultas" />
+    <AssociationSet Name="FK_PRODUCTO_CATEGORIA" Association="MedicFarmaModel.FK_PRODUCTO_CATEGORIA">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTO_LABORATORIO" Association="MedicFarmaModel.FK_PRODUCTO_LABORATORIO">
+      <End Role="LABORATORIO" EntitySet="LABORATORIO" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTO_PRESENTACION" Association="MedicFarmaModel.FK_PRODUCTO_PRESENTACION">
+      <End Role="PRESENTACION" EntitySet="PRESENTACION" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CREDENCIAL_USUARIO">
     <Key>
@@ -376,7 +342,7 @@
     </Key>
     <Property Name="ID_CREDENCIAL_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
-    <Property Name="PASSWORD" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ESTADO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="USUARIO" Relationship="MedicFarmaModel.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
   </EntityType>
@@ -385,10 +351,10 @@
       <PropertyRef Name="authtoken_id" />
     </Key>
     <Property Name="authtoken_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="sender_id" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="outh_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sender_id" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Name="outh_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="USUARIO">
     <Key>
@@ -449,4 +415,55 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="consultas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="precio" Type="Decimal" Precision="7" Scale="2" />
+    <Property Name="idSucursalProducto" Type="Int32" />
+    <Property Name="idSucursal" Type="Int32" />
+    <Property Name="sucursal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="latitud" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="longitud" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="distancia" Type="Decimal" Precision="7" Scale="2" />
+  </EntityType>
+  <Association Name="FK_PRODUCTO_CATEGORIA">
+    <End Type="MedicFarmaModel.CATEGORIA" Role="CATEGORIA" Multiplicity="0..1" />
+    <End Type="MedicFarmaModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="ID_CATEGORIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTO_LABORATORIO">
+    <End Type="MedicFarmaModel.LABORATORIO" Role="LABORATORIO" Multiplicity="0..1" />
+    <End Type="MedicFarmaModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LABORATORIO">
+        <PropertyRef Name="ID_LABORATORIO" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="ID_LABORATORIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTO_PRESENTACION">
+    <End Type="MedicFarmaModel.PRESENTACION" Role="PRESENTACION" Multiplicity="0..1" />
+    <End Type="MedicFarmaModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRESENTACION">
+        <PropertyRef Name="ID_PRESENTACION" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="ID_PRESENTACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

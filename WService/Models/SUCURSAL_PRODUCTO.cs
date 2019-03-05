@@ -25,6 +25,7 @@ namespace WService.Models
         public int ID_PRODUCTO { get; set; }
         public System.DateTime FECHA_VENCIMIENTO { get; set; }
         public int EXISTENCIA { get; set; }
+        public Nullable<decimal> PRECIO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DESCUENTO> DESCUENTO { get; set; }

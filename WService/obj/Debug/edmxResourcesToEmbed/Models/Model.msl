@@ -47,6 +47,7 @@
     <EntitySetMapping Name="FARMACIA">
       <EntityTypeMapping TypeName="MedicFarmaModel.FARMACIA">
         <MappingFragment StoreEntitySet="FARMACIA">
+          <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
           <ScalarProperty Name="ID_FARMACIA" ColumnName="ID_FARMACIA" />
           <ScalarProperty Name="FARMACIA1" ColumnName="FARMACIA" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
@@ -56,9 +57,9 @@
     <EntitySetMapping Name="LABORATORIO">
       <EntityTypeMapping TypeName="MedicFarmaModel.LABORATORIO">
         <MappingFragment StoreEntitySet="LABORATORIO">
+          <ScalarProperty Name="TITULAR" ColumnName="TITULAR" />
           <ScalarProperty Name="ID_LABORATORIO" ColumnName="ID_LABORATORIO" />
           <ScalarProperty Name="LABORATORIO1" ColumnName="LABORATORIO" />
-          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -80,7 +81,6 @@
           <ScalarProperty Name="ID_LABORATORIO" ColumnName="ID_LABORATORIO" />
           <ScalarProperty Name="PRODUCTO1" ColumnName="PRODUCTO" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-          <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -100,6 +100,7 @@
     <EntitySetMapping Name="SUCURSAL_PRODUCTO">
       <EntityTypeMapping TypeName="MedicFarmaModel.SUCURSAL_PRODUCTO">
         <MappingFragment StoreEntitySet="SUCURSAL_PRODUCTO">
+          <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
           <ScalarProperty Name="ID_SUCURSAL_PRODUCTO" ColumnName="ID_SUCURSAL_PRODUCTO" />
           <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
           <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
@@ -197,5 +198,21 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MedicFarmaModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MedicFarmaModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="consultas">
+      <EntityTypeMapping TypeName="MedicFarmaModel.consultas">
+        <MappingFragment StoreEntitySet="consultas">
+          <ScalarProperty Name="distancia" ColumnName="distancia" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+          <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+          <ScalarProperty Name="idSucursalProducto" ColumnName="idSucursalProducto" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="producto" ColumnName="producto" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
