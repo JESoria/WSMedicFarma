@@ -16,5 +16,6 @@ namespace WService.Models
         public string longitud  { get; set; }
         public string direccion { get; set; }
         public double distancia  { get; set; }
+        public int idFarmacia { get; set; }
     }
 }

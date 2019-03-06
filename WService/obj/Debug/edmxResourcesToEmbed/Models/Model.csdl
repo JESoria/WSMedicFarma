@@ -429,6 +429,7 @@
     <Property Name="longitud" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="distancia" Type="Decimal" Precision="7" Scale="2" />
+    <Property Name="idFarmacia" Type="Int32" />
   </EntityType>
   <Association Name="FK_PRODUCTO_CATEGORIA">
     <End Type="MedicFarmaModel.CATEGORIA" Role="CATEGORIA" Multiplicity="0..1" />

@@ -40,12 +40,21 @@ namespace WService
               defaults: new { Controller = "Search", Action = "DrugstoresList" }
               );
 
+            //Buscar el medicamento en todas las farmacias
             config.Routes.MapHttpRoute(
                name: "Nearby",
                routeTemplate: "v1/Nearby",
                defaults: new { Controller = "SearchAllDrugstores", Action = "SearchNearby" }
                );
 
+            //Buscar el medicamento en una farmacia especifica
+            config.Routes.MapHttpRoute(
+              name: "SearchByDrugstore",
+              routeTemplate: "v1/SearchByDrugstore",
+              defaults: new { Controller = "Search", Action = "SearchByDrugstore" }
+              );
+
+            //Detalle del medicamento
             config.Routes.MapHttpRoute(
                name: "Detail",
                routeTemplate: "v1/Detail",

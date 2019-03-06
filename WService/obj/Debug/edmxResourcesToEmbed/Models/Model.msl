@@ -201,6 +201,7 @@
     <EntitySetMapping Name="consultas">
       <EntityTypeMapping TypeName="MedicFarmaModel.consultas">
         <MappingFragment StoreEntitySet="consultas">
+          <ScalarProperty Name="idFarmacia" ColumnName="idFarmacia" />
           <ScalarProperty Name="distancia" ColumnName="distancia" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
           <ScalarProperty Name="longitud" ColumnName="longitud" />

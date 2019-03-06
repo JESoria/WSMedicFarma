@@ -22,6 +22,7 @@
     <Property Name="longitud" Type="varchar(max)" />
     <Property Name="direccion" Type="varchar(max)" />
     <Property Name="distancia" Type="decimal" Precision="7" Scale="2" />
+    <Property Name="idFarmacia" Type="int" />
   </EntityType>
   <EntityType Name="CREDENCIAL_USUARIO">
     <Key>

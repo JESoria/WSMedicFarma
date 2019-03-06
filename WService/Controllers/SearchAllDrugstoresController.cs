@@ -70,7 +70,8 @@ namespace WService.Controllers
                                 sucursal = x.sucursal,
                                 latitud = x.latitud,
                                 longitud = x.longitud,
-                                direccion = x.direccion
+                                direccion = x.direccion,
+                                idFarmacia = Convert.ToInt32(x.idFarmacia)
                             });
                         });
 
@@ -113,7 +114,7 @@ namespace WService.Controllers
                 jsonString.Wait();
                 lista = JsonConvert.DeserializeObject<List<ProductSearchModel>>(jsonString.Result);
 
-                if (lista != null)
+                if (lista.Count() != 0)
                 {
 
                     foreach (var y in lista)
@@ -130,6 +131,7 @@ namespace WService.Controllers
                             product.direccion = y.direccion;
                             product.distancia = Convert.ToDecimal(y.distancia);
                             product.sucursal = y.sucursal;
+                            product.idFarmacia = y.idFarmacia;
 
                             db.consultas.Add(product);
                             await db.SaveChangesAsync();

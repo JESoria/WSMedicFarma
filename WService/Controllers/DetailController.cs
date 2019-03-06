@@ -79,7 +79,8 @@ namespace WService.Controllers
 
         async Task<IHttpActionResult> ProcessURLAsync(string url, HttpClient client, SearchModel data)
         {
-            List<DetailModel> listaDetalle = null;
+            DetailModel Detalle = null;
+
             try
             {
                 client.BaseAddress = new Uri(url);
@@ -90,17 +91,15 @@ namespace WService.Controllers
 
                 var jsonString = response.Content.ReadAsStringAsync();
                 jsonString.Wait();
-                listaDetalle = JsonConvert.DeserializeObject<List<DetailModel>>(jsonString.Result);
+                Detalle = JsonConvert.DeserializeObject<DetailModel>(jsonString.Result);
 
-                if (listaDetalle.Count() != 0)
-                {
-                    return Ok(listaDetalle);
+                if (Detalle != null){
+
+                    return Ok(Detalle);
                 }
-                else
-                {
+                else {
                     return Ok("3"); //Cuando la consulta no generó resultado
                 }
-
             }
             catch (Exception e)
             {

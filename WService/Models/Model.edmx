@@ -27,6 +27,7 @@
           <Property Name="longitud" Type="varchar(max)" />
           <Property Name="direccion" Type="varchar(max)" />
           <Property Name="distancia" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="idFarmacia" Type="int" />
         </EntityType>
         <EntityType Name="CREDENCIAL_USUARIO">
           <Key>
@@ -868,6 +869,7 @@
           <Property Name="longitud" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="distancia" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="idFarmacia" Type="Int32" />
         </EntityType>
         <Association Name="FK_PRODUCTO_CATEGORIA">
           <End Type="MedicFarmaModel.CATEGORIA" Role="CATEGORIA" Multiplicity="0..1" />
@@ -1111,6 +1113,7 @@
           <EntitySetMapping Name="consultas">
             <EntityTypeMapping TypeName="MedicFarmaModel.consultas">
               <MappingFragment StoreEntitySet="consultas">
+                <ScalarProperty Name="idFarmacia" ColumnName="idFarmacia" />
                 <ScalarProperty Name="distancia" ColumnName="distancia" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="longitud" ColumnName="longitud" />
