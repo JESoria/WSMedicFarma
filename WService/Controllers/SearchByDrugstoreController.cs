@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Device.Location;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,46 +13,12 @@ using WService.Models;
 
 namespace WService.Controllers
 {
-    [Authorize]
-    public class SearchController : ApiController
+    public class SearchByDrugstoreController : ApiController
     {
-        private DataAccess da = new DataAccess();
+        private DataAccess da = new DataAccess(); 
 
         [HttpPost]
-        public async Task<IHttpActionResult> DrugstoresList()
-        {
-            IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
-            string header = headerValues.FirstOrDefault();
-            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
-
-            if (token == null)
-            {
-                return BadRequest();
-            }
-            else
-            {
-                using (MedicFarmaEntities db = new MedicFarmaEntities())
-                {
-                    List<DrugstoresModel> list = new List<DrugstoresModel>();
-                    db.FARMACIA.OrderBy(x => x.ID_FARMACIA).ToList().ForEach(x => {
-                        //MemoryStream ms = new MemoryStream(x.IMAGEN);
-                        //Image image = Image.FromStream(ms);
-
-                        list.Add(new DrugstoresModel()
-                        {
-                            idFarmacia = x.ID_FARMACIA,
-                            NombreFarmacia = x.FARMACIA1,
-                            //imagenFarmacia = image
-                        });
-                    });
-                    return Ok(list);
-                }
-            }
-        }
-        
-
-        [HttpPost]
-        public async Task<IHttpActionResult> SearchMore (SearchModel data)
+        public async Task<IHttpActionResult> SearchDrugstore (SearchModel data)
         {
             IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
             string header = headerValues.FirstOrDefault();
@@ -81,7 +44,7 @@ namespace WService.Controllers
                     // Creando e iniciando las tareas. A medida que termina cada tarea, DisplayResults
                     // muestra su longitud. 
 
-                    Task<IHttpActionResult> Farmacia = null;
+                    Task<int> Farmacia = null;
 
 
                     switch (data.idFarmacia)
@@ -104,10 +67,13 @@ namespace WService.Controllers
                     }
 
                     // Esperando tarea.  
-                    IHttpActionResult Farma = await Farmacia;
+                    int Farma = await Farmacia;
+
 
                     List<ProductSearchModel> listaBusqueda = new List<ProductSearchModel>();
-                    using (MedicFarmaEntities db = new MedicFarmaEntities()) {
+                    using (MedicFarmaEntities db = new MedicFarmaEntities())
+                    {
+
                         db.consultas.OrderBy(x => x.precio).ToList().ForEach(x =>
                         {
                             listaBusqueda.Add(new ProductSearchModel()
@@ -148,7 +114,7 @@ namespace WService.Controllers
             }
         }
 
-        async Task<IHttpActionResult> ProcessURLAsync(string url, HttpClient client, SearchModel data)
+        async Task<int> ProcessURLAsync(string url, HttpClient client, SearchModel data)
         {
             List<ProductSearchModel> lista = null;
             try
@@ -156,7 +122,7 @@ namespace WService.Controllers
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await client.PostAsJsonAsync("api/SearchByDrugstore", data);
+                HttpResponseMessage response = await client.PostAsJsonAsync("api/Search", data);
                 response.EnsureSuccessStatusCode();
 
                 var jsonString = response.Content.ReadAsStringAsync();
@@ -175,26 +141,31 @@ namespace WService.Controllers
                             product.precio = y.precio;
                             product.idSucursalProducto = y.idSucursalProducto;
                             product.idSucursal = y.idSucursal;
+                            product.latitud = y.latitud;
+                            product.longitud = y.longitud;
+                            product.direccion = y.direccion;
+                            product.distancia = Convert.ToDecimal(y.distancia);
+                            product.sucursal = y.sucursal;
+                            product.idFarmacia = y.idFarmacia;
 
                             db.consultas.Add(product);
                             await db.SaveChangesAsync();
                         }
                     }
                     lista.Clear();
-                    return Ok("1");//Cuando la consulta se realizó correctamente
+                    return 1;//Cuando la consulta se realizó correctamente
                 }
                 else
                 {
-                    return Ok("3"); //Cuando la consulta no generó resultado
+                    return 3; //Cuando la consulta no generó resultado
                 }
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return Ok("2");   //Cuando se generó una excepcion
+                return 2;   //Cuando se generó una excepcion
             }
         }
-
     }
 }
