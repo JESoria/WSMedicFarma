@@ -37,8 +37,8 @@ namespace WService.Controllers
                        new HttpClient() { MaxResponseContentBufferSize = 1000000 };
                     HttpClient clientB =
                        new HttpClient() { MaxResponseContentBufferSize = 1000000 };
-                    HttpClient clientC =
-                       new HttpClient() { MaxResponseContentBufferSize = 1000000 };
+                   /* HttpClient clientC =
+                       new HttpClient() { MaxResponseContentBufferSize = 1000000 };*/
 
                     // Creando e iniciando las tareas. A medida que termina cada tarea, DisplayResults
                     // muestra su longitud.  
@@ -46,14 +46,14 @@ namespace WService.Controllers
                         ProcessURLAsync(Clients.URLClientA, clientA, data);
                     Task<int> FarmaciaB =
                         ProcessURLAsync(Clients.URLClientB, clientB, data);
-                    Task<int> FarmaciaC =
-                        ProcessURLAsync(Clients.URLClientC, clientC, data);
+                    /*Task<int> FarmaciaC =
+                        ProcessURLAsync(Clients.URLClientC, clientC, data);*/
 
 
                     // Esperando cada tarea.  
                     int FarmaA = await FarmaciaA;
                     int FarmaB = await FarmaciaB;
-                    int FarmaC = await FarmaciaC;
+                    //int FarmaC = await FarmaciaC;
 
                     List<ProductSearchModel> listaBusqueda = new List<ProductSearchModel>();
                     using (MedicFarmaEntities db = new MedicFarmaEntities())
