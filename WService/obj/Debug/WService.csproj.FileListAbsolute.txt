@@ -388,10 +388,6 @@ C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csproj.
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.dll
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.pdb
 C:\Users\soria\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csprojAssemblyReference.cache
-C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csprojResolveAssemblyReference.cache
-C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csproj.CoreCompileInputs.cache
-C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.dll
-C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.pdb
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\ApplicationInsights.config
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\WService.dll.config
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\WService.dll
@@ -487,3 +483,7 @@ C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\es\System.We
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csproj.CoreCompileInputs.cache
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.pdb
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csprojResolveAssemblyReference.cache
