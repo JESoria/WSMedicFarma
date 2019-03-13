@@ -66,6 +66,8 @@ namespace WService.Controllers
 
                             CREDENCIAL_USUARIO credencial_usuario = new CREDENCIAL_USUARIO();
 
+                            model.password = Encoder.Encodig(model.password);
+
                             credencial_usuario.ID_USUARIO = usuario.ID_USUARIO;
                             credencial_usuario.PASSWORD = model.password;
                             credencial_usuario.ESTADO = model.estado;
