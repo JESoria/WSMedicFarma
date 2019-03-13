@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Device.Location;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -38,14 +39,14 @@ namespace WService.Controllers
                 {
                     List<DrugstoresModel> list = new List<DrugstoresModel>();
                     db.FARMACIA.OrderBy(x => x.ID_FARMACIA).ToList().ForEach(x => {
-                        //MemoryStream ms = new MemoryStream(x.IMAGEN);
-                        //Image image = Image.FromStream(ms);
+                        MemoryStream ms = new MemoryStream(x.IMAGEN);
+                        Image image = Image.FromStream(ms);
 
                         list.Add(new DrugstoresModel()
                         {
                             idFarmacia = x.ID_FARMACIA,
                             NombreFarmacia = x.FARMACIA1,
-                            //imagenFarmacia = image
+                            imagenFarmacia = image
                         });
                     });
                     return Ok(list);
