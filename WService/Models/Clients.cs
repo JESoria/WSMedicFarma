@@ -12,6 +12,6 @@ namespace WService.Models
         //Farmacia Camila
         public static string URLClientB = "http://farmaciab20190312071435.azurewebsites.net/";
         //Farmacia Farmavalue
-        public static string URLClientC = "http://localhost:57393/";
+        public static string URLClientC = "https://farmaciac20190317115543.azurewebsites.net/";
     }
 }
