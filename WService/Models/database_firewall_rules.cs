@@ -12,17 +12,13 @@ namespace WService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TRANSACCION_PAGO
+    public partial class database_firewall_rules
     {
-        public int ID_TRANSACCION_PAGO { get; set; }
-        public int ID_DETALLE_PEDIDO { get; set; }
-        public int ID_TIPO_PAGO { get; set; }
-        public string INTERMEDIARIO { get; set; }
-        public System.DateTime FECHA_TRANSACCION { get; set; }
-        public string ESTADO { get; set; }
-        public string DESCRIPCION { get; set; }
-    
-        public virtual DETALLE_PEDIDO DETALLE_PEDIDO { get; set; }
-        public virtual TIPO_PAGO TIPO_PAGO { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string start_ip_address { get; set; }
+        public string end_ip_address { get; set; }
+        public System.DateTime create_date { get; set; }
+        public System.DateTime modify_date { get; set; }
     }
 }

@@ -35,6 +35,12 @@ namespace WService
                );
 
             config.Routes.MapHttpRoute(
+               name: "EmployeeRegister",
+               routeTemplate: "v1/RegisterEmployee",
+               defaults: new { Controller = "RegisterEmployee", Action = "Index" }
+               );
+
+            config.Routes.MapHttpRoute(
               name: "DrugstoresList",
               routeTemplate: "v1/DrugstoresList",
               defaults: new { Controller = "Search", Action = "DrugstoresList" }

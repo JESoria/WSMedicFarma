@@ -259,93 +259,85 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\RegisterEmployeeController.cs" />
     <Compile Include="Controllers\SearchAllDrugstoresController.cs" />
     <Compile Include="Controllers\SearchByDrugstoreController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CATEGORIA.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Clients.cs" />
     <Compile Include="Models\consultas.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CREDENCIAL_USUARIO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DESCUENTO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+    <Compile Include="Models\database_firewall_rules.cs">
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DetailModel.cs" />
-    <Compile Include="Models\DETALLE_FACTURA.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+    <Compile Include="Models\DETALLE_PEDIDO.cs">
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DrugstoresModel.cs" />
+    <Compile Include="Models\EMPLEADO.cs">
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMPLEADO_SUCURSAL.cs">
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ErrorModel.cs" />
-    <Compile Include="Models\FACTURA.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\FARMACIA.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LABORATORIO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\Model.Context.cs">
+    <Compile Include="Models\MedicFarmaModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.cs">
+    <Compile Include="Models\MedicFarmaModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.Designer.cs">
+    <Compile Include="Models\MedicFarmaModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
+      <DependentUpon>MedicFarmaModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\PRESENTACION.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PRODUCTO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+    <Compile Include="Models\PEDIDO.cs">
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductSearchModel.cs" />
     <Compile Include="Models\Response\ProfileModel.cs" />
     <Compile Include="Models\RespuestaGenerica.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SUCURSAL.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SUCURSAL_PRODUCTO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_PAGO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tokenModel.cs" />
     <Compile Include="Models\TRANSACCION_PAGO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\t_oauthtoken.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MedicFarmaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -358,15 +350,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Model.Context.tt">
+    <Content Include="Models\MedicFarmaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>MedicFarmaModel.edmx</DependentUpon>
+      <LastGenOutput>MedicFarmaModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model.tt">
+    <Content Include="Models\MedicFarmaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <DependentUpon>MedicFarmaModel.edmx</DependentUpon>
+      <LastGenOutput>MedicFarmaModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -392,12 +384,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Model.edmx">
+    <EntityDeploy Include="Models\MedicFarmaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>MedicFarmaModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <Content Include="Models\MedicFarmaModel.edmx.diagram">
+      <DependentUpon>MedicFarmaModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\medicfarma - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\medicfarma - Web Deploy.pubxml" />

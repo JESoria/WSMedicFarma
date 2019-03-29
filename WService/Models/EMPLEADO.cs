@@ -12,23 +12,21 @@ namespace WService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DETALLE_FACTURA
+    public partial class EMPLEADO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DETALLE_FACTURA()
+        public EMPLEADO()
         {
-            this.TRANSACCION_PAGO = new HashSet<TRANSACCION_PAGO>();
+            this.EMPLEADO_SUCURSAL = new HashSet<EMPLEADO_SUCURSAL>();
         }
     
-        public int ID_DETALLE_FACTURA { get; set; }
-        public int ID_FACTURA { get; set; }
-        public int ID_PRODUCTO { get; set; }
-        public int CANTIDAD { get; set; }
-        public decimal PRECIO_VENTA { get; set; }
+        public int ID_EMPLEADO { get; set; }
+        public string NOMBRES { get; set; }
+        public string APELLIDOS { get; set; }
+        public string USUARIO { get; set; }
+        public string PASSWORD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TRANSACCION_PAGO> TRANSACCION_PAGO { get; set; }
-        public virtual FACTURA FACTURA { get; set; }
-        public virtual PRODUCTO PRODUCTO { get; set; }
+        public virtual ICollection<EMPLEADO_SUCURSAL> EMPLEADO_SUCURSAL { get; set; }
     }
 }

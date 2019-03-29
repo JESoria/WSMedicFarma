@@ -18,7 +18,7 @@ namespace WService.Models
         public USUARIO()
         {
             this.CREDENCIAL_USUARIO = new HashSet<CREDENCIAL_USUARIO>();
-            this.FACTURA = new HashSet<FACTURA>();
+            this.PEDIDO = new HashSet<PEDIDO>();
         }
     
         public int ID_USUARIO { get; set; }
@@ -27,11 +27,11 @@ namespace WService.Models
         public string GENERO { get; set; }
         public System.DateTime FECHA_NACIMIENTO { get; set; }
         public string CORREO { get; set; }
-        public string FACEBOOK_ID { get; set; }
+        public Nullable<int> FACEBOOK_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FACTURA> FACTURA { get; set; }
+        public virtual ICollection<PEDIDO> PEDIDO { get; set; }
     }
 }

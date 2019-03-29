@@ -12,15 +12,14 @@ namespace WService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DESCUENTO
+    public partial class EMPLEADO_SUCURSAL
     {
-        public int ID_DESCUENTO { get; set; }
-        public int ID_SUCURSAL_PRODUCTO { get; set; }
-        public System.DateTime FECHA_DESDE { get; set; }
-        public System.DateTime FECHA_HASTA { get; set; }
-        public decimal DESCUENTO1 { get; set; }
-        public string DESCRIPCION { get; set; }
+        public int ID_EMPLEADO_SUCURSAL { get; set; }
+        public int ID_EMPLEADO { get; set; }
+        public int ID_SUCURSAL { get; set; }
+        public string ESTADO { get; set; }
     
-        public virtual SUCURSAL_PRODUCTO SUCURSAL_PRODUCTO { get; set; }
+        public virtual EMPLEADO EMPLEADO { get; set; }
+        public virtual SUCURSAL SUCURSAL { get; set; }
     }
 }

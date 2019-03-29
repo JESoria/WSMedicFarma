@@ -16,9 +16,10 @@ namespace WService.Models
     {
         public int ID_CREDENCIAL_USUARIO { get; set; }
         public int ID_USUARIO { get; set; }
+        public string USUARIO { get; set; }
         public string PASSWORD { get; set; }
         public bool ESTADO { get; set; }
     
-        public virtual USUARIO USUARIO { get; set; }
+        public virtual USUARIO USUARIO1 { get; set; }
     }
 }

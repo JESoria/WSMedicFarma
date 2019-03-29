@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MedicFarmaModelStoreContainer" CdmEntityContainer="MedicFarmaEntities">
+  <EntityContainerMapping StorageEntityContainer="FARMACIASModelStoreContainer" CdmEntityContainer="MedicFarmaEntities">
     <EntitySetMapping Name="CATEGORIA">
-      <EntityTypeMapping TypeName="MedicFarmaModel.CATEGORIA">
+      <EntityTypeMapping TypeName="FARMACIASModel.CATEGORIA">
         <MappingFragment StoreEntitySet="CATEGORIA">
           <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
           <ScalarProperty Name="CATEGORIA1" ColumnName="CATEGORIA" />
@@ -10,8 +10,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CREDENCIAL_USUARIO">
+      <EntityTypeMapping TypeName="FARMACIASModel.CREDENCIAL_USUARIO">
+        <MappingFragment StoreEntitySet="CREDENCIAL_USUARIO">
+          <ScalarProperty Name="ID_CREDENCIAL_USUARIO" ColumnName="ID_CREDENCIAL_USUARIO" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DESCUENTO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.DESCUENTO">
+      <EntityTypeMapping TypeName="FARMACIASModel.DESCUENTO">
         <MappingFragment StoreEntitySet="DESCUENTO">
           <ScalarProperty Name="ID_DESCUENTO" ColumnName="ID_DESCUENTO" />
           <ScalarProperty Name="ID_SUCURSAL_PRODUCTO" ColumnName="ID_SUCURSAL_PRODUCTO" />
@@ -23,7 +33,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DETALLE_FACTURA">
-      <EntityTypeMapping TypeName="MedicFarmaModel.DETALLE_FACTURA">
+      <EntityTypeMapping TypeName="FARMACIASModel.DETALLE_FACTURA">
         <MappingFragment StoreEntitySet="DETALLE_FACTURA">
           <ScalarProperty Name="ID_DETALLE_FACTURA" ColumnName="ID_DETALLE_FACTURA" />
           <ScalarProperty Name="ID_FACTURA" ColumnName="ID_FACTURA" />
@@ -34,7 +44,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FACTURA">
-      <EntityTypeMapping TypeName="MedicFarmaModel.FACTURA">
+      <EntityTypeMapping TypeName="FARMACIASModel.FACTURA">
         <MappingFragment StoreEntitySet="FACTURA">
           <ScalarProperty Name="ID_FACTURA" ColumnName="ID_FACTURA" />
           <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
@@ -45,26 +55,26 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FARMACIA">
-      <EntityTypeMapping TypeName="MedicFarmaModel.FARMACIA">
+      <EntityTypeMapping TypeName="FARMACIASModel.FARMACIA">
         <MappingFragment StoreEntitySet="FARMACIA">
-          <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
           <ScalarProperty Name="ID_FARMACIA" ColumnName="ID_FARMACIA" />
           <ScalarProperty Name="FARMACIA1" ColumnName="FARMACIA" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LABORATORIO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.LABORATORIO">
+      <EntityTypeMapping TypeName="FARMACIASModel.LABORATORIO">
         <MappingFragment StoreEntitySet="LABORATORIO">
-          <ScalarProperty Name="TITULAR" ColumnName="TITULAR" />
           <ScalarProperty Name="ID_LABORATORIO" ColumnName="ID_LABORATORIO" />
           <ScalarProperty Name="LABORATORIO1" ColumnName="LABORATORIO" />
+          <ScalarProperty Name="TITULAR" ColumnName="TITULAR" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PRESENTACION">
-      <EntityTypeMapping TypeName="MedicFarmaModel.PRESENTACION">
+      <EntityTypeMapping TypeName="FARMACIASModel.PRESENTACION">
         <MappingFragment StoreEntitySet="PRESENTACION">
           <ScalarProperty Name="ID_PRESENTACION" ColumnName="ID_PRESENTACION" />
           <ScalarProperty Name="PRESENTACION1" ColumnName="PRESENTACION" />
@@ -73,7 +83,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PRODUCTO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.PRODUCTO">
+      <EntityTypeMapping TypeName="FARMACIASModel.PRODUCTO">
         <MappingFragment StoreEntitySet="PRODUCTO">
           <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
           <ScalarProperty Name="ID_PRESENTACION" ColumnName="ID_PRESENTACION" />
@@ -81,11 +91,12 @@
           <ScalarProperty Name="ID_LABORATORIO" ColumnName="ID_LABORATORIO" />
           <ScalarProperty Name="PRODUCTO1" ColumnName="PRODUCTO" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="IMAGEN_PRODUCTO" ColumnName="IMAGEN_PRODUCTO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SUCURSAL">
-      <EntityTypeMapping TypeName="MedicFarmaModel.SUCURSAL">
+      <EntityTypeMapping TypeName="FARMACIASModel.SUCURSAL">
         <MappingFragment StoreEntitySet="SUCURSAL">
           <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
           <ScalarProperty Name="ID_FARMACIA" ColumnName="ID_FARMACIA" />
@@ -98,19 +109,30 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SUCURSAL_PRODUCTO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.SUCURSAL_PRODUCTO">
+      <EntityTypeMapping TypeName="FARMACIASModel.SUCURSAL_PRODUCTO">
         <MappingFragment StoreEntitySet="SUCURSAL_PRODUCTO">
-          <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
           <ScalarProperty Name="ID_SUCURSAL_PRODUCTO" ColumnName="ID_SUCURSAL_PRODUCTO" />
           <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
           <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
           <ScalarProperty Name="FECHA_VENCIMIENTO" ColumnName="FECHA_VENCIMIENTO" />
           <ScalarProperty Name="EXISTENCIA" ColumnName="EXISTENCIA" />
+          <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_oauthtoken">
+      <EntityTypeMapping TypeName="FARMACIASModel.t_oauthtoken">
+        <MappingFragment StoreEntitySet="t_oauthtoken">
+          <ScalarProperty Name="authtoken_id" ColumnName="authtoken_id" />
+          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+          <ScalarProperty Name="outh_name" ColumnName="outh_name" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="date" ColumnName="date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TIPO_PAGO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.TIPO_PAGO">
+      <EntityTypeMapping TypeName="FARMACIASModel.TIPO_PAGO">
         <MappingFragment StoreEntitySet="TIPO_PAGO">
           <ScalarProperty Name="ID_TIPO_PAGO" ColumnName="ID_TIPO_PAGO" />
           <ScalarProperty Name="TIPO_PAGO1" ColumnName="TIPO_PAGO" />
@@ -119,7 +141,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TRANSACCION_PAGO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.TRANSACCION_PAGO">
+      <EntityTypeMapping TypeName="FARMACIASModel.TRANSACCION_PAGO">
         <MappingFragment StoreEntitySet="TRANSACCION_PAGO">
           <ScalarProperty Name="ID_TRANSACCION_PAGO" ColumnName="ID_TRANSACCION_PAGO" />
           <ScalarProperty Name="ID_DETALLE_FACTURA" ColumnName="ID_DETALLE_FACTURA" />
@@ -129,89 +151,45 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CREDENCIAL_USUARIO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.CREDENCIAL_USUARIO">
-        <MappingFragment StoreEntitySet="CREDENCIAL_USUARIO">
-          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
-          <ScalarProperty Name="ID_CREDENCIAL_USUARIO" ColumnName="ID_CREDENCIAL_USUARIO" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="t_oauthtoken">
-      <EntityTypeMapping TypeName="MedicFarmaModel.t_oauthtoken">
-        <MappingFragment StoreEntitySet="t_oauthtoken">
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="token" ColumnName="token" />
-          <ScalarProperty Name="outh_name" ColumnName="outh_name" />
-          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
-          <ScalarProperty Name="authtoken_id" ColumnName="authtoken_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="USUARIO">
-      <EntityTypeMapping TypeName="MedicFarmaModel.USUARIO">
+      <EntityTypeMapping TypeName="FARMACIASModel.USUARIO">
         <MappingFragment StoreEntitySet="USUARIO">
-          <ScalarProperty Name="FACEBOOK_ID" ColumnName="FACEBOOK_ID" />
-          <ScalarProperty Name="CORREO" ColumnName="CORREO" />
-          <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
-          <ScalarProperty Name="GENERO" ColumnName="GENERO" />
-          <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
-          <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
           <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+          <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+          <ScalarProperty Name="GENERO" ColumnName="GENERO" />
+          <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+          <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+          <ScalarProperty Name="FACEBOOK_ID" ColumnName="FACEBOOK_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="MedicFarmaModel.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MedicFarmaModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MedicFarmaModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MedicFarmaModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MedicFarmaModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MedicFarmaModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MedicFarmaModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MedicFarmaModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MedicFarmaModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MedicFarmaModel.Store.sp_upgraddiagrams" />
     <EntitySetMapping Name="consultas">
-      <EntityTypeMapping TypeName="MedicFarmaModel.consultas">
+      <EntityTypeMapping TypeName="FARMACIASModel.consultas">
         <MappingFragment StoreEntitySet="consultas">
-          <ScalarProperty Name="idFarmacia" ColumnName="idFarmacia" />
-          <ScalarProperty Name="distancia" ColumnName="distancia" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="longitud" ColumnName="longitud" />
-          <ScalarProperty Name="latitud" ColumnName="latitud" />
-          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
-          <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
-          <ScalarProperty Name="idSucursalProducto" ColumnName="idSucursalProducto" />
-          <ScalarProperty Name="precio" ColumnName="precio" />
-          <ScalarProperty Name="producto" ColumnName="producto" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="producto" ColumnName="producto" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="idSucursalProducto" ColumnName="idSucursalProducto" />
+          <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="distancia" ColumnName="distancia" />
+          <ScalarProperty Name="idFarmacia" ColumnName="idFarmacia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="FARMACIASModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -17,7 +17,8 @@ namespace WService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SUCURSAL()
         {
-            this.SUCURSAL_PRODUCTO = new HashSet<SUCURSAL_PRODUCTO>();
+            this.EMPLEADO_SUCURSAL = new HashSet<EMPLEADO_SUCURSAL>();
+            this.PEDIDO = new HashSet<PEDIDO>();
         }
     
         public int ID_SUCURSAL { get; set; }
@@ -28,8 +29,10 @@ namespace WService.Models
         public string LATITUD { get; set; }
         public string TELEFONO { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EMPLEADO_SUCURSAL> EMPLEADO_SUCURSAL { get; set; }
         public virtual FARMACIA FARMACIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SUCURSAL_PRODUCTO> SUCURSAL_PRODUCTO { get; set; }
+        public virtual ICollection<PEDIDO> PEDIDO { get; set; }
     }
 }

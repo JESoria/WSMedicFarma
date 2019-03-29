@@ -23,7 +23,6 @@ namespace WService.Models
         public int ID_FARMACIA { get; set; }
         public string FARMACIA1 { get; set; }
         public string DESCRIPCION { get; set; }
-        public byte[] IMAGEN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUCURSAL> SUCURSAL { get; set; }

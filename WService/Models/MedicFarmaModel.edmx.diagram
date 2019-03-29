@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6826ba9fb7f74fffa219ad8523797a7b" Name="Diagram1">
+        <EntityTypeShape EntityType="MEDICFARMAModel.CREDENCIAL_USUARIO" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.DETALLE_PEDIDO" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.EMPLEADO" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.EMPLEADO_SUCURSAL" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.FARMACIA" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.PEDIDO" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.SUCURSAL" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.TIPO_PAGO" Width="1.5" PointX="10.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.TRANSACCION_PAGO" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.USUARIO" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.consultas" Width="1.5" PointX="2.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.database_firewall_rules" Width="1.5" PointX="4.75" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="MEDICFARMAModel.FK_CREDENCIAL_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDICFARMAModel.FK_DETALLE_PEDIDO_TRANSACCION_PAGO" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDICFARMAModel.FK_FACTURA_DETALLE_FACTURA" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDICFARMAModel.FK__EMPLEADO___ID_EM__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDICFARMAModel.FK__EMPLEADO___ID_SU__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDICFARMAModel.FK_FARMACIA_SUCURSAL" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDICFARMAModel.FK_FACTURA_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDICFARMAModel.FK_PEDIDO_SUCURSAL" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDICFARMAModel.FK_TIPO_PAGO_TRANSACCION_PAGO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MEDICFARMAModel.t_oauthtoken" Width="1.5" PointX="10.375" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

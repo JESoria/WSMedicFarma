@@ -27,23 +27,20 @@ namespace WService.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
-        public virtual DbSet<DESCUENTO> DESCUENTO { get; set; }
-        public virtual DbSet<DETALLE_FACTURA> DETALLE_FACTURA { get; set; }
-        public virtual DbSet<FACTURA> FACTURA { get; set; }
+        public virtual DbSet<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
+        public virtual DbSet<DETALLE_PEDIDO> DETALLE_PEDIDO { get; set; }
+        public virtual DbSet<EMPLEADO> EMPLEADO { get; set; }
+        public virtual DbSet<EMPLEADO_SUCURSAL> EMPLEADO_SUCURSAL { get; set; }
         public virtual DbSet<FARMACIA> FARMACIA { get; set; }
-        public virtual DbSet<LABORATORIO> LABORATORIO { get; set; }
-        public virtual DbSet<PRESENTACION> PRESENTACION { get; set; }
-        public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
+        public virtual DbSet<PEDIDO> PEDIDO { get; set; }
         public virtual DbSet<SUCURSAL> SUCURSAL { get; set; }
-        public virtual DbSet<SUCURSAL_PRODUCTO> SUCURSAL_PRODUCTO { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TIPO_PAGO> TIPO_PAGO { get; set; }
         public virtual DbSet<TRANSACCION_PAGO> TRANSACCION_PAGO { get; set; }
-        public virtual DbSet<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
-        public virtual DbSet<t_oauthtoken> t_oauthtoken { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<consultas> consultas { get; set; }
+        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
+        public virtual DbSet<t_oauthtoken> t_oauthtoken { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

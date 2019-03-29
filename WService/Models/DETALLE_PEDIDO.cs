@@ -12,24 +12,22 @@ namespace WService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SUCURSAL_PRODUCTO
+    public partial class DETALLE_PEDIDO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SUCURSAL_PRODUCTO()
+        public DETALLE_PEDIDO()
         {
-            this.DESCUENTO = new HashSet<DESCUENTO>();
+            this.TRANSACCION_PAGO = new HashSet<TRANSACCION_PAGO>();
         }
     
-        public int ID_SUCURSAL_PRODUCTO { get; set; }
-        public int ID_SUCURSAL { get; set; }
-        public int ID_PRODUCTO { get; set; }
-        public System.DateTime FECHA_VENCIMIENTO { get; set; }
-        public int EXISTENCIA { get; set; }
-        public Nullable<decimal> PRECIO { get; set; }
+        public int ID_DETALLE_PEDIDO { get; set; }
+        public int ID_PEDIDO { get; set; }
+        public string PRODUCTO { get; set; }
+        public int CANTIDAD { get; set; }
+        public decimal PRECIO_VENTA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DESCUENTO> DESCUENTO { get; set; }
-        public virtual PRODUCTO PRODUCTO { get; set; }
-        public virtual SUCURSAL SUCURSAL { get; set; }
+        public virtual ICollection<TRANSACCION_PAGO> TRANSACCION_PAGO { get; set; }
+        public virtual PEDIDO PEDIDO { get; set; }
     }
 }
