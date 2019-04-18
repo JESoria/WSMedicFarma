@@ -4,63 +4,73 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MEDICFARMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'MEDICFARMA.dbo.consultas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="consultas">
+    <Schema Namespace="MEDICFARMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMINISTRADOR_FARMACIA">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID_ADMINISTRADOR" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="producto" Type="varchar(max)" />
-          <Property Name="precio" Type="decimal" Precision="7" Scale="2" />
-          <Property Name="idSucursalProducto" Type="int" />
-          <Property Name="idSucursal" Type="int" />
-          <Property Name="sucursal" Type="varchar(max)" />
-          <Property Name="latitud" Type="varchar(max)" />
-          <Property Name="longitud" Type="varchar(max)" />
-          <Property Name="direccion" Type="varchar(max)" />
-          <Property Name="distancia" Type="decimal" Precision="7" Scale="2" />
-          <Property Name="idFarmacia" Type="int" />
+          <Property Name="ID_ADMINISTRADOR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODIGO_ADMINISTRADOR" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_FARMACIA" Type="int" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="DUI" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="NIT" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="CONSULTAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRODUCTO" Type="varchar" MaxLength="2000" />
+          <Property Name="PRECIO" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="ID_SUCURSAL_PRODUCTO" Type="int" />
+          <Property Name="ID_SUCURSAL" Type="int" />
+          <Property Name="SUCURSAL" Type="varchar" MaxLength="2000" />
+          <Property Name="LATITUD" Type="varchar" MaxLength="2000" />
+          <Property Name="LONGITUD" Type="varchar" MaxLength="2000" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="2000" />
+          <Property Name="DISTANCIA" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="ID_FARMACIA" Type="int" />
         </EntityType>
         <EntityType Name="CREDENCIAL_USUARIO">
           <Key>
             <PropertyRef Name="ID_CREDENCIAL_USUARIO" />
           </Key>
           <Property Name="ID_CREDENCIAL_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
-          <Property Name="USUARIO" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="PASSWORD" Type="varchar(max)" Nullable="false" />
-          <Property Name="ESTADO" Type="bit" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="2000" />
+          <Property Name="ESTADO" Type="bit" />
         </EntityType>
         <EntityType Name="DETALLE_PEDIDO">
           <Key>
             <PropertyRef Name="ID_DETALLE_PEDIDO" />
           </Key>
           <Property Name="ID_DETALLE_PEDIDO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_PEDIDO" Type="int" Nullable="false" />
-          <Property Name="PRODUCTO" Type="varchar(max)" Nullable="false" />
-          <Property Name="CANTIDAD" Type="int" Nullable="false" />
-          <Property Name="PRECIO_VENTA" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="ID_PEDIDO" Type="int" />
+          <Property Name="PRODUCTO" Type="varchar" MaxLength="256" />
+          <Property Name="CANTIDAD" Type="int" />
+          <Property Name="PRECIO_VENTA" Type="decimal" Precision="7" Scale="2" />
         </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
             <PropertyRef Name="ID_EMPLEADO" />
           </Key>
           <Property Name="ID_EMPLEADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODIGO_EMPLEADO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
           <Property Name="NOMBRES" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="APELLIDOS" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="USUARIO" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="PASSWORD" Type="varchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="EMPLEADO_SUCURSAL">
-          <Key>
-            <PropertyRef Name="ID_EMPLEADO_SUCURSAL" />
-          </Key>
-          <Property Name="ID_EMPLEADO_SUCURSAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
-          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
-          <Property Name="ESTADO" Type="varchar" MaxLength="32" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="DUI" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="NIT" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="FARMACIA">
           <Key>
@@ -70,29 +80,45 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.dbo.consultas' no tiene definida 
           <Property Name="FARMACIA" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="256" />
         </EntityType>
+        <EntityType Name="INCIDENCIA">
+          <Key>
+            <PropertyRef Name="ID_INCIDENCIA" />
+          </Key>
+          <Property Name="ID_INCIDENCIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PEDIDO" Type="int" />
+          <Property Name="INCIDENCIA" Type="varchar" MaxLength="256" />
+          <Property Name="FECHA_INCIDENCIA" Type="datetime" />
+          <Property Name="FECHA_RESUELTO" Type="datetime" />
+          <Property Name="OBSERVACION" Type="varchar" MaxLength="256" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="64" />
+        </EntityType>
         <EntityType Name="PEDIDO">
           <Key>
             <PropertyRef Name="ID_PEDIDO" />
           </Key>
           <Property Name="ID_PEDIDO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
-          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
-          <Property Name="DIRECCION" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="FECHA" Type="date" Nullable="false" />
-          <Property Name="TOTAL_COMPRA" Type="decimal" Precision="7" Scale="2" Nullable="false" />
-          <Property Name="ESTADO" Type="varchar" MaxLength="32" />
+          <Property Name="CODIGO_PEDIDO" Type="varchar(max)" />
+          <Property Name="ID_USUARIO" Type="int" />
+          <Property Name="ID_SUCURSAL" Type="int" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="256" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
+          <Property Name="FECHA_RECIBIDO" Type="datetime" />
+          <Property Name="FECHA_ENVIO" Type="datetime" />
+          <Property Name="MONTO_COMPRA" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="ESTADO_PEDIDO" Type="varchar" MaxLength="64" />
+          <Property Name="ESTADO_PAGO" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="SUCURSAL">
           <Key>
             <PropertyRef Name="ID_SUCURSAL" />
           </Key>
           <Property Name="ID_SUCURSAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_FARMACIA" Type="int" Nullable="false" />
-          <Property Name="SUCURSAL" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="DIRECCION" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="LONGITUD" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="LATITUD" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="TELEFONO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_FARMACIA" Type="int" />
+          <Property Name="SUCURSAL" Type="varchar" MaxLength="64" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="256" />
+          <Property Name="LONGITUD" Type="varchar" MaxLength="128" />
+          <Property Name="LATITUD" Type="varchar" MaxLength="128" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -119,77 +145,58 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.dbo.consultas' no tiene definida 
             <PropertyRef Name="ID_TIPO_PAGO" />
           </Key>
           <Property Name="ID_TIPO_PAGO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TIPO_PAGO" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="TIPO_PAGO" Type="varchar" MaxLength="64" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="TRANSACCION_PAGO">
           <Key>
             <PropertyRef Name="ID_TRANSACCION_PAGO" />
           </Key>
           <Property Name="ID_TRANSACCION_PAGO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_DETALLE_PEDIDO" Type="int" Nullable="false" />
-          <Property Name="ID_TIPO_PAGO" Type="int" Nullable="false" />
-          <Property Name="INTERMEDIARIO" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="FECHA_TRANSACCION" Type="date" Nullable="false" />
-          <Property Name="ESTADO" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="CODIGO_PAGO" Type="varchar" MaxLength="126" />
+          <Property Name="ID_PEDIDO" Type="int" />
+          <Property Name="ID_TIPO_PAGO" Type="int" />
+          <Property Name="FECHA_TRANSACCION" Type="datetime" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="64" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
             <PropertyRef Name="ID_USUARIO" />
           </Key>
           <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRES" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="APELLIDOS" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="GENERO" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="FECHA_NACIMIENTO" Type="date" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="64" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="64" />
+          <Property Name="GENERO" Type="char" MaxLength="1" />
+          <Property Name="FECHA_NACIMIENTO" Type="date" />
           <Property Name="CORREO" Type="varchar" MaxLength="256" />
-          <Property Name="FACEBOOK_ID" Type="int" />
+          <Property Name="FACEBOOK_ID" Type="varchar" MaxLength="256" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="database_firewall_rules">
+        <EntityType Name="USUARIO_MASTER_MEDICFARMA">
           <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="start_ip_address" />
-            <PropertyRef Name="end_ip_address" />
-            <PropertyRef Name="create_date" />
-            <PropertyRef Name="modify_date" />
+            <PropertyRef Name="ID_USUARIO_MASTER" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="create_date" Type="datetime" Nullable="false" />
-          <Property Name="modify_date" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_MASTER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODIGO_ADMINISTRADOR" Type="varchar" MaxLength="10" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="64" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="64" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="64" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="2000" />
         </EntityType>
-        <Association Name="FK__EMPLEADO___ID_EM__5812160E">
-          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
-          <End Role="EMPLEADO_SUCURSAL" Type="Self.EMPLEADO_SUCURSAL" Multiplicity="*" />
+        <Association Name="FK_ADMINISTRADOR_FARMACIA">
+          <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="1" />
+          <End Role="ADMINISTRADOR_FARMACIA" Type="Self.ADMINISTRADOR_FARMACIA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EMPLEADO">
-              <PropertyRef Name="ID_EMPLEADO" />
+            <Principal Role="FARMACIA">
+              <PropertyRef Name="ID_FARMACIA" />
             </Principal>
-            <Dependent Role="EMPLEADO_SUCURSAL">
-              <PropertyRef Name="ID_EMPLEADO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EMPLEADO___ID_SU__59063A47">
-          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
-          <End Role="EMPLEADO_SUCURSAL" Type="Self.EMPLEADO_SUCURSAL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SUCURSAL">
-              <PropertyRef Name="ID_SUCURSAL" />
-            </Principal>
-            <Dependent Role="EMPLEADO_SUCURSAL">
-              <PropertyRef Name="ID_SUCURSAL" />
+            <Dependent Role="ADMINISTRADOR_FARMACIA">
+              <PropertyRef Name="ID_FARMACIA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CREDENCIAL_USUARIO">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
           <End Role="CREDENCIAL_USUARIO" Type="Self.CREDENCIAL_USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIO">
@@ -200,44 +207,20 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DETALLE_PEDIDO_TRANSACCION_PAGO">
-          <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="1" />
-          <End Role="TRANSACCION_PAGO" Type="Self.TRANSACCION_PAGO" Multiplicity="*" />
+        <Association Name="FK_EMPLEADO_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DETALLE_PEDIDO">
-              <PropertyRef Name="ID_DETALLE_PEDIDO" />
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
             </Principal>
-            <Dependent Role="TRANSACCION_PAGO">
-              <PropertyRef Name="ID_DETALLE_PEDIDO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FACTURA_DETALLE_FACTURA">
-          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
-          <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PEDIDO">
-              <PropertyRef Name="ID_PEDIDO" />
-            </Principal>
-            <Dependent Role="DETALLE_PEDIDO">
-              <PropertyRef Name="ID_PEDIDO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FACTURA_USUARIO">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
-          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="ID_USUARIO" />
-            </Principal>
-            <Dependent Role="PEDIDO">
-              <PropertyRef Name="ID_USUARIO" />
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_SUCURSAL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FARMACIA_SUCURSAL">
-          <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="1" />
+          <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="0..1" />
           <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FARMACIA">
@@ -248,8 +231,32 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PEDIDO_DETALLE_PEDIDO">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
+          <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Principal>
+            <Dependent Role="DETALLE_PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDO_INCIDENCIA">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
+          <End Role="INCIDENCIA" Type="Self.INCIDENCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Principal>
+            <Dependent Role="INCIDENCIA">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PEDIDO_SUCURSAL">
-          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="0..1" />
           <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SUCURSAL">
@@ -260,8 +267,32 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PEDIDO_TRANSACCION_PAGO">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
+          <End Role="TRANSACCION_PAGO" Type="Self.TRANSACCION_PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Principal>
+            <Dependent Role="TRANSACCION_PAGO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDO_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="PEDIDO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TIPO_PAGO_TRANSACCION_PAGO">
-          <End Role="TIPO_PAGO" Type="Self.TIPO_PAGO" Multiplicity="1" />
+          <End Role="TIPO_PAGO" Type="Self.TIPO_PAGO" Multiplicity="0..1" />
           <End Role="TRANSACCION_PAGO" Type="Self.TRANSACCION_PAGO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TIPO_PAGO">
@@ -304,11 +335,13 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MEDICFARMAModelStoreContainer">
+          <EntitySet Name="ADMINISTRADOR_FARMACIA" EntityType="Self.ADMINISTRADOR_FARMACIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONSULTAS" EntityType="Self.CONSULTAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CREDENCIAL_USUARIO" EntityType="Self.CREDENCIAL_USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DETALLE_PEDIDO" EntityType="Self.DETALLE_PEDIDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EMPLEADO_SUCURSAL" EntityType="Self.EMPLEADO_SUCURSAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FARMACIA" EntityType="Self.FARMACIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INCIDENCIA" EntityType="Self.INCIDENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -316,61 +349,41 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
           <EntitySet Name="TIPO_PAGO" EntityType="Self.TIPO_PAGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANSACCION_PAGO" EntityType="Self.TRANSACCION_PAGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="consultas" EntityType="Self.consultas" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [consultas].[id] AS [id], 
-    [consultas].[producto] AS [producto], 
-    [consultas].[precio] AS [precio], 
-    [consultas].[idSucursalProducto] AS [idSucursalProducto], 
-    [consultas].[idSucursal] AS [idSucursal], 
-    [consultas].[sucursal] AS [sucursal], 
-    [consultas].[latitud] AS [latitud], 
-    [consultas].[longitud] AS [longitud], 
-    [consultas].[direccion] AS [direccion], 
-    [consultas].[distancia] AS [distancia], 
-    [consultas].[idFarmacia] AS [idFarmacia]
-    FROM [dbo].[consultas] AS [consultas]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
-            <DefiningQuery>SELECT 
-    [database_firewall_rules].[id] AS [id], 
-    [database_firewall_rules].[name] AS [name], 
-    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
-    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
-    [database_firewall_rules].[create_date] AS [create_date], 
-    [database_firewall_rules].[modify_date] AS [modify_date]
-    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK__EMPLEADO___ID_EM__5812160E" Association="Self.FK__EMPLEADO___ID_EM__5812160E">
-            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
-            <End Role="EMPLEADO_SUCURSAL" EntitySet="EMPLEADO_SUCURSAL" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EMPLEADO___ID_SU__59063A47" Association="Self.FK__EMPLEADO___ID_SU__59063A47">
-            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
-            <End Role="EMPLEADO_SUCURSAL" EntitySet="EMPLEADO_SUCURSAL" />
+          <EntitySet Name="USUARIO_MASTER_MEDICFARMA" EntityType="Self.USUARIO_MASTER_MEDICFARMA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ADMINISTRADOR_FARMACIA" Association="Self.FK_ADMINISTRADOR_FARMACIA">
+            <End Role="FARMACIA" EntitySet="FARMACIA" />
+            <End Role="ADMINISTRADOR_FARMACIA" EntitySet="ADMINISTRADOR_FARMACIA" />
           </AssociationSet>
           <AssociationSet Name="FK_CREDENCIAL_USUARIO" Association="Self.FK_CREDENCIAL_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="CREDENCIAL_USUARIO" EntitySet="CREDENCIAL_USUARIO" />
           </AssociationSet>
-          <AssociationSet Name="FK_DETALLE_PEDIDO_TRANSACCION_PAGO" Association="Self.FK_DETALLE_PEDIDO_TRANSACCION_PAGO">
-            <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
-            <End Role="TRANSACCION_PAGO" EntitySet="TRANSACCION_PAGO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FACTURA_DETALLE_FACTURA" Association="Self.FK_FACTURA_DETALLE_FACTURA">
-            <End Role="PEDIDO" EntitySet="PEDIDO" />
-            <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FACTURA_USUARIO" Association="Self.FK_FACTURA_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIO" />
-            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          <AssociationSet Name="FK_EMPLEADO_SUCURSAL" Association="Self.FK_EMPLEADO_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
           </AssociationSet>
           <AssociationSet Name="FK_FARMACIA_SUCURSAL" Association="Self.FK_FARMACIA_SUCURSAL">
             <End Role="FARMACIA" EntitySet="FARMACIA" />
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
           </AssociationSet>
+          <AssociationSet Name="FK_PEDIDO_DETALLE_PEDIDO" Association="Self.FK_PEDIDO_DETALLE_PEDIDO">
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDO_INCIDENCIA" Association="Self.FK_PEDIDO_INCIDENCIA">
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="INCIDENCIA" EntitySet="INCIDENCIA" />
+          </AssociationSet>
           <AssociationSet Name="FK_PEDIDO_SUCURSAL" Association="Self.FK_PEDIDO_SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDO_TRANSACCION_PAGO" Association="Self.FK_PEDIDO_TRANSACCION_PAGO">
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="TRANSACCION_PAGO" EntitySet="TRANSACCION_PAGO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDO_USUARIO" Association="Self.FK_PEDIDO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="PEDIDO" EntitySet="PEDIDO" />
           </AssociationSet>
           <AssociationSet Name="FK_TIPO_PAGO_TRANSACCION_PAGO" Association="Self.FK_TIPO_PAGO_TRANSACCION_PAGO">
@@ -382,50 +395,50 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MEDICFARMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CREDENCIAL_USUARIO">
+        <EntityType Name="ADMINISTRADOR_FARMACIA">
           <Key>
-            <PropertyRef Name="ID_CREDENCIAL_USUARIO" />
+            <PropertyRef Name="ID_ADMINISTRADOR" />
           </Key>
-          <Property Name="ID_CREDENCIAL_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="ID_ADMINISTRADOR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODIGO_ADMINISTRADOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_FARMACIA" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="USUARIO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ESTADO" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="USUARIO1" Relationship="Self.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
+          <Property Name="PASSWORD" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DUI" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIT" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FARMACIA" Relationship="Self.FK_ADMINISTRADOR_FARMACIA" FromRole="ADMINISTRADOR_FARMACIA" ToRole="FARMACIA" />
         </EntityType>
         <EntityType Name="DETALLE_PEDIDO">
           <Key>
             <PropertyRef Name="ID_DETALLE_PEDIDO" />
           </Key>
           <Property Name="ID_DETALLE_PEDIDO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_PEDIDO" Type="Int32" Nullable="false" />
-          <Property Name="PRODUCTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
-          <Property Name="PRECIO_VENTA" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
-          <NavigationProperty Name="TRANSACCION_PAGO" Relationship="Self.FK_DETALLE_PEDIDO_TRANSACCION_PAGO" FromRole="DETALLE_PEDIDO" ToRole="TRANSACCION_PAGO" />
-          <NavigationProperty Name="PEDIDO" Relationship="Self.FK_FACTURA_DETALLE_FACTURA" FromRole="DETALLE_PEDIDO" ToRole="PEDIDO" />
+          <Property Name="ID_PEDIDO" Type="Int32" />
+          <Property Name="PRODUCTO" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="CANTIDAD" Type="Int32" />
+          <Property Name="PRECIO_VENTA" Type="Decimal" Precision="7" Scale="2" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_DETALLE_PEDIDO" FromRole="DETALLE_PEDIDO" ToRole="PEDIDO" />
         </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
             <PropertyRef Name="ID_EMPLEADO" />
           </Key>
           <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODIGO_EMPLEADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
           <Property Name="NOMBRES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="APELLIDOS" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="USUARIO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="EMPLEADO_SUCURSAL" Relationship="Self.FK__EMPLEADO___ID_EM__5812160E" FromRole="EMPLEADO" ToRole="EMPLEADO_SUCURSAL" />
-        </EntityType>
-        <EntityType Name="EMPLEADO_SUCURSAL">
-          <Key>
-            <PropertyRef Name="ID_EMPLEADO_SUCURSAL" />
-          </Key>
-          <Property Name="ID_EMPLEADO_SUCURSAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
-          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
-          <Property Name="ESTADO" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__EMPLEADO___ID_EM__5812160E" FromRole="EMPLEADO_SUCURSAL" ToRole="EMPLEADO" />
-          <NavigationProperty Name="SUCURSAL" Relationship="Self.FK__EMPLEADO___ID_SU__59063A47" FromRole="EMPLEADO_SUCURSAL" ToRole="SUCURSAL" />
+          <Property Name="PASSWORD" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DUI" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIT" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_EMPLEADO_SUCURSAL" FromRole="EMPLEADO" ToRole="SUCURSAL" />
         </EntityType>
         <EntityType Name="FARMACIA">
           <Key>
@@ -434,55 +447,75 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
           <Property Name="ID_FARMACIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FARMACIA1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ADMINISTRADOR_FARMACIA" Relationship="Self.FK_ADMINISTRADOR_FARMACIA" FromRole="FARMACIA" ToRole="ADMINISTRADOR_FARMACIA" />
           <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_FARMACIA_SUCURSAL" FromRole="FARMACIA" ToRole="SUCURSAL" />
+        </EntityType>
+        <EntityType Name="INCIDENCIA">
+          <Key>
+            <PropertyRef Name="ID_INCIDENCIA" />
+          </Key>
+          <Property Name="ID_INCIDENCIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PEDIDO" Type="Int32" />
+          <Property Name="INCIDENCIA1" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_INCIDENCIA" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_RESUELTO" Type="DateTime" Precision="3" />
+          <Property Name="OBSERVACION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_INCIDENCIA" FromRole="INCIDENCIA" ToRole="PEDIDO" />
         </EntityType>
         <EntityType Name="PEDIDO">
           <Key>
             <PropertyRef Name="ID_PEDIDO" />
           </Key>
           <Property Name="ID_PEDIDO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
-          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
-          <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TOTAL_COMPRA" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
-          <Property Name="ESTADO" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DETALLE_PEDIDO" Relationship="Self.FK_FACTURA_DETALLE_FACTURA" FromRole="PEDIDO" ToRole="DETALLE_PEDIDO" />
-          <NavigationProperty Name="USUARIO" Relationship="Self.FK_FACTURA_USUARIO" FromRole="PEDIDO" ToRole="USUARIO" />
+          <Property Name="CODIGO_PEDIDO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <Property Name="ID_SUCURSAL" Type="Int32" />
+          <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_RECIBIDO" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_ENVIO" Type="DateTime" Precision="3" />
+          <Property Name="MONTO_COMPRA" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="ESTADO_PEDIDO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_PAGO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DETALLE_PEDIDO" Relationship="Self.FK_PEDIDO_DETALLE_PEDIDO" FromRole="PEDIDO" ToRole="DETALLE_PEDIDO" />
+          <NavigationProperty Name="INCIDENCIA" Relationship="Self.FK_PEDIDO_INCIDENCIA" FromRole="PEDIDO" ToRole="INCIDENCIA" />
           <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_PEDIDO_SUCURSAL" FromRole="PEDIDO" ToRole="SUCURSAL" />
+          <NavigationProperty Name="TRANSACCION_PAGO" Relationship="Self.FK_PEDIDO_TRANSACCION_PAGO" FromRole="PEDIDO" ToRole="TRANSACCION_PAGO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_PEDIDO_USUARIO" FromRole="PEDIDO" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="SUCURSAL">
           <Key>
             <PropertyRef Name="ID_SUCURSAL" />
           </Key>
           <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_FARMACIA" Type="Int32" Nullable="false" />
-          <Property Name="SUCURSAL1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LONGITUD" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LATITUD" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="EMPLEADO_SUCURSAL" Relationship="Self.FK__EMPLEADO___ID_SU__59063A47" FromRole="SUCURSAL" ToRole="EMPLEADO_SUCURSAL" />
+          <Property Name="ID_FARMACIA" Type="Int32" />
+          <Property Name="SUCURSAL1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="LONGITUD" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="LATITUD" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_SUCURSAL" FromRole="SUCURSAL" ToRole="EMPLEADO" />
           <NavigationProperty Name="FARMACIA" Relationship="Self.FK_FARMACIA_SUCURSAL" FromRole="SUCURSAL" ToRole="FARMACIA" />
           <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_SUCURSAL" FromRole="SUCURSAL" ToRole="PEDIDO" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="t_oauthtoken">
           <Key>
-            <PropertyRef Name="diagram_id" />
+            <PropertyRef Name="authtoken_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="authtoken_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sender_id" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+          <Property Name="outh_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="TIPO_PAGO">
           <Key>
             <PropertyRef Name="ID_TIPO_PAGO" />
           </Key>
           <Property Name="ID_TIPO_PAGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TIPO_PAGO1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_PAGO1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TRANSACCION_PAGO" Relationship="Self.FK_TIPO_PAGO_TRANSACCION_PAGO" FromRole="TIPO_PAGO" ToRole="TRANSACCION_PAGO" />
         </EntityType>
         <EntityType Name="TRANSACCION_PAGO">
@@ -490,13 +523,13 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             <PropertyRef Name="ID_TRANSACCION_PAGO" />
           </Key>
           <Property Name="ID_TRANSACCION_PAGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_DETALLE_PEDIDO" Type="Int32" Nullable="false" />
-          <Property Name="ID_TIPO_PAGO" Type="Int32" Nullable="false" />
-          <Property Name="INTERMEDIARIO" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FECHA_TRANSACCION" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ESTADO" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="DETALLE_PEDIDO" Relationship="Self.FK_DETALLE_PEDIDO_TRANSACCION_PAGO" FromRole="TRANSACCION_PAGO" ToRole="DETALLE_PEDIDO" />
+          <Property Name="CODIGO_PAGO" Type="String" MaxLength="126" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PEDIDO" Type="Int32" />
+          <Property Name="ID_TIPO_PAGO" Type="Int32" />
+          <Property Name="FECHA_TRANSACCION" Type="DateTime" Precision="3" />
+          <Property Name="ESTADO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_TRANSACCION_PAGO" FromRole="TRANSACCION_PAGO" ToRole="PEDIDO" />
           <NavigationProperty Name="TIPO_PAGO" Relationship="Self.FK_TIPO_PAGO_TRANSACCION_PAGO" FromRole="TRANSACCION_PAGO" ToRole="TIPO_PAGO" />
         </EntityType>
         <EntityType Name="USUARIO">
@@ -504,73 +537,56 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             <PropertyRef Name="ID_USUARIO" />
           </Key>
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="APELLIDOS" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="GENERO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NOMBRES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="GENERO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Precision="0" />
           <Property Name="CORREO" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="FACEBOOK_ID" Type="Int32" />
-          <NavigationProperty Name="CREDENCIAL_USUARIO" Relationship="Self.FK_CREDENCIAL_USUARIO" FromRole="USUARIO" ToRole="CREDENCIAL_USUARIO" />
-          <NavigationProperty Name="PEDIDO" Relationship="Self.FK_FACTURA_USUARIO" FromRole="USUARIO" ToRole="PEDIDO" />
+          <Property Name="FACEBOOK_ID" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_USUARIO" FromRole="USUARIO" ToRole="PEDIDO" />
+          <NavigationProperty Name="CREDENCIAL_USUARIO" Relationship="MEDICFARMAModel.FK_CREDENCIAL_USUARIO" FromRole="USUARIO" ToRole="CREDENCIAL_USUARIO" />
         </EntityType>
-        <EntityType Name="consultas">
+        <EntityType Name="USUARIO_MASTER_MEDICFARMA">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID_USUARIO_MASTER" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="precio" Type="Decimal" Precision="7" Scale="2" />
-          <Property Name="idSucursalProducto" Type="Int32" />
-          <Property Name="idSucursal" Type="Int32" />
-          <Property Name="sucursal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="latitud" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="longitud" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="distancia" Type="Decimal" Precision="7" Scale="2" />
-          <Property Name="idFarmacia" Type="Int32" />
+          <Property Name="ID_USUARIO_MASTER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODIGO_ADMINISTRADOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRES" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="database_firewall_rules">
+        <EntityType Name="CONSULTAS">
           <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="start_ip_address" />
-            <PropertyRef Name="end_ip_address" />
-            <PropertyRef Name="create_date" />
-            <PropertyRef Name="modify_date" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCTO" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="ID_SUCURSAL_PRODUCTO" Type="Int32" />
+          <Property Name="ID_SUCURSAL" Type="Int32" />
+          <Property Name="SUCURSAL" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="LATITUD" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="LONGITUD" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="DISTANCIA" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="ID_FARMACIA" Type="Int32" />
         </EntityType>
-        <Association Name="FK_CREDENCIAL_USUARIO">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
-          <End Role="CREDENCIAL_USUARIO" Type="Self.CREDENCIAL_USUARIO" Multiplicity="*" />
+        <Association Name="FK_ADMINISTRADOR_FARMACIA">
+          <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="1" />
+          <End Role="ADMINISTRADOR_FARMACIA" Type="Self.ADMINISTRADOR_FARMACIA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="ID_USUARIO" />
+            <Principal Role="FARMACIA">
+              <PropertyRef Name="ID_FARMACIA" />
             </Principal>
-            <Dependent Role="CREDENCIAL_USUARIO">
-              <PropertyRef Name="ID_USUARIO" />
+            <Dependent Role="ADMINISTRADOR_FARMACIA">
+              <PropertyRef Name="ID_FARMACIA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DETALLE_PEDIDO_TRANSACCION_PAGO">
-          <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="1" />
-          <End Role="TRANSACCION_PAGO" Type="Self.TRANSACCION_PAGO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DETALLE_PEDIDO">
-              <PropertyRef Name="ID_DETALLE_PEDIDO" />
-            </Principal>
-            <Dependent Role="TRANSACCION_PAGO">
-              <PropertyRef Name="ID_DETALLE_PEDIDO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FACTURA_DETALLE_FACTURA">
-          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
+        <Association Name="FK_PEDIDO_DETALLE_PEDIDO">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
           <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PEDIDO">
@@ -581,32 +597,20 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EMPLEADO___ID_EM__5812160E">
-          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
-          <End Role="EMPLEADO_SUCURSAL" Type="Self.EMPLEADO_SUCURSAL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EMPLEADO">
-              <PropertyRef Name="ID_EMPLEADO" />
-            </Principal>
-            <Dependent Role="EMPLEADO_SUCURSAL">
-              <PropertyRef Name="ID_EMPLEADO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EMPLEADO___ID_SU__59063A47">
+        <Association Name="FK_EMPLEADO_SUCURSAL">
           <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
-          <End Role="EMPLEADO_SUCURSAL" Type="Self.EMPLEADO_SUCURSAL" Multiplicity="*" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SUCURSAL">
               <PropertyRef Name="ID_SUCURSAL" />
             </Principal>
-            <Dependent Role="EMPLEADO_SUCURSAL">
+            <Dependent Role="EMPLEADO">
               <PropertyRef Name="ID_SUCURSAL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FARMACIA_SUCURSAL">
-          <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="1" />
+          <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="0..1" />
           <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FARMACIA">
@@ -617,20 +621,20 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FACTURA_USUARIO">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
-          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+        <Association Name="FK_PEDIDO_INCIDENCIA">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
+          <End Role="INCIDENCIA" Type="Self.INCIDENCIA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="ID_USUARIO" />
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
             </Principal>
-            <Dependent Role="PEDIDO">
-              <PropertyRef Name="ID_USUARIO" />
+            <Dependent Role="INCIDENCIA">
+              <PropertyRef Name="ID_PEDIDO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PEDIDO_SUCURSAL">
-          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="0..1" />
           <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SUCURSAL">
@@ -641,8 +645,32 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PEDIDO_TRANSACCION_PAGO">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="0..1" />
+          <End Role="TRANSACCION_PAGO" Type="Self.TRANSACCION_PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Principal>
+            <Dependent Role="TRANSACCION_PAGO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDO_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="PEDIDO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TIPO_PAGO_TRANSACCION_PAGO">
-          <End Role="TIPO_PAGO" Type="Self.TIPO_PAGO" Multiplicity="1" />
+          <End Role="TIPO_PAGO" Type="Self.TIPO_PAGO" Multiplicity="0..1" />
           <End Role="TRANSACCION_PAGO" Type="Self.TRANSACCION_PAGO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TIPO_PAGO">
@@ -653,56 +681,57 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MedicFarmaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CREDENCIAL_USUARIO" EntityType="Self.CREDENCIAL_USUARIO" />
+        <EntityContainer Name="MEDICFARMAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINISTRADOR_FARMACIA" EntityType="Self.ADMINISTRADOR_FARMACIA" />
           <EntitySet Name="DETALLE_PEDIDO" EntityType="Self.DETALLE_PEDIDO" />
           <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
-          <EntitySet Name="EMPLEADO_SUCURSAL" EntityType="Self.EMPLEADO_SUCURSAL" />
           <EntitySet Name="FARMACIA" EntityType="Self.FARMACIA" />
+          <EntitySet Name="INCIDENCIA" EntityType="Self.INCIDENCIA" />
           <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" />
           <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="t_oauthtoken" EntityType="Self.t_oauthtoken" />
           <EntitySet Name="TIPO_PAGO" EntityType="Self.TIPO_PAGO" />
           <EntitySet Name="TRANSACCION_PAGO" EntityType="Self.TRANSACCION_PAGO" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
-          <EntitySet Name="consultas" EntityType="Self.consultas" />
-          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
-          <AssociationSet Name="FK_CREDENCIAL_USUARIO" Association="Self.FK_CREDENCIAL_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIO" />
-            <End Role="CREDENCIAL_USUARIO" EntitySet="CREDENCIAL_USUARIO" />
+          <EntitySet Name="USUARIO_MASTER_MEDICFARMA" EntityType="Self.USUARIO_MASTER_MEDICFARMA" />
+          <EntitySet Name="CONSULTAS" EntityType="Self.CONSULTAS" />
+          <AssociationSet Name="FK_ADMINISTRADOR_FARMACIA" Association="Self.FK_ADMINISTRADOR_FARMACIA">
+            <End Role="FARMACIA" EntitySet="FARMACIA" />
+            <End Role="ADMINISTRADOR_FARMACIA" EntitySet="ADMINISTRADOR_FARMACIA" />
           </AssociationSet>
-          <AssociationSet Name="FK_DETALLE_PEDIDO_TRANSACCION_PAGO" Association="Self.FK_DETALLE_PEDIDO_TRANSACCION_PAGO">
-            <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
-            <End Role="TRANSACCION_PAGO" EntitySet="TRANSACCION_PAGO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FACTURA_DETALLE_FACTURA" Association="Self.FK_FACTURA_DETALLE_FACTURA">
+          <AssociationSet Name="FK_PEDIDO_DETALLE_PEDIDO" Association="Self.FK_PEDIDO_DETALLE_PEDIDO">
             <End Role="PEDIDO" EntitySet="PEDIDO" />
             <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
           </AssociationSet>
-          <AssociationSet Name="FK__EMPLEADO___ID_EM__5812160E" Association="Self.FK__EMPLEADO___ID_EM__5812160E">
-            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
-            <End Role="EMPLEADO_SUCURSAL" EntitySet="EMPLEADO_SUCURSAL" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EMPLEADO___ID_SU__59063A47" Association="Self.FK__EMPLEADO___ID_SU__59063A47">
+          <AssociationSet Name="FK_EMPLEADO_SUCURSAL" Association="Self.FK_EMPLEADO_SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
-            <End Role="EMPLEADO_SUCURSAL" EntitySet="EMPLEADO_SUCURSAL" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
           </AssociationSet>
           <AssociationSet Name="FK_FARMACIA_SUCURSAL" Association="Self.FK_FARMACIA_SUCURSAL">
             <End Role="FARMACIA" EntitySet="FARMACIA" />
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
           </AssociationSet>
-          <AssociationSet Name="FK_FACTURA_USUARIO" Association="Self.FK_FACTURA_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIO" />
+          <AssociationSet Name="FK_PEDIDO_INCIDENCIA" Association="Self.FK_PEDIDO_INCIDENCIA">
             <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="INCIDENCIA" EntitySet="INCIDENCIA" />
           </AssociationSet>
           <AssociationSet Name="FK_PEDIDO_SUCURSAL" Association="Self.FK_PEDIDO_SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDO_TRANSACCION_PAGO" Association="Self.FK_PEDIDO_TRANSACCION_PAGO">
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="TRANSACCION_PAGO" EntitySet="TRANSACCION_PAGO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDO_USUARIO" Association="Self.FK_PEDIDO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="PEDIDO" EntitySet="PEDIDO" />
           </AssociationSet>
           <AssociationSet Name="FK_TIPO_PAGO_TRANSACCION_PAGO" Association="Self.FK_TIPO_PAGO_TRANSACCION_PAGO">
             <End Role="TIPO_PAGO" EntitySet="TIPO_PAGO" />
             <End Role="TRANSACCION_PAGO" EntitySet="TRANSACCION_PAGO" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="MEDICFARMAModel.sysdiagrams" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -733,8 +762,22 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="t_oauthtoken" EntityType="MEDICFARMAModel.t_oauthtoken" />
+          <EntitySet Name="CREDENCIAL_USUARIO" EntityType="MEDICFARMAModel.CREDENCIAL_USUARIO" />
+          <AssociationSet Name="FK_CREDENCIAL_USUARIO" Association="MEDICFARMAModel.FK_CREDENCIAL_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="CREDENCIAL_USUARIO" EntitySet="CREDENCIAL_USUARIO" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -746,30 +789,48 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="t_oauthtoken">
+        <EntityType Name="CREDENCIAL_USUARIO">
           <Key>
-            <PropertyRef Name="authtoken_id" />
+            <PropertyRef Name="ID_CREDENCIAL_USUARIO" />
           </Key>
-          <Property Name="authtoken_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sender_id" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
-          <Property Name="outh_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="ID_CREDENCIAL_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <Property Name="PASSWORD" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Boolean" />
+          <NavigationProperty Name="USUARIO" Relationship="MEDICFARMAModel.FK_CREDENCIAL_USUARIO" FromRole="CREDENCIAL_USUARIO" ToRole="USUARIO" />
         </EntityType>
+        <Association Name="FK_CREDENCIAL_USUARIO">
+          <End Type="MEDICFARMAModel.USUARIO" Role="USUARIO" Multiplicity="0..1" />
+          <End Type="MEDICFARMAModel.CREDENCIAL_USUARIO" Role="CREDENCIAL_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="CREDENCIAL_USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MEDICFARMAModelStoreContainer" CdmEntityContainer="MedicFarmaEntities">
-          <EntitySetMapping Name="CREDENCIAL_USUARIO">
-            <EntityTypeMapping TypeName="MEDICFARMAModel.CREDENCIAL_USUARIO">
-              <MappingFragment StoreEntitySet="CREDENCIAL_USUARIO">
-                <ScalarProperty Name="ID_CREDENCIAL_USUARIO" ColumnName="ID_CREDENCIAL_USUARIO" />
-                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+        <EntityContainerMapping StorageEntityContainer="MEDICFARMAModelStoreContainer" CdmEntityContainer="MEDICFARMAEntities">
+          <EntitySetMapping Name="ADMINISTRADOR_FARMACIA">
+            <EntityTypeMapping TypeName="MEDICFARMAModel.ADMINISTRADOR_FARMACIA">
+              <MappingFragment StoreEntitySet="ADMINISTRADOR_FARMACIA">
+                <ScalarProperty Name="ID_ADMINISTRADOR" ColumnName="ID_ADMINISTRADOR" />
+                <ScalarProperty Name="CODIGO_ADMINISTRADOR" ColumnName="CODIGO_ADMINISTRADOR" />
+                <ScalarProperty Name="ID_FARMACIA" ColumnName="ID_FARMACIA" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
                 <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="DUI" ColumnName="DUI" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -788,20 +849,16 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             <EntityTypeMapping TypeName="MEDICFARMAModel.EMPLEADO">
               <MappingFragment StoreEntitySet="EMPLEADO">
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+                <ScalarProperty Name="CODIGO_EMPLEADO" ColumnName="CODIGO_EMPLEADO" />
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
                 <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
                 <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EMPLEADO_SUCURSAL">
-            <EntityTypeMapping TypeName="MEDICFARMAModel.EMPLEADO_SUCURSAL">
-              <MappingFragment StoreEntitySet="EMPLEADO_SUCURSAL">
-                <ScalarProperty Name="ID_EMPLEADO_SUCURSAL" ColumnName="ID_EMPLEADO_SUCURSAL" />
-                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
-                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="DUI" ColumnName="DUI" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -814,16 +871,33 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="INCIDENCIA">
+            <EntityTypeMapping TypeName="MEDICFARMAModel.INCIDENCIA">
+              <MappingFragment StoreEntitySet="INCIDENCIA">
+                <ScalarProperty Name="ID_INCIDENCIA" ColumnName="ID_INCIDENCIA" />
+                <ScalarProperty Name="ID_PEDIDO" ColumnName="ID_PEDIDO" />
+                <ScalarProperty Name="INCIDENCIA1" ColumnName="INCIDENCIA" />
+                <ScalarProperty Name="FECHA_INCIDENCIA" ColumnName="FECHA_INCIDENCIA" />
+                <ScalarProperty Name="FECHA_RESUELTO" ColumnName="FECHA_RESUELTO" />
+                <ScalarProperty Name="OBSERVACION" ColumnName="OBSERVACION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PEDIDO">
             <EntityTypeMapping TypeName="MEDICFARMAModel.PEDIDO">
               <MappingFragment StoreEntitySet="PEDIDO">
                 <ScalarProperty Name="ID_PEDIDO" ColumnName="ID_PEDIDO" />
+                <ScalarProperty Name="CODIGO_PEDIDO" ColumnName="CODIGO_PEDIDO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="TOTAL_COMPRA" ColumnName="TOTAL_COMPRA" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="FECHA_RECIBIDO" ColumnName="FECHA_RECIBIDO" />
+                <ScalarProperty Name="FECHA_ENVIO" ColumnName="FECHA_ENVIO" />
+                <ScalarProperty Name="MONTO_COMPRA" ColumnName="MONTO_COMPRA" />
+                <ScalarProperty Name="ESTADO_PEDIDO" ColumnName="ESTADO_PEDIDO" />
+                <ScalarProperty Name="ESTADO_PAGO" ColumnName="ESTADO_PAGO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -840,14 +914,14 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MEDICFARMAModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
+          <EntitySetMapping Name="t_oauthtoken">
+            <EntityTypeMapping TypeName="MEDICFARMAModel.t_oauthtoken">
+              <MappingFragment StoreEntitySet="t_oauthtoken">
+                <ScalarProperty Name="authtoken_id" ColumnName="authtoken_id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+                <ScalarProperty Name="outh_name" ColumnName="outh_name" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="date" ColumnName="date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -864,9 +938,9 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
             <EntityTypeMapping TypeName="MEDICFARMAModel.TRANSACCION_PAGO">
               <MappingFragment StoreEntitySet="TRANSACCION_PAGO">
                 <ScalarProperty Name="ID_TRANSACCION_PAGO" ColumnName="ID_TRANSACCION_PAGO" />
-                <ScalarProperty Name="ID_DETALLE_PEDIDO" ColumnName="ID_DETALLE_PEDIDO" />
+                <ScalarProperty Name="CODIGO_PAGO" ColumnName="CODIGO_PAGO" />
+                <ScalarProperty Name="ID_PEDIDO" ColumnName="ID_PEDIDO" />
                 <ScalarProperty Name="ID_TIPO_PAGO" ColumnName="ID_TIPO_PAGO" />
-                <ScalarProperty Name="INTERMEDIARIO" ColumnName="INTERMEDIARIO" />
                 <ScalarProperty Name="FECHA_TRANSACCION" ColumnName="FECHA_TRANSACCION" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
@@ -886,32 +960,43 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="consultas">
-            <EntityTypeMapping TypeName="MEDICFARMAModel.consultas">
-              <MappingFragment StoreEntitySet="consultas">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="producto" ColumnName="producto" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="idSucursalProducto" ColumnName="idSucursalProducto" />
-                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
-                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
-                <ScalarProperty Name="latitud" ColumnName="latitud" />
-                <ScalarProperty Name="longitud" ColumnName="longitud" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="distancia" ColumnName="distancia" />
-                <ScalarProperty Name="idFarmacia" ColumnName="idFarmacia" />
+          <EntitySetMapping Name="USUARIO_MASTER_MEDICFARMA">
+            <EntityTypeMapping TypeName="MEDICFARMAModel.USUARIO_MASTER_MEDICFARMA">
+              <MappingFragment StoreEntitySet="USUARIO_MASTER_MEDICFARMA">
+                <ScalarProperty Name="ID_USUARIO_MASTER" ColumnName="ID_USUARIO_MASTER" />
+                <ScalarProperty Name="CODIGO_ADMINISTRADOR" ColumnName="CODIGO_ADMINISTRADOR" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="database_firewall_rules">
-            <EntityTypeMapping TypeName="MEDICFARMAModel.database_firewall_rules">
-              <MappingFragment StoreEntitySet="database_firewall_rules">
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="CONSULTAS">
+            <EntityTypeMapping TypeName="MEDICFARMAModel.CONSULTAS">
+              <MappingFragment StoreEntitySet="CONSULTAS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PRODUCTO" ColumnName="PRODUCTO" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="ID_SUCURSAL_PRODUCTO" ColumnName="ID_SUCURSAL_PRODUCTO" />
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="SUCURSAL" ColumnName="SUCURSAL" />
+                <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+                <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="DISTANCIA" ColumnName="DISTANCIA" />
+                <ScalarProperty Name="ID_FARMACIA" ColumnName="ID_FARMACIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MEDICFARMAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
-                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
-                <ScalarProperty Name="create_date" ColumnName="create_date" />
-                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -939,14 +1024,13 @@ advertencia 6002: La tabla o vista 'MEDICFARMA.sys.database_firewall_rules' no t
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MEDICFARMAModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MEDICFARMAModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="t_oauthtoken">
-            <EntityTypeMapping TypeName="MEDICFARMAModel.t_oauthtoken">
-              <MappingFragment StoreEntitySet="t_oauthtoken">
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="token" ColumnName="token" />
-                <ScalarProperty Name="outh_name" ColumnName="outh_name" />
-                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
-                <ScalarProperty Name="authtoken_id" ColumnName="authtoken_id" />
+          <EntitySetMapping Name="CREDENCIAL_USUARIO">
+            <EntityTypeMapping TypeName="MEDICFARMAModel.CREDENCIAL_USUARIO">
+              <MappingFragment StoreEntitySet="CREDENCIAL_USUARIO">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_CREDENCIAL_USUARIO" ColumnName="ID_CREDENCIAL_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

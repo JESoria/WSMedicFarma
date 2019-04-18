@@ -74,6 +74,29 @@ namespace WService
                defaults: new { Controller = "Detail", Action = "ProductDetail" }
                );
 
+            //Insertar un nuevo pedido
+            config.Routes.MapHttpRoute(
+               name: "Order",
+               routeTemplate: "v1/Order",
+               defaults: new { Controller = "Pedido", Action = "addPedidos" }
+               );
+
+
+            //Listar pedidos por usuario
+            config.Routes.MapHttpRoute(
+               name: "OrdersList",
+               routeTemplate: "v1/OrdersList",
+               defaults: new { Controller = "Pedido", Action = "pedidosList" }
+               );
+
+
+            //Insertar un nuevo reclamo
+            config.Routes.MapHttpRoute(
+               name: "Reclam",
+               routeTemplate: "v1/Reclam",
+               defaults: new { Controller = "Reclamations", Action = "addReclamation" }
+               );
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }

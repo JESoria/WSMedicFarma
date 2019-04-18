@@ -12,13 +12,16 @@ namespace WService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class database_firewall_rules
+    public partial class INCIDENCIA
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string start_ip_address { get; set; }
-        public string end_ip_address { get; set; }
-        public System.DateTime create_date { get; set; }
-        public System.DateTime modify_date { get; set; }
+        public int ID_INCIDENCIA { get; set; }
+        public Nullable<int> ID_PEDIDO { get; set; }
+        public string INCIDENCIA1 { get; set; }
+        public Nullable<System.DateTime> FECHA_INCIDENCIA { get; set; }
+        public Nullable<System.DateTime> FECHA_RESUELTO { get; set; }
+        public string OBSERVACION { get; set; }
+        public string ESTADO { get; set; }
+    
+        public virtual PEDIDO PEDIDO { get; set; }
     }
 }

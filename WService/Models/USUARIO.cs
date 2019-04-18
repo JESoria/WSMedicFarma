@@ -17,21 +17,21 @@ namespace WService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public USUARIO()
         {
-            this.CREDENCIAL_USUARIO = new HashSet<CREDENCIAL_USUARIO>();
             this.PEDIDO = new HashSet<PEDIDO>();
+            this.CREDENCIAL_USUARIO = new HashSet<CREDENCIAL_USUARIO>();
         }
     
         public int ID_USUARIO { get; set; }
         public string NOMBRES { get; set; }
         public string APELLIDOS { get; set; }
         public string GENERO { get; set; }
-        public System.DateTime FECHA_NACIMIENTO { get; set; }
+        public Nullable<System.DateTime> FECHA_NACIMIENTO { get; set; }
         public string CORREO { get; set; }
-        public Nullable<int> FACEBOOK_ID { get; set; }
+        public string FACEBOOK_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PEDIDO> PEDIDO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
     }
 }

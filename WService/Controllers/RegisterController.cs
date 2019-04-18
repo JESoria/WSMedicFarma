@@ -45,7 +45,7 @@ namespace WService.Controllers
                 model.facebook_id = sanitizer.Sanitize(model.facebook_id);
                 model.estado = bool.Parse(sanitizer.Sanitize(model.estado.ToString()));
 
-                using (MedicFarmaEntities db = new MedicFarmaEntities())
+                using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                 {
                     try
                     {
@@ -59,7 +59,7 @@ namespace WService.Controllers
                             usuario.APELLIDOS = model.apellidos;
                             usuario.GENERO = model.genero;
                             usuario.FECHA_NACIMIENTO = DateTime.ParseExact(model.fecha_nacimiento, "yyyy-MM-dd", System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);
-                            usuario.FACEBOOK_ID = Convert.ToInt32(model.facebook_id);
+                            usuario.FACEBOOK_ID = model.facebook_id;
 
                             db.USUARIO.Add(usuario);
                             await db.SaveChangesAsync();

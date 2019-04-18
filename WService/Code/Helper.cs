@@ -17,7 +17,7 @@ namespace WService.Code
                 var lastpart = Convert.ToString(principal.Claims.Where(c => c.Type == "lastpart").Single().Value);
                 var middlepart = Convert.ToInt32(principal.Claims.Where(c => c.Type == "middlepart").Single().Value);
 
-                using (MedicFarmaEntities db = new MedicFarmaEntities())
+                using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                 {
                     var token = db.t_oauthtoken.Where(x => x.authtoken_id == middlepart && x.outh_name == firstpart && x.sender_id == lastpart);
                     if (token.Count() > 0)

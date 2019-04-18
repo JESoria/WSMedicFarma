@@ -12,14 +12,13 @@ namespace WService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EMPLEADO_SUCURSAL
+    public partial class USUARIO_MASTER_MEDICFARMA
     {
-        public int ID_EMPLEADO_SUCURSAL { get; set; }
-        public int ID_EMPLEADO { get; set; }
-        public int ID_SUCURSAL { get; set; }
-        public string ESTADO { get; set; }
-    
-        public virtual EMPLEADO EMPLEADO { get; set; }
-        public virtual SUCURSAL SUCURSAL { get; set; }
+        public int ID_USUARIO_MASTER { get; set; }
+        public string CODIGO_ADMINISTRADOR { get; set; }
+        public string NOMBRES { get; set; }
+        public string APELLIDOS { get; set; }
+        public string USUARIO { get; set; }
+        public string PASSWORD { get; set; }
     }
 }

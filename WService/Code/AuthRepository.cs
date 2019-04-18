@@ -9,7 +9,7 @@ namespace WService.Code
         public async Task<t_oauthtoken> SaveUser(tokenModel model)
         {
             
-                using (MedicFarmaEntities db = new MedicFarmaEntities())
+                using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                 {
                     var token = new t_oauthtoken()
                     {

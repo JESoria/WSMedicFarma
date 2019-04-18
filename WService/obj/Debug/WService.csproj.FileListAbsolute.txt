@@ -488,3 +488,4 @@ C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WServi
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.pdb
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csprojAssemblyReference.cache
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csproj.CopyComplete
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Newtonsoft.Json.pdb

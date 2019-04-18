@@ -15,10 +15,10 @@ namespace WService.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MedicFarmaEntities : DbContext
+    public partial class MEDICFARMAEntities : DbContext
     {
-        public MedicFarmaEntities()
-            : base("name=MedicFarmaEntities")
+        public MEDICFARMAEntities()
+            : base("name=MEDICFARMAEntities")
         {
         }
     
@@ -27,20 +27,21 @@ namespace WService.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
+        public virtual DbSet<ADMINISTRADOR_FARMACIA> ADMINISTRADOR_FARMACIA { get; set; }
         public virtual DbSet<DETALLE_PEDIDO> DETALLE_PEDIDO { get; set; }
         public virtual DbSet<EMPLEADO> EMPLEADO { get; set; }
-        public virtual DbSet<EMPLEADO_SUCURSAL> EMPLEADO_SUCURSAL { get; set; }
         public virtual DbSet<FARMACIA> FARMACIA { get; set; }
+        public virtual DbSet<INCIDENCIA> INCIDENCIA { get; set; }
         public virtual DbSet<PEDIDO> PEDIDO { get; set; }
         public virtual DbSet<SUCURSAL> SUCURSAL { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<t_oauthtoken> t_oauthtoken { get; set; }
         public virtual DbSet<TIPO_PAGO> TIPO_PAGO { get; set; }
         public virtual DbSet<TRANSACCION_PAGO> TRANSACCION_PAGO { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
-        public virtual DbSet<consultas> consultas { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
-        public virtual DbSet<t_oauthtoken> t_oauthtoken { get; set; }
+        public virtual DbSet<USUARIO_MASTER_MEDICFARMA> USUARIO_MASTER_MEDICFARMA { get; set; }
+        public virtual DbSet<CONSULTAS> CONSULTAS { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<CREDENCIAL_USUARIO> CREDENCIAL_USUARIO { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

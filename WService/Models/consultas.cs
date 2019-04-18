@@ -12,18 +12,18 @@ namespace WService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class consultas
+    public partial class CONSULTAS
     {
-        public int id { get; set; }
-        public string producto { get; set; }
-        public Nullable<decimal> precio { get; set; }
-        public Nullable<int> idSucursalProducto { get; set; }
-        public Nullable<int> idSucursal { get; set; }
-        public string sucursal { get; set; }
-        public string latitud { get; set; }
-        public string longitud { get; set; }
-        public string direccion { get; set; }
-        public Nullable<decimal> distancia { get; set; }
-        public Nullable<int> idFarmacia { get; set; }
+        public int ID { get; set; }
+        public string PRODUCTO { get; set; }
+        public Nullable<decimal> PRECIO { get; set; }
+        public Nullable<int> ID_SUCURSAL_PRODUCTO { get; set; }
+        public Nullable<int> ID_SUCURSAL { get; set; }
+        public string SUCURSAL { get; set; }
+        public string LATITUD { get; set; }
+        public string LONGITUD { get; set; }
+        public string DIRECCION { get; set; }
+        public Nullable<decimal> DISTANCIA { get; set; }
+        public Nullable<int> ID_FARMACIA { get; set; }
     }
 }

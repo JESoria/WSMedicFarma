@@ -53,33 +53,33 @@ namespace WService.Controllers
                     // Esperando cada tarea.  
                     int FarmaA = await FarmaciaA;
                     int FarmaB = await FarmaciaB;
-                    //int FarmaC = await FarmaciaC;
+                    int FarmaC = await FarmaciaC;
 
                     List<ProductSearchModel> listaBusqueda = new List<ProductSearchModel>();
-                    using (MedicFarmaEntities db = new MedicFarmaEntities())
+                    using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                     {
 
-                        db.consultas.OrderBy(x => x.precio).ToList().ForEach(x =>
+                        db.CONSULTAS.OrderBy(x => x.PRECIO).ToList().ForEach(x =>
                         {
                             listaBusqueda.Add(new ProductSearchModel()
                             {
-                                producto = x.producto,
-                                precio = Convert.ToDecimal(x.precio),
-                                idSucursalProducto = Convert.ToInt32(x.idSucursalProducto),
-                                idSucursal = Convert.ToInt32(x.idSucursal),
-                                sucursal = x.sucursal,
-                                latitud = x.latitud,
-                                longitud = x.longitud,
-                                direccion = x.direccion,
-                                idFarmacia = Convert.ToInt32(x.idFarmacia)
+                                producto = x.PRODUCTO,
+                                precio = Convert.ToDecimal(x.PRECIO),
+                                idSucursalProducto = Convert.ToInt32(x.ID_SUCURSAL_PRODUCTO),
+                                idSucursal = Convert.ToInt32(x.ID_SUCURSAL),
+                                sucursal = x.SUCURSAL,
+                                latitud = x.LATITUD,
+                                longitud = x.LONGITUD,
+                                direccion = x.DIRECCION,
+                                idFarmacia = Convert.ToInt32(x.ID_FARMACIA)
                             });
                         });
 
                         if (listaBusqueda.Count != 0)
                         {
-                            db.consultas.OrderBy(x => x.id).ToList().ForEach(x =>
+                            db.CONSULTAS.OrderBy(x => x.ID).ToList().ForEach(x =>
                             {
-                                db.consultas.Remove(x);
+                                db.CONSULTAS.Remove(x);
                                 db.SaveChanges();
                             });
 
@@ -119,21 +119,21 @@ namespace WService.Controllers
 
                     foreach (var y in lista)
                     {
-                        using (MedicFarmaEntities db = new MedicFarmaEntities())
+                        using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                         {
-                            consultas product = new consultas();
-                            product.producto = y.producto;
-                            product.precio = y.precio;
-                            product.idSucursalProducto = y.idSucursalProducto;
-                            product.idSucursal = y.idSucursal;
-                            product.latitud = y.latitud;
-                            product.longitud = y.longitud;
-                            product.direccion = y.direccion;
-                            product.distancia = Convert.ToDecimal(y.distancia);
-                            product.sucursal = y.sucursal;
-                            product.idFarmacia = y.idFarmacia;
+                            CONSULTAS product = new CONSULTAS();
+                            product.PRODUCTO = y.producto;
+                            product.PRECIO = y.precio;
+                            product.ID_SUCURSAL_PRODUCTO = y.idSucursalProducto;
+                            product.ID_SUCURSAL = y.idSucursal;
+                            product.LATITUD = y.latitud;
+                            product.LONGITUD = y.longitud;
+                            product.DIRECCION = y.direccion;
+                            product.DISTANCIA = Convert.ToDecimal(y.distancia);
+                            product.SUCURSAL = y.sucursal;
+                            product.ID_FARMACIA = y.idFarmacia;
 
-                            db.consultas.Add(product);
+                            db.CONSULTAS.Add(product);
                             await db.SaveChangesAsync();
                         }
                     }

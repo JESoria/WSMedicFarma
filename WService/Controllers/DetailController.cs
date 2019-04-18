@@ -51,11 +51,11 @@ namespace WService.Controllers
                             Farmacia =
                                 ProcessURLAsync(Clients.URLClientA, clientA, data);
                             break;
-                        case 1013:
+                        case 1014:
                             Farmacia =
                                  ProcessURLAsync(Clients.URLClientB, clientB, data);
                             break;
-                        case 1014:
+                        case 1013:
                             Farmacia =
                                 ProcessURLAsync(Clients.URLClientC, clientC, data);
                             break;

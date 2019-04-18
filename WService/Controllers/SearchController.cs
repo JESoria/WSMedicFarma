@@ -35,7 +35,7 @@ namespace WService.Controllers
             }
             else
             {
-                using (MedicFarmaEntities db = new MedicFarmaEntities())
+                using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                 {
                     List<DrugstoresModel> list = new List<DrugstoresModel>();
                     db.FARMACIA.OrderBy(x => x.ID_FARMACIA).ToList().ForEach(x => {
@@ -91,12 +91,12 @@ namespace WService.Controllers
                             Farmacia =
                                 ProcessURLAsync(Clients.URLClientA, clientA, data);
                             break;
-                        case 1013:
+                        case 1014:
                             Farmacia =
                                  ProcessURLAsync(Clients.URLClientB, clientB, data);
                             break;
-                        case 1014:
-                            Farmacia =
+                        case 1013:
+                           Farmacia =
                                 ProcessURLAsync(Clients.URLClientC, clientC, data);
                             break;
                         default:
@@ -108,28 +108,28 @@ namespace WService.Controllers
                     IHttpActionResult Farma = await Farmacia;
 
                     List<ProductSearchModel> listaBusqueda = new List<ProductSearchModel>();
-                    using (MedicFarmaEntities db = new MedicFarmaEntities()) {
-                        db.consultas.OrderBy(x => x.precio).ToList().ForEach(x =>
+                    using (MEDICFARMAEntities db = new MEDICFARMAEntities()) {
+                        db.CONSULTAS.OrderBy(x => x.PRECIO).ToList().ForEach(x =>
                         {
                             listaBusqueda.Add(new ProductSearchModel()
                             {
-                                producto = x.producto,
-                                precio = Convert.ToDecimal(x.precio),
-                                idSucursalProducto = Convert.ToInt32(x.idSucursalProducto),
-                                idSucursal = Convert.ToInt32(x.idSucursal),
-                                sucursal = x.sucursal,
-                                latitud = x.latitud,
-                                longitud = x.longitud,
-                                direccion = x.direccion,
-                                idFarmacia = Convert.ToInt32(x.idFarmacia)
+                                producto = x.PRODUCTO,
+                                precio = Convert.ToDecimal(x.PRECIO),
+                                idSucursalProducto = Convert.ToInt32(x.ID_SUCURSAL_PRODUCTO),
+                                idSucursal = Convert.ToInt32(x.ID_SUCURSAL),
+                                sucursal = x.SUCURSAL,
+                                latitud = x.LATITUD,
+                                longitud = x.LONGITUD,
+                                direccion = x.DIRECCION,
+                                idFarmacia = Convert.ToInt32(x.ID_FARMACIA)
                             });
                         });
 
                         if (listaBusqueda.Count != 0)
                         {
-                            db.consultas.OrderBy(x => x.id).ToList().ForEach(x =>
+                            db.CONSULTAS.OrderBy(x => x.ID).ToList().ForEach(x =>
                             {
-                                db.consultas.Remove(x);
+                                db.CONSULTAS.Remove(x);
                                 db.SaveChanges();
                             });
 
@@ -169,15 +169,20 @@ namespace WService.Controllers
 
                     foreach (var y in lista)
                     {
-                        using (MedicFarmaEntities db = new MedicFarmaEntities())
+                        using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                         {
-                            consultas product = new consultas();
-                            product.producto = y.producto;
-                            product.precio = y.precio;
-                            product.idSucursalProducto = y.idSucursalProducto;
-                            product.idSucursal = y.idSucursal;
+                            CONSULTAS product = new CONSULTAS();
+                            product.PRODUCTO = y.producto;
+                            product.PRECIO = y.precio;
+                            product.ID_SUCURSAL_PRODUCTO = y.idSucursalProducto;
+                            product.ID_SUCURSAL = y.idSucursal;
+                            product.DIRECCION = y.direccion;
+                            product.LATITUD = y.latitud;
+                            product.LONGITUD = y.longitud;
+                            product.ID_FARMACIA = y.idFarmacia;
+                            product.SUCURSAL = y.sucursal;
 
-                            db.consultas.Add(product);
+                            db.CONSULTAS.Add(product);
                             await db.SaveChangesAsync();
                         }
                     }

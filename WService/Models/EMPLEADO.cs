@@ -14,19 +14,18 @@ namespace WService.Models
     
     public partial class EMPLEADO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EMPLEADO()
-        {
-            this.EMPLEADO_SUCURSAL = new HashSet<EMPLEADO_SUCURSAL>();
-        }
-    
         public int ID_EMPLEADO { get; set; }
+        public string CODIGO_EMPLEADO { get; set; }
+        public int ID_SUCURSAL { get; set; }
         public string NOMBRES { get; set; }
         public string APELLIDOS { get; set; }
         public string USUARIO { get; set; }
         public string PASSWORD { get; set; }
+        public string DUI { get; set; }
+        public string NIT { get; set; }
+        public string TELEFONO { get; set; }
+        public string DIRECCION { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMPLEADO_SUCURSAL> EMPLEADO_SUCURSAL { get; set; }
+        public virtual SUCURSAL SUCURSAL { get; set; }
     }
 }

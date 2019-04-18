@@ -18,19 +18,29 @@ namespace WService.Models
         public PEDIDO()
         {
             this.DETALLE_PEDIDO = new HashSet<DETALLE_PEDIDO>();
+            this.INCIDENCIA = new HashSet<INCIDENCIA>();
+            this.TRANSACCION_PAGO = new HashSet<TRANSACCION_PAGO>();
         }
     
         public int ID_PEDIDO { get; set; }
-        public int ID_USUARIO { get; set; }
-        public int ID_SUCURSAL { get; set; }
+        public string CODIGO_PEDIDO { get; set; }
+        public Nullable<int> ID_USUARIO { get; set; }
+        public Nullable<int> ID_SUCURSAL { get; set; }
         public string DIRECCION { get; set; }
-        public System.DateTime FECHA { get; set; }
-        public decimal TOTAL_COMPRA { get; set; }
-        public string ESTADO { get; set; }
+        public string TELEFONO { get; set; }
+        public Nullable<System.DateTime> FECHA_RECIBIDO { get; set; }
+        public Nullable<System.DateTime> FECHA_ENVIO { get; set; }
+        public Nullable<decimal> MONTO_COMPRA { get; set; }
+        public string ESTADO_PEDIDO { get; set; }
+        public string ESTADO_PAGO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DETALLE_PEDIDO> DETALLE_PEDIDO { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<INCIDENCIA> INCIDENCIA { get; set; }
         public virtual SUCURSAL SUCURSAL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TRANSACCION_PAGO> TRANSACCION_PAGO { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

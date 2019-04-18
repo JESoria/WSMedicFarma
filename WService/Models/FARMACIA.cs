@@ -17,6 +17,7 @@ namespace WService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FARMACIA()
         {
+            this.ADMINISTRADOR_FARMACIA = new HashSet<ADMINISTRADOR_FARMACIA>();
             this.SUCURSAL = new HashSet<SUCURSAL>();
         }
     
@@ -24,6 +25,8 @@ namespace WService.Models
         public string FARMACIA1 { get; set; }
         public string DESCRIPCION { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ADMINISTRADOR_FARMACIA> ADMINISTRADOR_FARMACIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUCURSAL> SUCURSAL { get; set; }
     }
