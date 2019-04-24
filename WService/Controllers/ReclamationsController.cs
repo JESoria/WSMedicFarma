@@ -42,6 +42,8 @@ namespace WService.Controllers
                         i.INCIDENCIA1 = model.incidencia;
                         i.FECHA_INCIDENCIA = DateTime.Now;
                         i.ESTADO = "SIN RESOLVER";
+                        i.OBSERVACION = "...";
+                        i.FECHA_RESUELTO = DateTime.Now;
                         db.INCIDENCIA.Add(i);
                         await db.SaveChangesAsync();
                     }
