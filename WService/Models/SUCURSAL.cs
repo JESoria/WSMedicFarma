@@ -22,7 +22,7 @@ namespace WService.Models
         }
     
         public int ID_SUCURSAL { get; set; }
-        public Nullable<int> ID_FARMACIA { get; set; }
+        public int ID_FARMACIA { get; set; }
         public string SUCURSAL1 { get; set; }
         public string DIRECCION { get; set; }
         public string LONGITUD { get; set; }

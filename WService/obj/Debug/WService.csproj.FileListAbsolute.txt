@@ -489,3 +489,7 @@ C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WServi
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csprojAssemblyReference.cache
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\obj\Debug\WService.csproj.CopyComplete
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Newtonsoft.Json.pdb
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Oracle.ManagedDataAccess.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\DotLiquid.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\DotLiquid.Mailer.dll

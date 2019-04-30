@@ -15,10 +15,10 @@ namespace WService.Models
     public partial class DETALLE_PEDIDO
     {
         public int ID_DETALLE_PEDIDO { get; set; }
-        public Nullable<int> ID_PEDIDO { get; set; }
+        public int ID_PEDIDO { get; set; }
         public string PRODUCTO { get; set; }
-        public Nullable<int> CANTIDAD { get; set; }
-        public Nullable<decimal> PRECIO_VENTA { get; set; }
+        public int CANTIDAD { get; set; }
+        public decimal PRECIO_VENTA { get; set; }
     
         public virtual PEDIDO PEDIDO { get; set; }
     }

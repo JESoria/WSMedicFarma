@@ -38,10 +38,10 @@ namespace WService.Code
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 using (AuthRepository Repos = new AuthRepository())
                 {
-                    t_oauthtoken obj_oauthtoken = await Repos.SaveUser(model);
-                    identity.AddClaim(new Claim("middlepart", obj_oauthtoken.authtoken_id.ToString()));
-                    identity.AddClaim(new Claim("lastpart", obj_oauthtoken.sender_id.ToString()));
-                    identity.AddClaim(new Claim("firstpart", obj_oauthtoken.outh_name.ToString()));
+                    T_OAUTHTOKEN obj_oauthtoken = await Repos.SaveUser(model);
+                    identity.AddClaim(new Claim("middlepart", obj_oauthtoken.AUTHTOKEN_ID.ToString()));
+                    identity.AddClaim(new Claim("lastpart", obj_oauthtoken.SENDER_ID.ToString()));
+                    identity.AddClaim(new Claim("firstpart", obj_oauthtoken.OUTH_NAME.ToString()));
                 }
 
                 identity.AddClaim(new Claim("role", "user"));

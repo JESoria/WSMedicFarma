@@ -15,9 +15,9 @@ namespace WService.Models
     public partial class CREDENCIAL_USUARIO
     {
         public int ID_CREDENCIAL_USUARIO { get; set; }
-        public Nullable<int> ID_USUARIO { get; set; }
+        public int ID_USUARIO { get; set; }
         public string PASSWORD { get; set; }
-        public Nullable<bool> ESTADO { get; set; }
+        public string ESTADO { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }
     }

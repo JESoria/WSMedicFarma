@@ -15,7 +15,7 @@ namespace WService.Models
         public string genero { get; set; }
         public string fecha_nacimiento { get; set; }
         public string facebook_id { get; set; }
-        public bool estado { get; set; }
+        public string estado { get; set; }
         public string usuario { get; set; }
     }
 }

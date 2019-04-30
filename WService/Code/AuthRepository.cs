@@ -6,18 +6,18 @@ namespace WService.Code
 {
     public class AuthRepository : IDisposable
     {
-        public async Task<t_oauthtoken> SaveUser(tokenModel model)
+        public async Task<T_OAUTHTOKEN> SaveUser(tokenModel model)
         {
             
                 using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                 {
-                    var token = new t_oauthtoken()
+                    var token = new T_OAUTHTOKEN()
                     {
-                        date = DateTime.Now,
-                        outh_name = model.outh_name,
-                        sender_id = model.sender_id,
+                        FECHA = DateTime.Now,
+                        OUTH_NAME = model.outh_name,
+                        SENDER_ID = model.sender_id,
                     };
-                    db.t_oauthtoken.Add(token);
+                    db.T_OAUTHTOKEN.Add(token);
                     await db.SaveChangesAsync();
                     return token;
                 }

@@ -25,7 +25,7 @@ namespace WService.Controllers
 
             IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
             string header = headerValues.FirstOrDefault();
-            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
+            T_OAUTHTOKEN token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
 
             if (token == null) {
                 return null;
@@ -83,7 +83,7 @@ namespace WService.Controllers
 
             IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
             string header = headerValues.FirstOrDefault();
-            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
+            T_OAUTHTOKEN token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
 
             if (token == null)
             {
@@ -95,20 +95,26 @@ namespace WService.Controllers
                     using (MEDICFARMAEntities db = new MEDICFARMAEntities()) {
                         List<DataPedidoModel> pedidos = new List<DataPedidoModel>();
                         int IdUsuario = Convert.ToInt32(data.ID_USUARIO);
-                        //Que la fecha sea el dia de ahora
+                        
                         db.PEDIDO.Where(x => x.ID_USUARIO == IdUsuario).ToList().ForEach(x =>
                         {
-                            pedidos.Add(new DataPedidoModel()
+                            if (db.INCIDENCIA.Any(i => i.ID_PEDIDO == x.ID_PEDIDO))
                             {
-                                idPedido = x.ID_PEDIDO,
-                                codigoPedido = x.CODIGO_PEDIDO,
-                                sucursal = x.SUCURSAL.SUCURSAL1,
-                                direccion = x.SUCURSAL.DIRECCION,
-                                latitud = x.SUCURSAL.LATITUD,
-                                longitud = x.SUCURSAL.LONGITUD,
-                                telefono = x.SUCURSAL.TELEFONO,
-                                montoCompra = Convert.ToDecimal(x.MONTO_COMPRA),
-                            }); 
+                                
+                            }
+                            else {
+                                pedidos.Add(new DataPedidoModel()
+                                {
+                                    idPedido = x.ID_PEDIDO,
+                                    codigoPedido = x.CODIGO_PEDIDO,
+                                    sucursal = x.SUCURSAL.SUCURSAL1,
+                                    direccion = x.SUCURSAL.DIRECCION,
+                                    latitud = x.SUCURSAL.LATITUD,
+                                    longitud = x.SUCURSAL.LONGITUD,
+                                    telefono = x.SUCURSAL.TELEFONO,
+                                    montoCompra = Convert.ToDecimal(x.MONTO_COMPRA),
+                                });
+                            }                           
                         });
                         if (pedidos.Count() == 0)
                         {

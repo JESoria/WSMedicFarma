@@ -23,7 +23,7 @@ namespace WService.Controllers
         {
             IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
             string header = headerValues.FirstOrDefault();
-            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
+            T_OAUTHTOKEN token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
 
             if (token == null)
             {
@@ -43,7 +43,7 @@ namespace WService.Controllers
                 model.genero = sanitizer.Sanitize(model.genero);
                 model.fecha_nacimiento = sanitizer.Sanitize(model.fecha_nacimiento);
                 model.facebook_id = sanitizer.Sanitize(model.facebook_id);
-                model.estado = bool.Parse(sanitizer.Sanitize(model.estado.ToString()));
+                model.estado = sanitizer.Sanitize(model.estado);
 
                 using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                 {

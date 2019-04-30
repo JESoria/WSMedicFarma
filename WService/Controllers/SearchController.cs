@@ -27,7 +27,7 @@ namespace WService.Controllers
         {
             IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
             string header = headerValues.FirstOrDefault();
-            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
+            T_OAUTHTOKEN token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
 
             if (token == null)
             {
@@ -60,7 +60,7 @@ namespace WService.Controllers
         {
             IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
             string header = headerValues.FirstOrDefault();
-            t_oauthtoken token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
+            T_OAUTHTOKEN token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
 
             if (token == null)
             {

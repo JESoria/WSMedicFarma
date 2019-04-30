@@ -9,7 +9,7 @@ namespace WService.Code
 {
     public class Helper
     {
-        public async Task<t_oauthtoken> getOauthoken(ClaimsPrincipal principal, string tokenx)
+        public async Task<T_OAUTHTOKEN> getOauthoken(ClaimsPrincipal principal, string tokenx)
         {
             try
             {
@@ -19,13 +19,13 @@ namespace WService.Code
 
                 using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                 {
-                    var token = db.t_oauthtoken.Where(x => x.authtoken_id == middlepart && x.outh_name == firstpart && x.sender_id == lastpart);
+                    var token = db.T_OAUTHTOKEN.Where(x => x.AUTHTOKEN_ID == middlepart && x.OUTH_NAME == firstpart && x.SENDER_ID == lastpart);
                     if (token.Count() > 0)
                     {
                         if (token != null)
                         {
                             var xx = token.FirstOrDefault();
-                            xx.token = tokenx;
+                            xx.TOKEN = tokenx;
                             db.Entry(xx).State = System.Data.Entity.EntityState.Modified;
                             await db.SaveChangesAsync();
                         }

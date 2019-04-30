@@ -16,13 +16,13 @@ namespace WService.Models
     {
         public int ID_TRANSACCION_PAGO { get; set; }
         public string CODIGO_PAGO { get; set; }
-        public Nullable<int> ID_PEDIDO { get; set; }
-        public Nullable<int> ID_TIPO_PAGO { get; set; }
-        public Nullable<System.DateTime> FECHA_TRANSACCION { get; set; }
+        public int ID_PEDIDO { get; set; }
+        public int ID_TIPO_PAGO { get; set; }
+        public System.DateTime FECHA_TRANSACCION { get; set; }
         public string ESTADO { get; set; }
         public string DESCRIPCION { get; set; }
     
-        public virtual PEDIDO PEDIDO { get; set; }
         public virtual TIPO_PAGO TIPO_PAGO { get; set; }
+        public virtual PEDIDO PEDIDO { get; set; }
     }
 }

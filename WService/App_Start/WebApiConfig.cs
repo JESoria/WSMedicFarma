@@ -97,6 +97,13 @@ namespace WService
                defaults: new { Controller = "Reclamations", Action = "addReclamation" }
                );
 
+            //Enviar comprobante
+            config.Routes.MapHttpRoute(
+               name: "Ticket",
+               routeTemplate: "v1/Ticket",
+               defaults: new { Controller = "Ticket", Action = "SendEmail" }
+               );
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }

@@ -24,11 +24,11 @@ namespace WService.Models
     
         public int ID_PEDIDO { get; set; }
         public string CODIGO_PEDIDO { get; set; }
-        public Nullable<int> ID_USUARIO { get; set; }
-        public Nullable<int> ID_SUCURSAL { get; set; }
+        public int ID_USUARIO { get; set; }
+        public int ID_SUCURSAL { get; set; }
         public string DIRECCION { get; set; }
         public string TELEFONO { get; set; }
-        public Nullable<System.DateTime> FECHA_RECIBIDO { get; set; }
+        public System.DateTime FECHA_RECIBIDO { get; set; }
         public Nullable<System.DateTime> FECHA_ENVIO { get; set; }
         public Nullable<decimal> MONTO_COMPRA { get; set; }
         public string ESTADO_PEDIDO { get; set; }

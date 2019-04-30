@@ -15,10 +15,10 @@ namespace WService.Models
     public partial class INCIDENCIA
     {
         public int ID_INCIDENCIA { get; set; }
-        public Nullable<int> ID_PEDIDO { get; set; }
+        public int ID_PEDIDO { get; set; }
         public string INCIDENCIA1 { get; set; }
-        public Nullable<System.DateTime> FECHA_INCIDENCIA { get; set; }
-        public Nullable<System.DateTime> FECHA_RESUELTO { get; set; }
+        public System.DateTime FECHA_INCIDENCIA { get; set; }
+        public System.DateTime FECHA_RESUELTO { get; set; }
         public string OBSERVACION { get; set; }
         public string ESTADO { get; set; }
     
