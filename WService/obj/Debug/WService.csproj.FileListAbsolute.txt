@@ -493,3 +493,5 @@ C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Oracle.Manag
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Oracle.ManagedDataAccess.EntityFramework.dll
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\DotLiquid.dll
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\DotLiquid.Mailer.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Z.EntityFramework.Extensions.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Z.EntityFramework.Extensions.xml

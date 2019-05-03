@@ -8,10 +8,10 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Results;
 using WService.Code;
 using WService.Models;
-
+using System.Net.Mail;
+using DotLiquid;
 
 namespace WService.Controllers
 {
@@ -40,9 +40,11 @@ namespace WService.Controllers
                 {
                     var j = jsonString["data"].ToString();
                     var model = JsonConvert.DeserializeObject<OrdenCompra>(j);
+                    if (model.pedidos.estadoPago.Equals("approved")) {
+                        model.pedidos.estadoPago = "Pagado";                                                 
+                    }
 
-
-                    using (MEDICFARMAEntities db = new MEDICFARMAEntities())
+                        using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                     {
                         PEDIDO data = new PEDIDO();
                         data.CODIGO_PEDIDO = model.pedidos.codigoPedido;
@@ -55,7 +57,7 @@ namespace WService.Controllers
                         data.ESTADO_PEDIDO = "SIN ENTREGAR";
                         data.FECHA_RECIBIDO = DateTime.Now;
                         db.PEDIDO.Add(data);
-                        await db.SaveChangesAsync();
+                        await db.SaveChangesAsync();  
 
                         foreach (var x in model.detallePedido)
                         {
@@ -67,6 +69,20 @@ namespace WService.Controllers
                             db.DETALLE_PEDIDO.Add(det);
                             await db.SaveChangesAsync();
                         }
+
+                        if (model.pedidos.estadoPago.Equals("Pagado"))
+                        {
+                            sendEmail(new TicketModel()
+                            {
+                                usuario = data.USUARIO.NOMBRES,
+                                email = data.USUARIO.CORREO,
+                                sucursal = data.SUCURSAL.SUCURSAL1,
+                                idPedido = data.ID_PEDIDO,
+                                codigoPaypal = data.CODIGO_PEDIDO,
+                                nombresUsuario = data.USUARIO.NOMBRES + " " + data.USUARIO.APELLIDOS,
+                                total = Convert.ToDecimal(data.MONTO_COMPRA)
+                            });
+                        }
                     }
                 }
 
@@ -76,6 +92,68 @@ namespace WService.Controllers
                 }
             }
             return null;
+        }
+
+
+        public void sendEmail(TicketModel data) {
+
+            try
+            {
+                System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                mail.From = new MailAddress("medicfarma.comprasonline@gmail.com");
+
+                // The important part -- configuring the SMTP client
+                SmtpClient smtp = new SmtpClient();
+                smtp.Port = 587;   // [1] You can try with 465 also, I always used 587 and got success
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network; // [2] Added this
+                smtp.UseDefaultCredentials = false; // [3] Changed this
+                smtp.Credentials = new NetworkCredential("medicfarma.comprasonline@gmail.com", "utec2019$");  // [4] Added this. Note, first parameter is NOT string.
+                smtp.Host = "smtp.gmail.com";
+
+                //recipient address
+                mail.To.Add(new MailAddress(data.email));
+
+                //Formatted mail body
+                mail.IsBodyHtml = true;
+                mail.Subject = "Datos de compra";
+                string cid = "image001@gembox.com";
+                mail.Attachments.Add(new Attachment("C:/logo.png") { ContentId = cid });
+                //
+                Template template = Template.Parse(
+                    " <p><img src='cid:" + cid + "' width='100' height='100' /></p>" +
+                    " <p><strong>¡GRACIAS!</strong></p>" +
+                    " <p>Hola  {{ user.usuario }} </p>" +
+                    " <p>Gracias por tu compra en {{ user.sucursal }} </p>" +
+                    " <p>Información del pedido:</p>" +
+                    "<hr>" +
+                    " <p>CODIGO DE PEDIDO:<mark> {{user.id_pedido}}</mark> </p>" +
+                    " <p>CODIGO PAYPAL: <mark>{{user.codigo_paypal}}</mark></p>" +
+                    " <p>FACTURADO A: {{user.nombres_usuario}}</p>" +
+                    " <p>TOTAL COMPRA $ {{user.total}}</p>"
+                    );
+                string result = template.Render(Hash.FromAnonymousObject(new
+                {
+                    user = new TicketDrop(new TicketModel
+                    {
+                        usuario = data.usuario,
+                        email = data.email,
+                        sucursal = data.sucursal,
+                        idPedido = data.idPedido,
+                        codigoPaypal = data.codigoPaypal,
+                        nombresUsuario = data.nombresUsuario,
+                        total = data.total
+                    })
+                }));
+                //
+
+                mail.Body = result;
+                smtp.Send(mail);               
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         [HttpPost]

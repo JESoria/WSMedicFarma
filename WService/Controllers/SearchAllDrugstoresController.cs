@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Security.Claims;
 using WService.Code;
+using Z.BulkOperations;
 
 namespace WService.Controllers
 {
@@ -113,14 +114,15 @@ namespace WService.Controllers
                 var jsonString = response.Content.ReadAsStringAsync();
                 jsonString.Wait();
                 lista = JsonConvert.DeserializeObject<List<ProductSearchModel>>(jsonString.Result);
+                List<CONSULTAS> l = new List<CONSULTAS>();
 
                 if (lista.Count() != 0)
                 {
-
-                    foreach (var y in lista)
+                    using (MEDICFARMAEntities db = new MEDICFARMAEntities())
                     {
-                        using (MEDICFARMAEntities db = new MEDICFARMAEntities())
+                        foreach (var y in lista)
                         {
+                        
                             CONSULTAS product = new CONSULTAS();
                             product.PRODUCTO = y.producto;
                             product.PRECIO = y.precio;
@@ -133,9 +135,11 @@ namespace WService.Controllers
                             product.SUCURSAL = y.sucursal;
                             product.ID_FARMACIA = y.idFarmacia;
 
-                            db.CONSULTAS.Add(product);
-                            await db.SaveChangesAsync();
+                            l.Add(product);
+
+                            // await db.SaveChangesAsync();
                         }
+                        db.BulkInsert(l);
                     }
                     lista.Clear();
                     return 1;//Cuando la consulta se realizó correctamente
