@@ -31,10 +31,14 @@ namespace WService.Models
         public double montoCompra { get; set; }
         public string estadoPago { get; set; }
         public string estadoPedido { get; set; }
+        public string correo { get; set; }
+        public string nombres { get; set; }
+        public string apellidos  { get; set; }
         public DateTime fecha { get; set; }
     }
 
-    public class DetallePedido {
+    public class DetallePedido 
+    {
         public int idSucursalProducto { get; set; }
         public int idFarmacia { get; set; }
         public int cantidad { get; set; }

@@ -495,3 +495,9 @@ C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\DotLiquid.dl
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\DotLiquid.Mailer.dll
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Z.EntityFramework.Extensions.dll
 C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Z.EntityFramework.Extensions.xml
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Microsoft.Azure.KeyVault.Core.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Microsoft.WindowsAzure.Storage.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Microsoft.WindowsAzure.StorageClient.dll
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Microsoft.Azure.KeyVault.Core.xml
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Microsoft.WindowsAzure.Storage.pdb
+C:\Users\Xiomara Alarcon\Documents\GitHub\WSMedicFarma\WService\bin\Microsoft.WindowsAzure.Storage.xml

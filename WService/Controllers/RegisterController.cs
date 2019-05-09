@@ -58,7 +58,7 @@ namespace WService.Controllers
                             usuario.NOMBRES = model.nombres;
                             usuario.APELLIDOS = model.apellidos;
                             usuario.GENERO = model.genero;
-                            usuario.FECHA_NACIMIENTO = DateTime.ParseExact(model.fecha_nacimiento, "yyyy-MM-dd", System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);
+                            usuario.FECHA_NACIMIENTO = Convert.ToDateTime(model.fecha_nacimiento); /*DateTime.ParseExact(model.fecha_nacimiento, "dd/MM/yyyy", System.Globalization.CultureInfo.GetCultureInfo("en-Us").DateTimeFormat);*/
                             usuario.FACEBOOK_ID = model.facebook_id;
 
                             db.USUARIO.Add(usuario);
@@ -75,10 +75,12 @@ namespace WService.Controllers
                             db.CREDENCIAL_USUARIO.Add(credencial_usuario);
                             await db.SaveChangesAsync();
 
-                            return Ok(new RespuestaGenerica() { mensaje = 1 }); //Registro exitoso
+                            // return Ok(new RespuestaGenerica() { mensaje = 1 }); //Registro exitoso
+                            return Ok(1);
                         }
                         else {
-                            return Ok(new RespuestaGenerica() { mensaje = 2 }); //El usuario ya existe
+                            //return Ok(new RespuestaGenerica() { mensaje = 2 }); //El usuario ya existe
+                            return Ok(2);
                         }
 
                        

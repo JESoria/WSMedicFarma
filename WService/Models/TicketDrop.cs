@@ -45,7 +45,17 @@ namespace WService.Models
             get { return _ticket.email; }
         }
 
-        public List<DetallePedido> detalle {
+        public string det
+        {
+            get { return _ticket.det; }
+        }
+
+        public string titulos 
+        {
+            get { return _ticket.titulos; }
+        }
+
+        public ICollection<DetallePedido> detalle {
             get { return _ticket.detalle; }
         }
 
@@ -54,4 +64,6 @@ namespace WService.Models
             _ticket = ticket;
         }
     }
+
+   
 }

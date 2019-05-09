@@ -17,19 +17,11 @@ namespace WService.Controllers
     public class TicketController : ApiController
     {
         private DataAccess da = new DataAccess();
-        /*
+        
         [HttpPost]
-        public async Task<IHttpActionResult> SendEmail(TicketModel data)
+        public async Task<IHttpActionResult> SendEmailM (TicketModel data)
         {
-            IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
-            string header = headerValues.FirstOrDefault();
-            T_OAUTHTOKEN token = await da.getOauthoken(Request.GetRequestContext().Principal as ClaimsPrincipal, header);
-
-            if (token == null)
-            {
-                return BadRequest();
-            }
-            else {
+            
                 try
                 {
                     System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
@@ -50,8 +42,9 @@ namespace WService.Controllers
                     //Formatted mail body
                     mail.IsBodyHtml = true;
                     mail.Subject = "Datos de compra";
+
                     string cid = "image001@gembox.com";
-                    mail.Attachments.Add(new Attachment("~/Context/logo.png") { ContentId = cid });
+                    mail.Attachments.Add(new Attachment("C:/logo.png") { ContentId = cid });
                     //
                     Template template = Template.Parse(
                         " <p><img src='cid:" + cid + "' width='100' height='100' /></p>" +
@@ -89,6 +82,6 @@ namespace WService.Controllers
                 }
                 return Ok("1");
             }   
-        }*/
+        
     }
 }

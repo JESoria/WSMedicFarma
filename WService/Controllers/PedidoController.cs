@@ -12,6 +12,10 @@ using WService.Code;
 using WService.Models;
 using System.Net.Mail;
 using DotLiquid;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System.IO;
 
 namespace WService.Controllers
 {
@@ -70,19 +74,86 @@ namespace WService.Controllers
                             await db.SaveChangesAsync();
                         }
 
-                        if (model.pedidos.estadoPago.Equals("Pagado"))
-                        {
-                            sendEmail(new TicketModel()
+                        if (model.pedidos.estadoPago.Equals("Pagado")) {
+                            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                            mail.From = new MailAddress("medicfarma.comprasonline@gmail.com");
+
+                            // The important part -- configuring the SMTP client
+                            SmtpClient smtp = new SmtpClient();
+                            smtp.Port = 587;   // [1] You can try with 465 also, I always used 587 and got success
+                            smtp.EnableSsl = true;
+                            smtp.DeliveryMethod = SmtpDeliveryMethod.Network; // [2] Added this
+                            smtp.UseDefaultCredentials = false; // [3] Changed this
+                            smtp.Credentials = new NetworkCredential("medicfarma.comprasonline@gmail.com", "utec2019$");  // [4] Added this. Note, first parameter is NOT string.
+                            smtp.Host = "smtp.gmail.com";
+
+                            //recipient address
+                            mail.To.Add(new MailAddress(model.pedidos.correo));
+
+                            //Formatted mail body
+                            mail.IsBodyHtml = true;
+                            mail.Subject = "Datos de compra";
+/*
+                            string accountname = "storagemedicfarma";
+                            string accesskey = "vc65JRlPh553D5uWflxn/bZEFvaks9lbx0vMyIX9tsPYmJCCwhAT3NIILtZt+iNv7q0LyBukeCUPBOZ9dWTH6w==";
+
+                            var account = new CloudStorageAccount(new StorageCredentials(accountname, accesskey), true);
+                            CloudBlobClient blobClient = account.CreateCloudBlobClient();
+                            CloudBlobContainer container = blobClient.GetContainerReference("containername");
+                            CloudBlockBlob blobread = container.GetBlockBlobReference(Session["UploadPDFFile"].ToString());
+                            MemoryStream msRead = new MemoryStream();
+                            using (msRead)
                             {
-                                usuario = data.USUARIO.NOMBRES,
-                                email = data.USUARIO.CORREO,
-                                sucursal = data.SUCURSAL.SUCURSAL1,
-                                idPedido = data.ID_PEDIDO,
-                                codigoPaypal = data.CODIGO_PEDIDO,
-                                nombresUsuario = data.USUARIO.NOMBRES + " " + data.USUARIO.APELLIDOS,
-                                total = Convert.ToDecimal(data.MONTO_COMPRA)
-                            });
-                        }
+                                blobread.DownloadToStream(msRead);
+                                msRead.Position = 0;
+
+                                mail.Attachments.Add(new System.Net.Mail.Attachment(msRead, Session["UploadPDFFile"].ToString(), "pdf/application"));
+                            }
+
+*/
+                            string cid = "image001@gembox.com";
+                            mail.Attachments.Add(new Attachment("C:/Users/Xiomara Alarcon/Documents/GitHub/WSMedicFarma/WService/Content/logo.png") { ContentId = cid });
+                            string det_ = "";
+                            
+                            foreach (var i in model.detallePedido) {
+                                det_ = det_ + i.cantidad + "- \t " + i.producto + "- \t $" + i.precio + "<br>";
+                            }                       
+                            Template template = Template.Parse(
+                               // " <p><img src='cid:" + cid + "' width='100' height='100' /></p>" +
+                                " <p><strong>¡GRACIAS!</strong></p>" +
+                                " <p>Hola  {{ user.usuario }} </p>" +
+                                " <p>Gracias por tu compra en {{ user.sucursal }} </p>" +
+                                " <p>Información del pedido:</p>" +
+                                "<hr>" +
+                                " <p>CODIGO DE PEDIDO:<mark> {{user.id_pedido}}</mark> </p>" +
+                                " <p>CODIGO PAYPAL: <mark>{{user.codigo_paypal}}</mark></p>" +
+                                " <p>FACTURADO A: {{user.nombres_usuario}}</p>" +
+                                " <p>TOTAL COMPRA $ {{user.total}}</p>" +
+                                "Detalle del pedido:" +
+                                "<hr>" +
+                                "{{user.det}}"
+                                );
+                            
+                            var sucursal = db.SUCURSAL.FirstOrDefault(x => x.ID_SUCURSAL == model.pedidos.idsucursal);
+                            string result = template.Render(Hash.FromAnonymousObject(new
+                            {
+                                user = new TicketDrop(new TicketModel
+                                {
+                                    usuario = model.pedidos.nombres,
+                                    email = model.pedidos.correo,
+                                    sucursal = sucursal.SUCURSAL1,
+                                    idPedido = data.ID_PEDIDO,
+                                    codigoPaypal = model.pedidos.codigoPedido,
+                                    nombresUsuario = model.pedidos.nombres + " " + model.pedidos.apellidos,
+                                    total = Convert.ToDecimal(model.pedidos.montoCompra),
+                                    detalle = model.detallePedido,
+                                    det = det_
+                                })
+                            }));
+                            
+                            mail.Body = result;
+                            smtp.Send(mail);
+                        }                       
                     }
                 }
 

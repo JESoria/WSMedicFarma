@@ -101,7 +101,7 @@ namespace WService
             config.Routes.MapHttpRoute(
                name: "Ticket",
                routeTemplate: "v1/Ticket",
-               defaults: new { Controller = "Ticket", Action = "SendEmail" }
+               defaults: new { Controller = "Ticket", Action = "SendEmailM" }
                );
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
